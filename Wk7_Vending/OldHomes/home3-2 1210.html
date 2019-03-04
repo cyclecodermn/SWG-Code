@@ -1,0 +1,118 @@
+<!DOCTYPE html">
+<html>
+  <head>
+    <title>Vending Machine-SRM</title>
+    <link href="css/bootstrap.css"
+    rel="stylesheet">
+  </head>
+  <body link="#0000EE" vlink="#551A8B" text="#000000" bgcolor="#cccccc"
+    alink="#EE0000">
+
+    <h1 align="center">Vending Machine</h1>
+    <hr width="100%" size="2"><br>
+    <table width="100%" cellspacing="2" cellpadding="2" border="3">
+      <tbody>
+        <tr> 
+          <div class "row1">
+          <td id="Cell1" valign="middle">1<br>
+            <div align="center">Snickers<br>
+              $1.85<br>
+              <br>
+              Quantity Left: A1<br>
+            </div>
+          </td>
+          <td id="Cell2" valign="middle">2<br>
+            <div align="center"><a name="A2"></a>M&amp;Ms<br>
+              $1.50<br>
+              <br>
+              Quantity Left: A2<br>
+            </div>
+          </td>
+          <td id="Cell3" valign="middle">3<a name="A3"></a><br>
+            <div align="center">Pringles<br>
+              $2.10<br>
+              <br>
+              Quantity Left: A3<br>
+            </div>
+          </td>
+          <td id="Total" valign="middle">
+            <div align="center">Total $ In<br>
+              <!--Total In Field -->
+			  <textarea name="TotalIn Field" rows="" cols=""></textarea>
+			  <br>
+              <br>
+              <br>
+              <center>
+              <button type="button" id="AddDlrBtn" class="btn btn-default">AddDlrBtn</button>
+              <button type="button" id="AddQuarBtn" class="btn btn-default">AddQuarBtn</button><br>
+              <button type="button" id="AddDimeBtn" class="btn btn-default">AddDimeBtn</button>
+              <button type="button" id="AddNick" class="btn btn-default">AddNick</button><br>
+            </center>   
+          </td>
+        </div>
+        </tr>
+        <tr>
+          <td id="Cell4" valign="middle">4<br>
+            <div align="center">Reese's<br>
+              $1.85<br>
+              <br>
+              Quantity Left: B1<br>
+            </div>
+          </td>
+          <td id="Cell5" valign="middle">5<br>
+            <div align="center">Pretzels<br>
+              $1.25<br>
+              <br>
+              Quantity Left: C2<br>
+            </div>
+          </td>
+          <td id="Cell6" valign="middle">6<br>
+            <div align="center">Twinkies<br>
+              $1.95<br>
+              <br>
+              Quantity Left: C3<br>
+            </div>
+          </td>
+          <td id="Msg1" valign="top" align="center">Messages<br>
+            MessagesBox<br>
+            Item: ItemBox<br>
+            MakePurchaseBtn<br>
+          </td>
+        </tr>
+        <tr>
+          <td id="Cell7" valign="middle">7<br>
+            <div align="center">Doritoes<br>
+              $1.75<br>
+              <br>
+              Quantity Left: C1<br>
+            </div>
+          </td>
+          <td id="Cell8" valign="middle">8<br>
+            <div align="center">Almond Joy<br>
+              $1.85<br>
+              <br>
+              Quantity Left: C2<br>
+            </div>
+          </td>
+          <td id="Cell9" valign="middle">9<br>
+            <div align="center">Trident<br>
+              $1.95<br>
+              <br>
+              Quantity Left:C3<br>
+            </div>
+          </td>
+          <td id='change' valign="top" align="center">Change<br>
+            ChangeBox<br>
+            ChangeRtrnBtn<br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+            <!-- #5: Placed at the end of the document so the pages load faster -->
+            <script src="js/jquery-2.2.4.min.js"></script>
+            <script src="js/bootstrap.js"></script>
+            <script src="js/vending.js"></script>
+    
+  </body>
+</html>

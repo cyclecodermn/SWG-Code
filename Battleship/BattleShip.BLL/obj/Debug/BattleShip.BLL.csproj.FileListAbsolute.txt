@@ -1,0 +1,17 @@
+D:\Git\Curriculum\dotnet\ObjectOrientedProgramming\02-Classes-And-Objects\Assessments\Battleship\BattleShip_Start\BattleShip.BLL\bin\Debug\BattleShip.BLL.dll
+D:\Git\Curriculum\dotnet\ObjectOrientedProgramming\02-Classes-And-Objects\Assessments\Battleship\BattleShip_Start\BattleShip.BLL\bin\Debug\BattleShip.BLL.pdb
+D:\Git\Curriculum\dotnet\ObjectOrientedProgramming\02-Classes-And-Objects\Assessments\Battleship\BattleShip_Start\BattleShip.BLL\obj\Debug\BattleShip.BLL.csprojResolveAssemblyReference.cache
+D:\Git\Curriculum\dotnet\ObjectOrientedProgramming\02-Classes-And-Objects\Assessments\Battleship\BattleShip_Start\BattleShip.BLL\obj\Debug\BattleShip.BLL.dll
+D:\Git\Curriculum\dotnet\ObjectOrientedProgramming\02-Classes-And-Objects\Assessments\Battleship\BattleShip_Start\BattleShip.BLL\obj\Debug\BattleShip.BLL.pdb
+C:\Cohort\Repos\isaiah-dahlberg-individual-work\Battleship\BattleShip.BLL\bin\Debug\BattleShip.BLL.dll
+C:\Cohort\Repos\isaiah-dahlberg-individual-work\Battleship\BattleShip.BLL\bin\Debug\BattleShip.BLL.pdb
+C:\Cohort\Repos\isaiah-dahlberg-individual-work\Battleship\BattleShip.BLL\obj\Debug\BattleShip.BLL.csprojAssemblyReference.cache
+C:\Cohort\Repos\isaiah-dahlberg-individual-work\Battleship\BattleShip.BLL\obj\Debug\BattleShip.BLL.csproj.CoreCompileInputs.cache
+C:\Cohort\Repos\isaiah-dahlberg-individual-work\Battleship\BattleShip.BLL\obj\Debug\BattleShip.BLL.dll
+C:\Cohort\Repos\isaiah-dahlberg-individual-work\Battleship\BattleShip.BLL\obj\Debug\BattleShip.BLL.pdb
+C:\Users\steve\OneDrive\Work\sGuild\Week2\Battleship3\Battleship\BattleShip.BLL\bin\Debug\BattleShip.BLL.dll
+C:\Users\steve\OneDrive\Work\sGuild\Week2\Battleship3\Battleship\BattleShip.BLL\bin\Debug\BattleShip.BLL.pdb
+C:\Users\steve\OneDrive\Work\sGuild\Week2\Battleship3\Battleship\BattleShip.BLL\obj\Debug\BattleShip.BLL.csprojAssemblyReference.cache
+C:\Users\steve\OneDrive\Work\sGuild\Week2\Battleship3\Battleship\BattleShip.BLL\obj\Debug\BattleShip.BLL.csproj.CoreCompileInputs.cache
+C:\Users\steve\OneDrive\Work\sGuild\Week2\Battleship3\Battleship\BattleShip.BLL\obj\Debug\BattleShip.BLL.dll
+C:\Users\steve\OneDrive\Work\sGuild\Week2\Battleship3\Battleship\BattleShip.BLL\obj\Debug\BattleShip.BLL.pdb

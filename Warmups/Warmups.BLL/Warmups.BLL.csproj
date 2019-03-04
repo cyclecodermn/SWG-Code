@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9C15FFF7-8ACA-46DB-AA90-CDF9268B649F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Warmups.BLL</RootNamespace>
+    <AssemblyName>Warmups.BLL</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Arrays.cs" />
+    <Compile Include="Conditionals.cs" />
+    <Compile Include="Logic.cs" />
+    <Compile Include="Loops.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Strings.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Docs\Arrays\01 - FirstLast6.txt" />
+    <Content Include="Docs\Arrays\02 - SameFirstLast.txt" />
+    <Content Include="Docs\Arrays\03 - MakePi.txt" />
+    <Content Include="Docs\Arrays\04 - CommonEnd.txt" />
+    <Content Include="Docs\Arrays\05 - Sum.txt" />
+    <Content Include="Docs\Arrays\06 - RotateLeft.txt" />
+    <Content Include="Docs\Arrays\07 - Reverse.txt" />
+    <Content Include="Docs\Arrays\08 - HigherWins.txt" />
+    <Content Include="Docs\Arrays\09 - GetMiddle.txt" />
+    <Content Include="Docs\Arrays\10 - HasEven.txt" />
+    <Content Include="Docs\Arrays\11 - KeepLast.txt" />
+    <Content Include="Docs\Arrays\12 - Double23.txt" />
+    <Content Include="Docs\Arrays\13 - Fix23.txt" />
+    <Content Include="Docs\Arrays\14 - Unlucky1.txt" />
+    <Content Include="Docs\Arrays\15 - Make2.txt" />
+    <Content Include="Docs\Conditionals\01- MischeviousChildren.txt" />
+    <Content Include="Docs\Conditionals\02 - SleepingIn.txt" />
+    <Content Include="Docs\Conditionals\03 - SumDouble.txt" />
+    <Content Include="Docs\Conditionals\04 - Diff21.txt" />
+    <Content Include="Docs\Conditionals\05 - ParrotTrouble.txt" />
+    <Content Include="Docs\Conditionals\06 - Makes10.txt" />
+    <Content Include="Docs\Conditionals\07 - NearHundred.txt" />
+    <Content Include="Docs\Conditionals\08 - PosNeg.txt" />
+    <Content Include="Docs\Conditionals\09 - NotString.txt" />
+    <Content Include="Docs\Conditionals\10 - MissingChar.txt" />
+    <Content Include="Docs\Conditionals\11 - FrontBack.txt" />
+    <Content Include="Docs\Conditionals\12 - Front3.txt" />
+    <Content Include="Docs\Conditionals\13 - BackAround.txt" />
+    <Content Include="Docs\Conditionals\14 - Multiple3or5.txt" />
+    <Content Include="Docs\Conditionals\15 - StartHi.txt" />
+    <Content Include="Docs\Conditionals\16 - IcyHot.txt" />
+    <Content Include="Docs\Conditionals\17 - Between10and20.txt" />
+    <Content Include="Docs\Conditionals\18 - HasTeen.txt" />
+    <Content Include="Docs\Conditionals\19 - SoAlone.txt" />
+    <Content Include="Docs\Conditionals\20 - RemoveDel.txt" />
+    <Content Include="Docs\Conditionals\21 - IxStart.txt" />
+    <Content Include="Docs\Conditionals\22 - StartOz.txt" />
+    <Content Include="Docs\Conditionals\23 - Max.txt" />
+    <Content Include="Docs\Conditionals\24 - Closer.txt" />
+    <Content Include="Docs\Conditionals\25 - EEEEEEE.txt" />
+    <Content Include="Docs\Conditionals\26 - EndUp.txt" />
+    <Content Include="Docs\Conditionals\27 - EveryNth.txt" />
+    <Content Include="Docs\Logic\01 - GreatParty.txt" />
+    <Content Include="Docs\Logic\02 - CanHazTable.txt" />
+    <Content Include="Docs\Logic\03 - PlayOutside.txt" />
+    <Content Include="Docs\Logic\04 - CaughtSpeeding.txt" />
+    <Content Include="Docs\Logic\05 - SkipSum.txt" />
+    <Content Include="Docs\Logic\06 - AlarmClock.txt" />
+    <Content Include="Docs\Logic\07 - LoveSix.txt" />
+    <Content Include="Docs\Logic\08 - InRange.txt" />
+    <Content Include="Docs\Logic\09 - SpecialEleven.txt" />
+    <Content Include="Docs\Logic\10 - Mod20.txt" />
+    <Content Include="Docs\Logic\11 - Mod35.txt" />
+    <Content Include="Docs\Logic\12 - AnswerCell.txt" />
+    <Content Include="Docs\Logic\13 - TwoIsOne.txt" />
+    <Content Include="Docs\Logic\14 - AreInOrder.txt" />
+    <Content Include="Docs\Logic\15 - InOrderEqual.txt" />
+    <Content Include="Docs\Logic\16 - LastDigit.txt" />
+    <Content Include="Docs\Logic\17 - RollDice.txt" />
+    <Content Include="Docs\Loops\01 - StringTimes.txt" />
+    <Content Include="Docs\Loops\02 - FrontTimes.txt" />
+    <Content Include="Docs\Loops\03 - CountXX.txt" />
+    <Content Include="Docs\Loops\04 - DoubleX.txt" />
+    <Content Include="Docs\Loops\05 - EveryOther.txt" />
+    <Content Include="Docs\Loops\06 - StringSplosion.txt" />
+    <Content Include="Docs\Loops\07 - CountLast2.txt" />
+    <Content Include="Docs\Loops\08 - Count9.txt" />
+    <Content Include="Docs\Loops\09 - ArrayFront9.txt" />
+    <Content Include="Docs\Loops\10 - Array123.txt" />
+    <Content Include="Docs\Loops\11 - SubStringMatch.txt" />
+    <Content Include="Docs\Loops\12 - StringX.txt" />
+    <Content Include="Docs\Loops\13 - AltPairs.txt" />
+    <Content Include="Docs\Loops\14 - DoNotYak.txt" />
+    <Content Include="Docs\Loops\15 - Array667.txt" />
+    <Content Include="Docs\Loops\16 - NoTriples.txt" />
+    <Content Include="Docs\Loops\17 - Pattern51.txt" />
+    <Content Include="Docs\Strings\01 - SayHi.txt" />
+    <Content Include="Docs\Strings\02 - Abba.txt" />
+    <Content Include="Docs\Strings\03 - MakeTags.txt" />
+    <Content Include="Docs\Strings\04 - InsertWord.txt" />
+    <Content Include="Docs\Strings\05 - MultipleEndings.txt" />
+    <Content Include="Docs\Strings\06 - FirstHalf.txt" />
+    <Content Include="Docs\Strings\07 - TrimOne.txt" />
+    <Content Include="Docs\Strings\08 - LongInMiddle.txt" />
+    <Content Include="Docs\Strings\09 - RotateLeft2.txt" />
+    <Content Include="Docs\Strings\10 - RotateRight2.txt" />
+    <Content Include="Docs\Strings\11 - TakeOne.txt" />
+    <Content Include="Docs\Strings\12 - MiddleTwo.txt" />
+    <Content Include="Docs\Strings\13 - EndsWithLy.txt" />
+    <Content Include="Docs\Strings\14 - FrontAndBack.txt" />
+    <Content Include="Docs\Strings\15 - TakeTwoFromPosition.txt" />
+    <Content Include="Docs\Strings\16 - HasBad.txt" />
+    <Content Include="Docs\Strings\17 - AtFirst.txt" />
+    <Content Include="Docs\Strings\18 - LastChars.txt" />
+    <Content Include="Docs\Strings\19 - ConCat.txt" />
+    <Content Include="Docs\Strings\20 -SwapLast.txt" />
+    <Content Include="Docs\Strings\21 - FrontAgain.txt" />
+    <Content Include="Docs\Strings\22 - MinCat.txt" />
+    <Content Include="Docs\Strings\23 - TweakFront.txt" />
+    <Content Include="Docs\Strings\24 - StripX.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
