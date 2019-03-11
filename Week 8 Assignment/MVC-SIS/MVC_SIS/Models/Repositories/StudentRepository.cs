@@ -79,20 +79,23 @@ namespace Exercises.Models.Repositories
             return _students.FirstOrDefault(s => s.StudentId == studentId);
         }
 
-        public static void Add(Student state)
+        public static void Add(Student student)
         {
-            _students.Add(state);
+            student.StudentId = _students.Max(c => c.StudentId) + 1;
+            _students.Add(student);
         }
 
-        public static void Edit(StudentVM student)
+        public static void Edit(Student student)
         {
-            var selectedStudent = _students.First(s => s.StudentId == student.Student.StudentId);
+            var selectedStudent = _students.First(s => s.StudentId == student.StudentId);
 
-            selectedStudent.FirstName = student.Student.FirstName;
-            selectedStudent.LastName = student.Student.LastName;
-            selectedStudent.GPA = student.Student.GPA;
-            selectedStudent.Major = student.Student.Major;
-            selectedStudent.Courses = student.Student.Courses;
+            selectedStudent.FirstName = student.FirstName;
+            selectedStudent.LastName = student.LastName;
+            selectedStudent.Address = student.Address;
+            selectedStudent.GPA = student.GPA;
+            selectedStudent.Major = student.Major;
+            selectedStudent.Courses = student.Courses;
+
         }
 
         public static void Delete(int studentId)

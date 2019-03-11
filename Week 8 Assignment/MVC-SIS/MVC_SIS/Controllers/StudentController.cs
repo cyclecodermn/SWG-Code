@@ -31,6 +31,8 @@ namespace Exercises.Controllers
             var viewModel = new StudentVM();
             viewModel.SetCourseItems(CourseRepository.GetAll());
             viewModel.SetMajorItems(MajorRepository.GetAll());
+            viewModel.SetStateItems(StateRepository.GetAll());
+
             return View(viewModel);
         }
 
@@ -52,24 +54,20 @@ namespace Exercises.Controllers
         // I added the methods below by modifying methods from Majors
         //
 
-
-        //[HttpGet]
-        //public ActionResult EditStudent()
-        //{
-        //    var viewModel = new StudentVM();
-        //    viewModel.SetCourseItems(CourseRepository.GetAll());
-        //    viewModel.SetMajorItems(MajorRepository.GetAll());
-        //    return View(viewModel);
-        //}
-
-
         [HttpGet]
         public ActionResult EditStudent(int id)
         {
             var VMstudent = new StudentVM();
+
             VMstudent.Student=StudentRepository.Get(id);
             VMstudent.SetMajorItems(MajorRepository.GetAll());
             VMstudent.SetCourseItems(CourseRepository.GetAll());
+            VMstudent.SetStateItems(StateRepository.GetAll());
+
+            if (VMstudent.SelectedCourseIds.Count > 0)
+            {
+                VMstudent.SelectedCourseIds = (from course in VMstudent.Student.Courses select course.CourseId).ToList();
+            }
 
             //var Student = StudentRepository.Get(id);
             return View(VMstudent);
@@ -78,12 +76,6 @@ namespace Exercises.Controllers
         [HttpPost]
         public ActionResult EditStudent(Student student)
         {
-
-            //var viewModel = new StudentVM();
-            //viewModel.SetCourseItems(CourseRepository.GetAll());
-            //viewModel.SetMajorItems(MajorRepository.GetAll());
-            //return View(viewModel);
-
             var myVar = student.LastName;
             var VMstudent = new StudentVM();
             VMstudent.Student.StudentId = student.StudentId;
@@ -95,7 +87,16 @@ namespace Exercises.Controllers
             int majorId = student.Major.MajorId;
             VMstudent.Student.Major = MajorRepository.Get(majorId);
 
-            StudentRepository.Edit(VMstudent);
+            VMstudent.Student.Address = new Address();
+
+            VMstudent.Student.Address.Street1 = student.Address.Street1;
+            VMstudent.Student.Address.Street2 = student.Address.Street2;
+            VMstudent.Student.Address.State = student.Address.State;
+            VMstudent.Student.Address.City = student.Address.City;
+            VMstudent.Student.Address.PostalCode = student.Address.PostalCode;
+
+
+            StudentRepository.Edit(VMstudent.Student);
             return RedirectToAction("List");
         }
 
