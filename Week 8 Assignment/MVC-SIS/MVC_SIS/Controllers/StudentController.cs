@@ -39,16 +39,53 @@ namespace Exercises.Controllers
         [HttpPost]
         public ActionResult Add(StudentVM studentVM)
         {
-            studentVM.Student.Courses = new List<Course>();
+            
+            if (string.IsNullOrEmpty(studentVM.Student.FirstName))
+            {
+                ModelState.AddModelError("Student.FirstName",
+                    "Please enter the student's first name.");
+            }
 
-            foreach (var id in studentVM.SelectedCourseIds)
-                studentVM.Student.Courses.Add(CourseRepository.Get(id));
+            if (string.IsNullOrEmpty(studentVM.Student.LastName))
+            {
+                ModelState.AddModelError("Student.LastName",
+                    "Please enter the student's last name.");
+            }
 
-            studentVM.Student.Major = MajorRepository.Get(studentVM.Student.Major.MajorId);
+            if (studentVM.Student.GPA < 0 || studentVM.Student.GPA > 4)
+            {
+                ModelState.AddModelError("Student.GPA", "Please enter a GPA between zero and four.");
+            }
 
-            StudentRepository.Add(studentVM.Student);
+            if (studentVM.SelectedCourseIds.Count() == 0)
+            {
+                ModelState.AddModelError("Student.Courses",
+                    "Please select at least one course.");
+            }
 
-            return RedirectToAction("List");
+            if (ModelState.IsValid)
+            {
+                studentVM.Student.Courses = new List<Course>();
+                string studentStateAbb = studentVM.Student.Address.State.StateAbbreviation;
+                studentVM.Student.Address.State = StateRepository.Get(studentStateAbb);
+                foreach (var id in studentVM.SelectedCourseIds)
+                    studentVM.Student.Courses.Add(CourseRepository.Get(id));
+
+                studentVM.Student.Major = MajorRepository.Get(studentVM.Student.Major.MajorId);
+
+                StudentRepository.Add(studentVM.Student);
+
+                return RedirectToAction("List");
+
+            }
+            else
+            {
+                // send them back to the entry form
+                studentVM.SetMajorItems(MajorRepository.GetAll());
+                studentVM.SetCourseItems(CourseRepository.GetAll());
+                studentVM.SetStateItems(StateRepository.GetAll());
+                return View(studentVM);
+            }
         }
         // /  /   /    /     /      /       /        /          /           /
         // I added the methods below by modifying methods from Majors
@@ -59,14 +96,24 @@ namespace Exercises.Controllers
         {
             var VMstudent = new StudentVM();
 
-            VMstudent.Student=StudentRepository.Get(id);
+            VMstudent.Student = StudentRepository.Get(id);
             VMstudent.SetMajorItems(MajorRepository.GetAll());
             VMstudent.SetCourseItems(CourseRepository.GetAll());
             VMstudent.SetStateItems(StateRepository.GetAll());
 
-            if (VMstudent.SelectedCourseIds.Count > 0)
+            if (((VMstudent.Student.Courses?.Count) ?? 0) > 0)
+            // If .count succeeeds, then the if condition is true. The questions marks are ignoried, and the
+            // the statement below is run.
+            // If the .count fails, courses, is null, the entire statement:
+            // (VMstudent.Student.Courses?.Count) is set to null. THEN ?? which is null coalessing comes into play.
+            // That will say if the left is null, make everyhing on the left of ? bcomes zero, which can be compared 
+            // to > 0.
             {
                 VMstudent.SelectedCourseIds = (from course in VMstudent.Student.Courses select course.CourseId).ToList();
+            }
+            else
+            {
+                VMstudent.SelectedCourseIds = new List<int>();
             }
 
             //var Student = StudentRepository.Get(id);
@@ -74,30 +121,50 @@ namespace Exercises.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditStudent(Student student)
+        public ActionResult EditStudent(StudentVM studentVM)
         {
-            var myVar = student.LastName;
-            var VMstudent = new StudentVM();
-            VMstudent.Student.StudentId = student.StudentId;
-            VMstudent.Student.FirstName = student.FirstName;
-            VMstudent.Student.LastName = student.LastName;
-            VMstudent.Student.GPA = student.GPA;
-            VMstudent.Student.Courses = student.Courses;
-                        VMstudent.Student.Major = student.Major;
-            int majorId = student.Major.MajorId;
-            VMstudent.Student.Major = MajorRepository.Get(majorId);
 
-            VMstudent.Student.Address = new Address();
+            if (string.IsNullOrEmpty(studentVM.Student.FirstName))
+            {
+                ModelState.AddModelError("Student.FirstName",
+                    "Please enter the student's first name.");
+            }
 
-            VMstudent.Student.Address.Street1 = student.Address.Street1;
-            VMstudent.Student.Address.Street2 = student.Address.Street2;
-            VMstudent.Student.Address.State = student.Address.State;
-            VMstudent.Student.Address.City = student.Address.City;
-            VMstudent.Student.Address.PostalCode = student.Address.PostalCode;
+            if (string.IsNullOrEmpty(studentVM.Student.LastName))
+            {
+                ModelState.AddModelError("Student.LastName",
+                    "Please enter the student's last name.");
+            }
 
+            if (studentVM.Student.GPA < 0 || studentVM.Student.GPA > 4)
+            {
+                ModelState.AddModelError("Student.GPA", "Please enter a GPA between zero and four.");
+            }
 
-            StudentRepository.Edit(VMstudent.Student);
-            return RedirectToAction("List");
+            if (studentVM.SelectedCourseIds.Count() == 0)
+            {
+                ModelState.AddModelError("Student.Courses",
+                    "Please select at least one course.");
+            }
+
+                if (ModelState.IsValid)
+            {
+                int majorId = studentVM.Student.Major.MajorId;
+                studentVM.Student.Major = MajorRepository.Get(majorId);
+                studentVM.Student.Address.State = StateRepository.Get(studentVM.Student.Address.State.StateAbbreviation);
+                studentVM.Student.Courses = CourseRepository.GetAll().Where(c => studentVM.SelectedCourseIds.Contains(c.CourseId)).ToList();
+                StudentRepository.Edit(studentVM.Student);
+                StudentRepository.SaveAddress(studentVM.Student.StudentId, studentVM.Student.Address);
+                return RedirectToAction("List");
+            }
+            else
+            {
+                // send them back to the entry form
+                studentVM.SetMajorItems(MajorRepository.GetAll());
+                studentVM.SetCourseItems(CourseRepository.GetAll());
+                studentVM.SetStateItems(StateRepository.GetAll());
+                return View(studentVM);
+            }
         }
 
         [HttpGet]

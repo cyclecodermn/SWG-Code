@@ -12,6 +12,8 @@
 </div>
 <div class="row">
     <div class="col-xs-12">
+        @Html.ValidationSummary()
+
         @using (Html.BeginForm())
         {
             @Html.HiddenFor(m => m.MajorId)
@@ -19,6 +21,9 @@
                 <label>Major</label>
                 @Html.TextBoxFor(m => m.MajorName, new { @class = "form-control", placeholder = "Major" })
             </div>
+
+            <span class="text-danger">@Html.ValidationMessageFor(m => m.MajorId)</span>
+            <br />
             <button type="submit" class="btn btn-sm btn-primary">Save</button>
         }
     </div>

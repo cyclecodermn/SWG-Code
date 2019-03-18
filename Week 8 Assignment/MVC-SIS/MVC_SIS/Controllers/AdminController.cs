@@ -29,8 +29,43 @@ namespace Exercises.Controllers
         [HttpPost]
         public ActionResult AddMajor(Major major)
         {
-            MajorRepository.Add(major.MajorName);
-            return RedirectToAction("Majors");
+            if (string.IsNullOrEmpty(major.MajorName))
+            // Check for isNullOrEmpty instead
+
+            {
+                ModelState.AddModelError("MajorId",
+                    "Please enter the name of the major.");
+            }
+            if (ModelState.IsValid)
+            {
+                MajorRepository.Add(major.MajorName);
+                return RedirectToAction("Majors");
+            }
+            else
+            {
+                return View(major);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult EditMajor(Major major)
+        {
+
+            if (string.IsNullOrEmpty(major.MajorName))
+            {
+                ModelState.AddModelError("MajorId",
+                    "Please enter the name of the major.");
+            }
+            if (ModelState.IsValid)
+            {
+
+                MajorRepository.Edit(major);
+                return RedirectToAction("Majors");
+            }
+            else
+            {
+                return View(major);
+            }
         }
 
         [HttpGet]
@@ -40,12 +75,6 @@ namespace Exercises.Controllers
             return View(major);
         }
 
-        [HttpPost]
-        public ActionResult EditMajor(Major major)
-        {
-            MajorRepository.Edit(major);
-            return RedirectToAction("Majors");
-        }
 
         [HttpGet]
         public ActionResult DeleteMajor(int id)
@@ -81,7 +110,53 @@ namespace Exercises.Controllers
         [HttpPost]
         public ActionResult AddCourse(Course Course)
         {
-            CourseRepository.Add(Course.CourseName);
+            if (string.IsNullOrEmpty(Course.CourseName))
+            // Check for isNullOrEmpty instead
+
+            {
+                ModelState.AddModelError("CourseName",
+                    "Please enter the name of the course.");
+            }
+
+
+            if (ModelState.IsValid)
+            {
+                CourseRepository.Add(Course.CourseName);
+            return RedirectToAction("Courses");
+            }
+            else
+            {
+                return View(Course);
+            }
+        }
+    //}
+
+        //                    if (string.IsNullOrEmpty(major.MajorName))
+        //                // Check for isNullOrEmpty instead
+
+        //            {
+        //                ModelState.AddModelError("MajorId",
+        //                    "Please enter the name of the major.");
+        //            }
+        //            if (ModelState.IsValid)
+        //            {
+        //                MajorRepository.Add(major.MajorName);
+        //                return RedirectToAction("Majors");
+        //}
+        //            else
+        //            {
+        //                return View(major);
+        //            }
+        //        }
+
+
+
+        [HttpPost]
+        public ActionResult EditCourse(Course Course)
+        {
+            ////
+            ///Add validation to Add Course
+            CourseRepository.Edit(Course);
             return RedirectToAction("Courses");
         }
 
@@ -90,13 +165,6 @@ namespace Exercises.Controllers
         {
             var Course = CourseRepository.Get(id);
             return View(Course);
-        }
-
-        [HttpPost]
-        public ActionResult EditCourse(Course Course)
-        {
-            CourseRepository.Edit(Course);
-            return RedirectToAction("Courses");
         }
 
         [HttpGet]
@@ -133,9 +201,42 @@ namespace Exercises.Controllers
         [HttpPost]
         public ActionResult AddState(State state)
         {
-            StateRepository.Add(state);
-            return RedirectToAction("States");
+            if (string.IsNullOrEmpty(state.StateName))
+            {
+                ModelState.AddModelError("StateName",
+                    "Please enter state name.");
+            }
+            if (state.StateAbbreviation == null)
+            {
+                ModelState.AddModelError("StateAbbreviation",
+                    "Please enter a state abbreviation.");
+            }
+
+
+            if (ModelState.IsValid)
+            {
+
+                StateRepository.Add(state);
+                return RedirectToAction("States");
+            }
+            else
+            {
+                return View(state);
+            }
+
         }
+
+        /// <summary>
+        /// ///////////////////////////////////////////////////////////////////////////////
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        //[HttpGet]
+        //public ActionResult EditState(string id)
+        //{
+        //    State state = StateRepository.Get(id);
+        //    return View("State");
+        //}
 
         [HttpGet]
         public ActionResult EditState(string id)
@@ -144,11 +245,32 @@ namespace Exercises.Controllers
             return View(state);
         }
 
+
         [HttpPost]
         public ActionResult EditState(State state)
         {
-            StateRepository.Edit(state);
-            return RedirectToAction("States");
+            if (string.IsNullOrEmpty(state.StateName))
+            {
+                ModelState.AddModelError("StateName",
+                    "Please enter state name.");
+            }
+            if (state.StateAbbreviation == null)
+            {
+                ModelState.AddModelError("StateAbbreviation",
+                    "Please enter a state abbreviation.");
+            }
+
+
+            if (ModelState.IsValid)
+            {
+                StateRepository.Edit(state);
+                return RedirectToAction("States");
+            }
+            else
+            {
+                return View(state);
+            }
+
         }
 
         [HttpGet]

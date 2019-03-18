@@ -16,46 +16,69 @@
     <div class="col-xs-12">
         @using (Html.BeginForm())
         {
-        @Html.HiddenFor(m => m.Student.StudentId)
-        <div class="form-group">
+            @Html.HiddenFor(m => m.Student.StudentId)
+            @Html.HiddenFor(m => m.Student.Address.AddressId)
+            @Html.ValidationSummary()
 
-            <label></label>
-            @Html.TextBoxFor(m => m.Student.FirstName, new { @class = "form-control", placeholder = "Student Last Name" })
-            @Html.TextBoxFor(m => m.Student.LastName, new { @class = "form-control", placeholder = "Student Last Name" })<br />
+            <div class="form-group">
+                <label>First Name:</label>
+                @Html.TextBoxFor(m => m.Student.FirstName, new { @class = "form-control", placeholder = "Student First Name" })
+                <span class="text-danger">@Html.ValidationMessageFor(m => m.Student.FirstName)</span>
+            </div>
+            <div class="form-group">
+                <label>Last Name:</label>@Html.TextBoxFor(m => m.Student.LastName, new { @class = "form-control", placeholder = "Student Last Name" })
+                <span class="text-danger">@Html.ValidationMessageFor(m => m.Student.LastName)</span>
+            </div>
 
 
             @*@{string crntMajor = "Select a major";}*@
-            @{string crntMajor = this.Html.ViewData.Model.Student.Major.MajorName.ToString();}
 
-            @Html.DropDownListFor(m => m.Student.Major.MajorId, Model.MajorItems, @crntMajor, new { @class = "form-control" })
-
+            <div class="form-group">
+                <label>Major:</label>
+                @Html.DropDownListFor(m => m.Student.Major.MajorId, Model.MajorItems, new { @class = "form-control" })
+            </div>
             @*@Html.DropDownListFor(m => m.Student.Major.MajorId, Model.MajorItems, "-Choose One-", new { @class = "form-control" })*@
 
             @*@Html.TextBoxFor(m => m.Student.Major.MajorName, new { @class = "form-control", placeholder = "m.Student.Major.MajorName" })*@
-            @Html.TextBoxFor(m => m.Student.GPA, new { @class = "form-control", placeholder = "Student GPA" })
-
-            <h4>Courses</h4>
             <div class="form-group">
+                <label>GPA:</label>
+                @Html.TextBoxFor(m => m.Student.GPA, new { @class = "form-control", placeholder = "Student GPA" })
+            </div>
+            <div class="form-group">
+                <label>Courses:</label>
+
                 @Html.ListBoxFor(m => m.SelectedCourseIds, Model.CourseItems, new { @class = "form-control" })
             </div>
+            <span class="text-danger">@Html.ValidationMessageFor(m => m.Student.Courses)</span>
 
-            @*/// The text below if for editing student address///*@
-            <h4>Address</h4>
+            @*/// The text below is for editing student address///*@
 
-            @{ var AddressPlaceHolder = this.Html.ViewData.Model.Student.Address.Street1.ToString();}
+            <div class="form-group">
+                <label>Street Address 1:</label>
+                @Html.TextBoxFor(m => m.Student.Address.Street1, new { @class = "form-control", placeholder = "Address Street1" })
+            </div>
+            <div class="form-group">
+                <label>Street Address 2:</label>
+                @Html.TextBoxFor(m => m.Student.Address.Street2, new { @class = "form-control", placeholder = "Address Street2" })
+            </div>
+            <div class="form-group">
+                <label>City:</label>
+                @Html.TextBoxFor(m => m.Student.Address.City, new { @class = "form-control", placeholder = "City" })
+            </div>
+            <div class="form-group">
+                <label>State:</label>
+                @Html.DropDownListFor(m => m.Student.Address.State.StateAbbreviation, Model.StateItems, "-Choose One-", new { @class = "form-control" })
+            </div>
 
-            @Html.TextBoxFor(m => m.Student.Address.Street1, new { @class = "form-control", placeholder = "Address Street1" })
-            @Html.TextBoxFor(m => m.Student.Address.Street2, new { @class = "form-control", placeholder = "Address Street2" })
-            @Html.TextBoxFor(m => m.Student.Address.City, new { @class = "form-control", placeholder = "City" })
-            <label>State:</label>
-            @*@Html.DropDownListFor(m => m.Student.Major.MajorId, Model.MajorItems, "-Choose One-", new { @class = "form-control" })*@
-            @Html.DropDownListFor(m => m.Student.Address.State, Model.StateItems, "-Choose One-", new { @class = "form-control" })
+            <div class="form-group">
+                <label>Post Code:</label>
+                @Html.TextBoxFor(m => m.Student.Address.PostalCode, new { @class = "form-control", placeholder = "Postal Code" })<br />
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-sm btn-primary">Save</button>
 
-            @Html.TextBoxFor(m => m.Student.Address.PostalCode, new { @class = "form-control", placeholder = "m.Student.Address.PostalCode" })<br />
+            </div>
 
-        </div>
-        <button type="submit" class="btn btn-sm btn-primary">Save</button>
         }
     </div>
 </div>
-

@@ -12,16 +12,22 @@
 </div>
 <div class="row">
     <div class="col-xs-12">
+        @Html.ValidationSummary()
         @using (Html.BeginForm())
         {
-           @Html.HiddenFor(m => m.StateAbbreviation)
-        <div class="form-group">
-            <label>State Name2</label>
-            @Html.TextBoxFor(m => m.StateName, new { @class = "form-control", placeholder = "StateName" })
-            <br />
-            <label>State Abbreviation</label>
-            @Html.TextBoxFor(m => m.StateAbbreviation, new { @class = "form-control", placeholder = "StateAbbreviation" })
-        </div>
+            @Html.HiddenFor(m => m.StateAbbreviation)
+            <div class="form-group">
+                <label>State Name</label>
+                @Html.TextBoxFor(m => m.StateName, new { @class = "form-control", placeholder = "StateName" })
+            </div>
+            <span class="text-danger">@Html.ValidationMessageFor(m => m.StateName)</span>
+
+            <div class="form-group">
+                <label>State Abbreviation</label>
+                @Html.TextBoxFor(m => m.StateAbbreviation, new { @class = "form-control", placeholder = "StateAbbreviation" })
+            </div>
+            <span class="text-danger">@Html.ValidationMessageFor(m => m.StateAbbreviation)</span>
+            <br/>
             <button type="submit" class="btn btn-sm btn-primary">Save</button>
         }
     </div>
