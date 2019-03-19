@@ -12,7 +12,7 @@ namespace DvdListService1.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class DvdController : ApiController
     {
-
+        private static IDvdRepository _repo = new DvdRepoMock();
         [Route("dvds/{category}/{term}")]
         [AcceptVerbs("GET")]
         public IHttpActionResult GetaByTerm(string category, string term)
@@ -26,43 +26,26 @@ namespace DvdListService1.Controllers
             return Ok(found);
         }
 
-        List<DVD> GetSearchResults(string category, string term)
+        IEnumerable<DVD> GetSearchResults(string category, string term)
         {
-            List<DVD> foundList = new List<DVD>();
-
-            foreach (DVD dvd in DvdRepoMock.GetAll())
-            {
                 switch (category)
                 {
                     case "title":
-                        if (dvd.Title.Contains(term))
-                        {
-                            foundList.Add(dvd);
-                        }
-                        break;
+                    return _repo.GetByTitle(term);
+
                     case "year":
-                        if (dvd.realeaseYear.ToString().Contains(term.ToString()))
-                        {
-                            foundList.Add(dvd);
-                        }
-                        break;
+                    return _repo.GetByYear(term);
+
                     case "director":
-                        if (dvd.Director.Contains(term))
-                        {
-                            foundList.Add(dvd);
-                        }
-                        break;
+                    return _repo.GetByDirector(term);
+
                     case "rating":
-                        if (dvd.Rating.Contains(term))
-                        {
-                            foundList.Add(dvd);
-                        }
-                        break;
+                    return _repo.GetByRating(term);
+
                     default:
                         return null;
                 }
-            }
-            return foundList;
+
         }
 
 
@@ -70,14 +53,14 @@ namespace DvdListService1.Controllers
         [AcceptVerbs("GET")]
         public IHttpActionResult GetAll()
         {
-            return Ok(DvdRepoMock.GetAll());
+            return Ok(_repo.GetAll());
         }
 
         [Route("dvd/{id}")]
         [AcceptVerbs("GET")]
         public IHttpActionResult Get(int id)
         {
-            DVD found = DvdRepoMock.Get(id);
+            DVD found = _repo.Get(id);
 
             if (found == null)
                 return NotFound();
@@ -89,7 +72,7 @@ namespace DvdListService1.Controllers
         [AcceptVerbs("POST")]
         public IHttpActionResult Add(DVD dvd)
         {
-            DvdRepoMock.Create(dvd);
+            _repo.Create(dvd);
 
             return Created($"dvd/{dvd.DvdId}", dvd);
         }
@@ -98,14 +81,14 @@ namespace DvdListService1.Controllers
         [AcceptVerbs("PUT")]
         public void Update(int id, DVD dvd)
         {
-            DvdRepoMock.Update(dvd);
+            _repo.Update(dvd);
         }
 
         [Route("dvd/{id}")]
         [AcceptVerbs("DELETE")]
         public void Delete(int id)
         {
-            DvdRepoMock.Delete(id);
+            _repo.Delete(id);
         }
     }
 

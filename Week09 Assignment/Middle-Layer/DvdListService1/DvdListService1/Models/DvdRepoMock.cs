@@ -5,7 +5,7 @@ using System.Web;
 
 namespace DvdListService1.Models
 {
-    public static class DvdRepoMock
+    public class DvdRepoMock : IDvdRepository
     {
         private static List<DVD> _DVDs;
 
@@ -18,17 +18,17 @@ namespace DvdListService1.Models
                 };
         }
 
-        public static List<DVD> GetAll()
+        public  IEnumerable<DVD> GetAll()
         {
             return _DVDs;
         }
 
-        public static DVD Get(int DvdId)
+        public  DVD Get(int DvdId)
         {
             return _DVDs.FirstOrDefault(d => d.DvdId == DvdId);
         }
 
-        public static void Create(DVD newDVD)
+        public  void Create(DVD newDVD)
         {
             if (_DVDs.Any())
             {
@@ -42,17 +42,35 @@ namespace DvdListService1.Models
             _DVDs.Add(newDVD);
         }
 
-        public static void Update(DVD updatedDVD)
+        public  void Update(DVD updatedDVD)
         {
             _DVDs.RemoveAll(d => d.DvdId == updatedDVD.DvdId);
             _DVDs.Add(updatedDVD);
         }
 
-        public static void Delete(int DvdId)
+        public  void Delete(int DvdId)
         {
             _DVDs.RemoveAll(d => d.DvdId == DvdId);
         }
 
+        public IEnumerable<DVD> GetByDirector(string term)
+        {
+            return _DVDs.Where(d => d.Director == term);
+        }
 
+        public IEnumerable<DVD> GetByYear(string term)
+        {
+            return _DVDs.Where(d => d.realeaseYear.ToString().Contains(term));
+        }
+
+        public IEnumerable<DVD> GetByTitle(string term)
+        {
+            return _DVDs.Where(d => d.Title.ToString().Contains(term));
+        }
+
+        public IEnumerable<DVD> GetByRating(string term)
+        {
+            return _DVDs.Where(d => d.Title.ToString().Contains(term));
+        }
     }
 }

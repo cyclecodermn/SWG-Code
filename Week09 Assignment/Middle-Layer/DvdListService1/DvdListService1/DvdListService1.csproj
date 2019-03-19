@@ -95,6 +95,7 @@
     </Compile>
     <Compile Include="Models\DVD.cs" />
     <Compile Include="Models\DvdRepoMock.cs" />
+    <Compile Include="Models\IDvdRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
