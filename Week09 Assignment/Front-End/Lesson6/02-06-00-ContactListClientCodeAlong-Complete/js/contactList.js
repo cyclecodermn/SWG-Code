@@ -17,7 +17,7 @@ $(document).ready(function () {
             $('#search-type').empty();
             $('#search-term').empty();
 
-            var searchURL='http://localhost:8080/dvds/'+searchType+'/'+searchText;
+            var searchURL='http://localhost:63001/dvds/'+searchType+'/'+searchText;
             
             $.ajax ({
                 type: 'GET',
@@ -75,7 +75,7 @@ $(document).ready(function () {
         // if we made it here, there are no errors so make the ajax call
         $.ajax({
             type: 'POST',
-            url: 'http://localhost:8080/dvd',
+            url: 'http://localhost:63001/dvd',
             data: JSON.stringify({
                 title: $('#add-title').val(),
                 realeaseYear: dvdYear,
@@ -123,7 +123,7 @@ $(document).ready(function () {
         // if we get to here, there were no errors, so make the Ajax call
         $.ajax({
            type: 'PUT',
-           url: 'http://localhost:8080/dvd/' + $('#edit-dvd-id').val(),
+           url: 'http://localhost:63001/dvd/' + $('#edit-dvd-id').val(),
            data: JSON.stringify({
              dvdId: $('#edit-dvd-id').val(),
              title: $('#edit-title').val(),
@@ -163,7 +163,7 @@ function loadContacts() {
 
     $.ajax ({
         type: 'GET',
-        url: 'http://localhost:8080/dvds',
+        url: 'http://localhost:63001/dvds',
         success: function (data, status) {
             $.each(data, function (index, contact) {
                 var name = contact.title;
@@ -206,7 +206,7 @@ function showEditForm(dvdId) {
     // form on success
     $.ajax({
         type: 'GET',
-        url: 'http://localhost:8080/dvd/' + dvdId,
+        url: 'http://localhost:63001/dvd/' + dvdId,
         success: function(data, status) {
               $('#edit-title').val(data.title);
               $('#edit-year').val(data.realeaseYear);
@@ -255,7 +255,7 @@ function hideAddForm() {
 function deleteContact(dvdId) {
     $.ajax ({
         type: 'DELETE',
-        url: "http://localhost:8080/dvd/" + dvdId,
+        url: "http://localhost:63001/dvd/" + dvdId,
         success: function (status) {
             loadContacts();
         }

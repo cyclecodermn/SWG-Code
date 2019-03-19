@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="DVD02" id="Project_4cea10b" template="Default" database="MySql" >
+	<schema name="dvd02" schemaname="dvd02" >
+		<table name="dvd02a" >
+			<comment><![CDATA[Table for Week9 DVD project.]]></comment>
+			<column name="dvdid" type="int" jt="4" mandatory="y" />
+			<column name="title" type="varchar" length="128" jt="12" />
+			<column name="realeaseyear" type="int" jt="4" />
+			<column name="director" type="varchar" length="64" jt="12" />
+			<column name="rating" type="char" length="4" jt="1" />
+			<column name="notes" type="varchar" length="600" jt="12" />
+			<index name="pk_dvd02a_dvdid" unique="PRIMARY_KEY" >
+				<column name="dvdid" />
+			</index>
+			<storage><![CDATA[engine=InnoDB]]></storage>
+		</table>
+	</schema>
+	<layout name="Default Layout" id="Layout_2ec4163" show_relation="columns" >
+		<entity schema="dvd02" name="dvd02a" color="C1D8EE" x="320" y="192" />
+		<callout x="48" y="48" pointer="NO" >
+			<comment><![CDATA[This project is in offline mode.
+Design the schema and save the design to project file. Later create or upgrade the schema on any database.
+Right-click the layout to add new tables. Drop this callout from its right-click pop-up menu.]]></comment>
+		</callout>
+		<browser id="Browse_3e8cf5f" name="dvdid" confirm_updates="y" >
+			<browse_table schema="dvd02" entity="dvd02a" x="20" y="20" width="400" height="300" />
+		</browser>
+	</layout>
+</project>

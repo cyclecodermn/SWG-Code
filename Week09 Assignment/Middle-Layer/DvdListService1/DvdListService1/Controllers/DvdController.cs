@@ -12,6 +12,60 @@ namespace DvdListService1.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class DvdController : ApiController
     {
+
+        [Route("dvds/{category}/{term}")]
+        [AcceptVerbs("GET")]
+        public IHttpActionResult GetaByTerm(string category, string term)
+        {
+            IEnumerable<DVD> found = GetSearchResults(category, term);
+
+            if (found == null)
+            {
+                return NotFound();
+            }
+            return Ok(found);
+        }
+
+        List<DVD> GetSearchResults(string category, string term)
+        {
+            List<DVD> foundList = new List<DVD>();
+
+            foreach (DVD dvd in DvdRepoMock.GetAll())
+            {
+                switch (category)
+                {
+                    case "title":
+                        if (dvd.Title.Contains(term))
+                        {
+                            foundList.Add(dvd);
+                        }
+                        break;
+                    case "year":
+                        if (dvd.realeaseYear.ToString().Contains(term.ToString()))
+                        {
+                            foundList.Add(dvd);
+                        }
+                        break;
+                    case "director":
+                        if (dvd.Director.Contains(term))
+                        {
+                            foundList.Add(dvd);
+                        }
+                        break;
+                    case "rating":
+                        if (dvd.Rating.Contains(term))
+                        {
+                            foundList.Add(dvd);
+                        }
+                        break;
+                    default:
+                        return null;
+                }
+            }
+            return foundList;
+        }
+
+
         [Route("dvds/")]
         [AcceptVerbs("GET")]
         public IHttpActionResult GetAll()
