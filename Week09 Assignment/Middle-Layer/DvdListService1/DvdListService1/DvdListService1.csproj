@@ -131,6 +131,7 @@
       <DependentUpon>DvdCatalogEntity.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\DvdRepoMock.cs" />
+    <Compile Include="Models\DvdRepositoryADO.cs" />
     <Compile Include="Models\DvdRepositoryEF.cs" />
     <Compile Include="Models\IDvdRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

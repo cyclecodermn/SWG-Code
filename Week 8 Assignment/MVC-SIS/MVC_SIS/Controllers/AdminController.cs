@@ -129,35 +129,32 @@ namespace Exercises.Controllers
                 return View(Course);
             }
         }
-    //}
-
-        //                    if (string.IsNullOrEmpty(major.MajorName))
-        //                // Check for isNullOrEmpty instead
-
-        //            {
-        //                ModelState.AddModelError("MajorId",
-        //                    "Please enter the name of the major.");
-        //            }
-        //            if (ModelState.IsValid)
-        //            {
-        //                MajorRepository.Add(major.MajorName);
-        //                return RedirectToAction("Majors");
-        //}
-        //            else
-        //            {
-        //                return View(major);
-        //            }
-        //        }
-
-
 
         [HttpPost]
         public ActionResult EditCourse(Course Course)
         {
-            ////
-            ///Add validation to Add Course
-            CourseRepository.Edit(Course);
-            return RedirectToAction("Courses");
+
+            if (string.IsNullOrEmpty(Course.CourseName))
+            // Check for isNullOrEmpty instead
+
+            {
+                ModelState.AddModelError("CourseName",
+                    "Please enter the name of the course.");
+            }
+
+
+            if (ModelState.IsValid)
+            {
+                ////
+                ///Add validation to Add Course
+                CourseRepository.Edit(Course);
+                return RedirectToAction("Courses");
+            }
+            else
+            {
+                return View(Course);
+            }
+
         }
 
         [HttpGet]
