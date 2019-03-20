@@ -16,27 +16,10 @@ namespace DvdListService1.Models
             conn.ConnectionString = "Server=localhost;Database=DvdLibrary;user id=DvdLibraryApp; password=testing123;";
         }
 
-        public DVD Create(DVD dvd)
+        public void Create(DVD newDVD)
         {
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = conn;
-            cmd.CommandType = CommandType.StoredProcedure;
-
-            cmd.CommandText = "DvdDvdCreate";
-            cmd.Parameters.AddWithValue("@dvdTitle", dvd.Title);
-            cmd.Parameters.AddWithValue("@dvdYear", dvd.realeaseYear);
-            cmd.Parameters.AddWithValue("@dvdDirector", dvd.Director);
-            cmd.Parameters.AddWithValue("@dvdRating", dvd.Rating);
-            cmd.Parameters.AddWithValue("@dvdNotes", dvd.Notes);
-
-            cmd.Parameters.Add("@dvdId", SqlDbType.Int).Direction = ParameterDirection.Output;
-            conn.Open();
-            cmd.ExecuteNonQuery();
-            conn.Close();
-
-            return dvd;
+            throw new NotImplementedException();
         }
-
 
         public void Delete(int DvdId)
         {

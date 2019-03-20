@@ -14,8 +14,8 @@ $(document).ready(function () {
             
             var searchType = $('#search-type').val();
             var searchText = $('#search-term').val();
-            $('#search-type').empty();
-            $('#search-term').empty();
+            //$('#search-type').empty();
+            $('#search-term').text('');
 
             var searchURL='http://localhost:63001/dvds/'+searchType+'/'+searchText;
             
@@ -208,11 +208,12 @@ function showEditForm(dvdId) {
         type: 'GET',
         url: 'http://localhost:63001/dvd/' + dvdId,
         success: function(data, status) {
+
               $('#edit-title').val(data.title);
               $('#edit-year').val(data.realeaseYear);
               $('#edit-director').val(data.director);
               $('#edit-notes').val(data.notes);
-              $('#edit-rating').val(data.rating);
+              $('#edit-rating').val($.trim(data.rating));
               $('#edit-dvd-id').val(data.dvdId);
           },
           error: function() {

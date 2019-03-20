@@ -66,8 +66,9 @@ namespace DvdListService1.Models
 
         public void Update(DVD updatedDVD)
         {
-            _DVDs.Entry(updatedDVD).State = EntityState.Modified;
-            _DVDs.SaveChanges();
+            Delete(updatedDVD.DvdId);
+            Create(updatedDVD);
+           _DVDs.SaveChanges();
         }
 
     }
