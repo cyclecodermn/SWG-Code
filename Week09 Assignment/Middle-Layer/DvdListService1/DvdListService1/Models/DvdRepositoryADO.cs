@@ -19,10 +19,10 @@ namespace DvdListService1.Models
         // public static string _connString = @"Server=ALEXANDRA\SQLEXPRESS;Database=DvdRepoEF;Trusted_Connection=True";
         // "Server=localhost;Database=DvdLibrary;user id=DvdRepoEF; password=testing123;"; 
 
-        public DvdRepositoryADO()
-        {
-            conn.ConnectionString = "Server=localhost;Database=DvdRepoEF;user id=DvdLibraryApp; password=Testing123;";
-        }
+        //public DvdRepositoryADO()
+        //{
+        //    conn.ConnectionString = "Server=localhost;Database=DvdRepoEF;user id=DvdLibraryApp; password=Testing123;";
+        //}
 
         public void Create(DVD dvd)
         {

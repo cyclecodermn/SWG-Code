@@ -68,7 +68,7 @@ namespace DvdListService1.Models
         {
             Delete(updatedDVD.DvdId);
             Create(updatedDVD);
-           _DVDs.SaveChanges();
+           //_DVDs.SaveChanges();
         }
 
     }

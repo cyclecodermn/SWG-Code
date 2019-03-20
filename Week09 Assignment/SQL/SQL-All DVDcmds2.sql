@@ -174,6 +174,7 @@ GRANT EXECUTE ON dvdGetByDirector TO DvdLibraryApp
 GRANT EXECUTE ON dvdGetByRating TO DvdLibraryApp
 GRANT EXECUTE ON dvdGetByTitle TO DvdLibraryApp
 GRANT EXECUTE ON dvdGetByYear TO DvdLibraryApp
+GRANT EXECUTE ON dvdGetAll TO DvdLibraryApp
 GO
 
 
