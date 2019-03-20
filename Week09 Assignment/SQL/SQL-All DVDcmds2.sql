@@ -18,11 +18,11 @@ IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
    WHERE ROUTINE_NAME = 'dvdGetById')
       DROP PROCEDURE dvdGetById
 GO
-CREATE PROCEDURE dvdGetById (@id int)
+CREATE PROCEDURE dvdGetById (@dvdId int)
 AS
     SELECT *
     FROM dvdMain
-    WHERE dvdId = @id
+    WHERE dvdId = @dvdId
 GO
 
 -- -  -   -    -     -      -       -        -
@@ -56,19 +56,19 @@ IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
 GO
 CREATE PROCEDURE dvdEdit (
     @dvdId int,
-    @title varchar (128),
-    @realeaseYear int,
-    @director varchar(64),
-    @rating varchar(4),
-    @notes varchar(600)
+    @dvdTitle varchar (128),
+    @dvdYear int,
+    @dvdDirector varchar(64),
+    @dvdRating varchar(4),
+    @dvdNotes varchar(600)
 )
 AS
     UPDATE dvdMain
-        SET title = @title,
-        realeaseYear = @realeaseYear,
-        director = @director,
-        rating = @rating,
-        notes = @notes
+        SET title = @dvdTitle,
+        realeaseYear = @dvdYear,
+        director = @dvdDirector,
+        rating = @dvdRating,
+        notes = @dvdNotes
     WHERE dvdId = @dvdId
 GO
 
@@ -134,11 +134,11 @@ IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
    WHERE ROUTINE_NAME = 'dvdDelete')
       DROP PROCEDURE dvdDelete
 GO
-CREATE PROCEDURE dvdDelete (@id int)
+CREATE PROCEDURE dvdDelete (@dvdId int)
 AS
     DELETE 
     FROM dvdMain
-    WHERE dvdId = @id
+    WHERE dvdId = @dvdId
 GO
 
 

@@ -9,56 +9,280 @@ namespace DvdListService1.Models
 {
     public class DvdRepositoryADO : IDvdRepository
     {
+        IEnumerable<DVD> allDvds;
         SqlConnection conn = new SqlConnection();
-
+        public static string _connString = @"Server=ALEXANDRA\SQLEXPRESS;Database=DvdRepoEF;Trusted_Connection=True";
         public DvdRepositoryADO()
         {
             conn.ConnectionString = "Server=localhost;Database=DvdLibrary;user id=DvdLibraryApp; password=testing123;";
+            // "Server=localhost;Database=DvdLibrary;user id=DvdLibraryApp; password=testing123;"; 
         }
 
-        public void Create(DVD newDVD)
+        public void Create(DVD dvd)
         {
-            throw new NotImplementedException();
+            SqlCommand cmd = new SqlCommand();
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = _connString;
+
+            cmd.Connection = conn;
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.CommandText = "dvdAdd";
+            cmd.Parameters.AddWithValue("@dvdTitle", dvd.Title);
+            cmd.Parameters.AddWithValue("@dvdYear", dvd.realeaseYear);
+            cmd.Parameters.AddWithValue("@dvdDirector", dvd.Director);
+            cmd.Parameters.AddWithValue("@dvdRating", dvd.Rating);
+            cmd.Parameters.AddWithValue("@dvdNotes", dvd.Notes);
+
+            cmd.Parameters.Add("@dvdId", SqlDbType.Int).Direction = ParameterDirection.Output;
+
+            conn.Open();
+            cmd.ExecuteNonQuery();
+            conn.Close();
         }
 
         public void Delete(int DvdId)
         {
-            throw new NotImplementedException();
+            SqlCommand cmd = new SqlCommand();
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = _connString;
+
+            cmd.Connection = conn;
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.CommandText = "dvdDelete";
+
+            cmd.Parameters.AddWithValue("@DvdId", DvdId);
+
+            conn.Open();
+            cmd.ExecuteNonQuery();
+            conn.Close();
         }
 
         public DVD Get(int DvdId)
         {
-            throw new NotImplementedException();
+
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = _connString;
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = conn;
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "dvdGetById";
+
+            cmd.Parameters.AddWithValue("@DvdId", DvdId);
+
+            conn.Open();
+            using (SqlDataReader dr = cmd.ExecuteReader())
+            {
+                while (dr.Read())
+                {
+                    DVD currentRow = new DVD();
+
+                    currentRow.DvdId = (int)dr["DvdId"];
+                    currentRow.Title = dr["title"].ToString();
+                    currentRow.realeaseYear = (int)dr["realeaseYear"];
+                    currentRow.Director = dr["Director"].ToString();
+                    currentRow.Rating = dr["Rating"].ToString();
+
+                    if (dr["Notes"] != DBNull.Value)
+                        currentRow.Notes = dr["Notes"].ToString();
+
+                    return currentRow;
+                }
+            }
+            return null;
         }
 
         public IEnumerable<DVD> GetAll()
         {
-            throw new NotImplementedException();
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = _connString;
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = conn;
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "dvdGetAll";
+
+            conn.Open();
+            using (SqlDataReader dr = cmd.ExecuteReader())
+            {
+                while (dr.Read())
+                {
+                    DVD currentRow = new DVD();
+
+                    currentRow.DvdId = (int)dr["DvdId"];
+                    currentRow.Title = dr["title"].ToString();
+                    currentRow.realeaseYear = (int)dr["realeaseYear"];
+                    currentRow.Director = dr["Director"].ToString();
+                    currentRow.Rating = dr["Rating"].ToString();
+
+                    if (dr["Notes"] != DBNull.Value)
+                        currentRow.Notes = dr["Notes"].ToString();
+
+                    yield return currentRow;
+                }
+            }
+            yield break;
         }
 
         public IEnumerable<DVD> GetByDirector(string term)
         {
-            throw new NotImplementedException();
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = _connString;
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = conn;
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "dvdGetByDirector";
+
+            cmd.Parameters.AddWithValue("@term", term);
+
+            conn.Open();
+            using (SqlDataReader dr = cmd.ExecuteReader())
+            {
+                while (dr.Read())
+                {
+                    DVD currentRow = new DVD();
+
+                    currentRow.DvdId = (int)dr["DvdId"];
+                    currentRow.Title = dr["title"].ToString();
+                    currentRow.realeaseYear = (int)dr["realeaseYear"];
+                    currentRow.Director = dr["Director"].ToString();
+                    currentRow.Rating = dr["Rating"].ToString();
+
+                    if (dr["Notes"] != DBNull.Value)
+                        currentRow.Notes = dr["Notes"].ToString();
+
+                    yield return currentRow;
+                }
+            }
+            yield break;
         }
+
 
         public IEnumerable<DVD> GetByRating(string term)
         {
-            throw new NotImplementedException();
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = _connString;
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = conn;
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "dvdGetByRating";
+
+            cmd.Parameters.AddWithValue("@term", term);
+
+            conn.Open();
+            using (SqlDataReader dr = cmd.ExecuteReader())
+            {
+                while (dr.Read())
+                {
+                    DVD currentRow = new DVD();
+
+                    currentRow.DvdId = (int)dr["DvdId"];
+                    currentRow.Title = dr["title"].ToString();
+                    currentRow.realeaseYear = (int)dr["realeaseYear"];
+                    currentRow.Director = dr["Director"].ToString();
+                    currentRow.Rating = dr["Rating"].ToString();
+
+                    if (dr["Notes"] != DBNull.Value)
+                        currentRow.Notes = dr["Notes"].ToString();
+
+                    yield return currentRow;
+                }
+            }
+            yield break;
         }
 
         public IEnumerable<DVD> GetByTitle(string term)
         {
-            throw new NotImplementedException();
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = _connString;
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = conn;
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "dvdGetByTitle";
+
+            cmd.Parameters.AddWithValue("@term", term);
+
+            conn.Open();
+            using (SqlDataReader dr = cmd.ExecuteReader())
+            {
+                while (dr.Read())
+                {
+                    DVD currentRow = new DVD();
+
+                    currentRow.DvdId = (int)dr["DvdId"];
+                    currentRow.Title = dr["title"].ToString();
+                    currentRow.realeaseYear = (int)dr["realeaseYear"];
+                    currentRow.Director = dr["Director"].ToString();
+                    currentRow.Rating = dr["Rating"].ToString();
+
+                    if (dr["Notes"] != DBNull.Value)
+                        currentRow.Notes = dr["Notes"].ToString();
+
+                    yield return currentRow;
+                }
+            }
+            yield break;
         }
 
         public IEnumerable<DVD> GetByYear(string term)
         {
-            throw new NotImplementedException();
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = _connString;
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = conn;
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "dvdGetByYear";
+
+            cmd.Parameters.AddWithValue("@term", term);
+
+            conn.Open();
+            using (SqlDataReader dr = cmd.ExecuteReader())
+            {
+                while (dr.Read())
+                {
+                    DVD currentRow = new DVD();
+
+                    currentRow.DvdId = (int)dr["DvdId"];
+                    currentRow.Title = dr["title"].ToString();
+                    currentRow.realeaseYear = (int)dr["realeaseYear"];
+                    currentRow.Director = dr["Director"].ToString();
+                    currentRow.Rating = dr["Rating"].ToString();
+
+                    if (dr["Notes"] != DBNull.Value)
+                        currentRow.Notes = dr["Notes"].ToString();
+
+                    yield return currentRow;
+                }
+            }
+            yield break;
         }
 
         public void Update(DVD updatedDVD)
         {
-            throw new NotImplementedException();
+            SqlCommand cmd = new SqlCommand();
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = _connString;
+
+            cmd.Connection = conn;
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.CommandText = "dvdEdit";
+            cmd.Parameters.AddWithValue("@dvdid", updatedDVD.DvdId);
+            cmd.Parameters.AddWithValue("@dvdTitle", updatedDVD.Title);
+            cmd.Parameters.AddWithValue("@dvdYear", updatedDVD.realeaseYear);
+            cmd.Parameters.AddWithValue("@dvdDirector", updatedDVD.Director);
+            cmd.Parameters.AddWithValue("@dvdRating", updatedDVD.Rating);
+            cmd.Parameters.AddWithValue("@dvdNotes", updatedDVD.Notes);
+
+            conn.Open();
+            cmd.ExecuteNonQuery();
+            conn.Close();
         }
     }
 }
