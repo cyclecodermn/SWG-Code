@@ -11,11 +11,17 @@ namespace DvdListService1.Models
     {
         IEnumerable<DVD> allDvds;
         SqlConnection conn = new SqlConnection();
-        public static string _connString = @"Server=ALEXANDRA\SQLEXPRESS;Database=DvdRepoEF;Trusted_Connection=True";
+        //
+        // Change trustedconnecting = true to user id=DvdLibraryApp; password=testing123;
+
+
+        public static string _connString = @"Server=ALEXANDRA\SQLEXPRESS;Database=DvdRepoEF;user id=DvdLibraryApp; password=Testing123;";
+        // public static string _connString = @"Server=ALEXANDRA\SQLEXPRESS;Database=DvdRepoEF;Trusted_Connection=True";
+        // "Server=localhost;Database=DvdLibrary;user id=DvdRepoEF; password=testing123;"; 
+
         public DvdRepositoryADO()
         {
-            conn.ConnectionString = "Server=localhost;Database=DvdLibrary;user id=DvdLibraryApp; password=testing123;";
-            // "Server=localhost;Database=DvdLibrary;user id=DvdLibraryApp; password=testing123;"; 
+            conn.ConnectionString = "Server=localhost;Database=DvdRepoEF;user id=DvdLibraryApp; password=Testing123;";
         }
 
         public void Create(DVD dvd)
