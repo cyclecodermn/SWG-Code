@@ -12,7 +12,7 @@ namespace DvdListService1.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class DvdController : ApiController
     {
-        private static IDvdRepository _repo = new DvdRepoMock();
+        private static IDvdRepository _repo =  DvdFactory.Create();
         [Route("dvds/{category}/{term}")]
         [AcceptVerbs("GET")]
         public IHttpActionResult GetaByTerm(string category, string term)
