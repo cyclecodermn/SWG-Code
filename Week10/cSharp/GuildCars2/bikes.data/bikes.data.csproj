@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,7 +42,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ADO\FrameRepoADO.cs" />
+    <Compile Include="Interfaces\IFrameRepo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Dapper\" />
+    <Folder Include="EF\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\bikes.models\bikes.models.csproj">
+      <Project>{8D8998F5-608B-4C7E-957A-021EBB9188D6}</Project>
+      <Name>bikes.models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

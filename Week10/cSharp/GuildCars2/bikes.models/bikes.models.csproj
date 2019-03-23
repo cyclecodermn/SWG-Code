@@ -61,9 +61,9 @@
     <Compile Include="Tables\ContactTable.cs" />
     <Compile Include="Tables\ContactUs.cs" />
     <Compile Include="Tables\FeatureTable.cs" />
-    <Compile Include="Tables\FrameTable.cs" />
-    <Compile Include="Tables\MakeTable.cs" />
-    <Compile Include="Tables\ModelTable.cs" />
+    <Compile Include="Tables\BikeFrameTable.cs" />
+    <Compile Include="Tables\BikeMakeTable.cs" />
+    <Compile Include="Tables\BikeModelTable.cs" />
     <Compile Include="Tables\PurchaseTable.cs" />
     <Compile Include="Tables\SpecialTable.cs" />
   </ItemGroup>
