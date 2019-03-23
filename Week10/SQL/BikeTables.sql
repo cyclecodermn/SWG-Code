@@ -4,7 +4,7 @@
 -- and removing the db bcause Entity adds crtical info to the db
 -- Instead, we remove the non-Entity tables.
 
-USE [xperi]
+USE [GuildCars1]
 GO
 
 -- -  -   -    -     -      -       -        -
