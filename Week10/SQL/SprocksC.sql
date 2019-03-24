@@ -83,7 +83,7 @@ BEGIN
 	BikeTable(BikeId,BikeMakeId,BikeModelId,BikeFrameColorId,BikeTrimColorId,BikeFrameId,BikeMsrp,BikeListPrice,BikeYear,BikeIsNew,BikeCondition,BikeNumGears,BikeSerialNum,BikeDescription,BikeDateAdded,BikePictName)
 	VALUES 
 	(1,1,1,1,1,1,1000.00,990.00,2012,1,2,18,12345678,'Good used condition',GETDATE(),'LongHaulTruckerPic1.jpg'),
-	(2,2,2,2,2,2,2000.00,8800.00,2012,3,4,18,23456789,'Very ok',GETDATE(),'Bike2Pic.jpg');
+	(2,2,2,2,2,2,2000.00,8800.00,2012,0,4,18,23456789,'Very ok',GETDATE(),'Bike2Pic.jpg');
 
 	SET IDENTITY_INSERT BikeTable OFF;
 -- -  -   -    -     -      -       -        -
@@ -199,5 +199,22 @@ BEGIN
 	DELETE FROM BikeTable WHERE BikeId = @BikeId;
 	
 	COMMIT TRANSACTION
+END
+GO
+-- -  -   -    -     -      -       -        -
+
+IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
+	WHERE ROUTINE_NAME = 'BikeSelect')
+		DROP PROCEDURE BikeSelect
+GO
+-- -  -   -    -     -      -       -        -
+
+CREATE PROCEDURE BikeSelect (
+	@BikeId int
+) AS
+BEGIN
+	SELECT BikeId,BikeMakeId,BikeModelId,BikeFrameColorId,BikeTrimColorId,BikeFrameId,BikeMsrp,BikeListPrice,BikeYear,BikeIsNew,BikeCondition,BikeNumGears,BikeSerialNum,BikeDescription,BikeDateAdded,BikePictName
+	FROM BikeTable
+	WHERE BikeId = @BikeId
 END
 GO

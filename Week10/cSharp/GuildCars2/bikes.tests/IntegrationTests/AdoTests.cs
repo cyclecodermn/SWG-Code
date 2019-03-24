@@ -22,6 +22,7 @@ namespace bikes.tests.IntegrationTests
 
             Assert.AreEqual("Touring", frames[0].BikeFrame);
         }
+
         [Test]
         public void CanLoadModels()
         {
@@ -32,6 +33,17 @@ namespace bikes.tests.IntegrationTests
             Assert.AreEqual(3, ModelCount);
 
             Assert.AreEqual("Long Haul Trucker", Models[1].BikeModel);
+        }
+
+        [Test]
+        public void CanLoadBike()
+        {
+            var repo = new BikeRepoADO();
+            var bike = repo.GetById(1);
+
+            Assert.IsNotNull(bike);
+            Assert.AreEqual("12345678",bike.BikeSerialNum);
+
         }
     }
 }

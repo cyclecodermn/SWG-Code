@@ -67,7 +67,7 @@ CREATE TABLE ContactTable (
 	ContactId		int primary key identity(1,1) not null,
 	CntctLastName	varchar(64)  NOT NULL,
 	CntctFirstName	varchar(32)  NOT NULL,
-	CntctPhone		char(12),
+	CntctPhone		varchar(15),
 	CntctEmail		varchar(32),
 	CntctMessage	varchar(256)
  ) 
@@ -106,13 +106,13 @@ CREATE TABLE BikeTable (
 --	BikeMsrp			dec(5,2)  NOT NULL,
 --	BikeListPrice		dec(5,2)  NOT NULL,
 	BikeYear			int  NOT NULL,
-	BikeIsNew			binary(1) NOT NULL,
+	BikeIsNew			bit NOT NULL,
 	BikeCondition		int NOT NULL,
 	BikeNumGears		int NOT NULL,
-	BikeSerialNum		char(20)  NOT NULL,
+	BikeSerialNum		varchar(20)  NOT NULL,
 	BikeDescription		text  NOT NULL,
 	BikeDateAdded		date  NOT NULL,
-	BikePictName		char(64)
+	BikePictName		varchar(64)
  ) 
 GO
 
