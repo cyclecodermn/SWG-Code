@@ -98,4 +98,106 @@ BEGIN
 	SET IDENTITY_INSERT PurchasedTable OFF;
 
 END
+GO
+-- -  -   -    -     -      -       -        -
 
+IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
+	WHERE ROUTINE_NAME = 'BikeInsert')
+		DROP PROCEDURE BikeInsert
+GO
+
+
+CREATE PROCEDURE BikeInsert (
+	@BikeId				int output,
+	@BikeMakeId			int,
+	@BikeModelId		int,	
+	@BikeFrameColorId	int,	
+	@BikeTrimColorId	int,
+	@BikeFrameId		int,
+	@BikeMsrp			dec(5,2),
+	@BikeListPrice		dec(5,2),
+	@BikeYear			int,
+	@BikeIsNew			binary(1),
+	@BikeCondition		int,
+	@BikeNumGears		int,
+	@BikeSerialNum		char(20),
+	@BikeDescription	text,
+	@BikeDateAdded		date,
+	@BikePictName		char(64)
+) AS
+BEGIN
+	INSERT INTO BikeTable (BikeMakeId,BikeModelId,BikeFrameColorId,BikeTrimColorId,BikeFrameId,BikeMsrp,BikeListPrice,BikeYear,BikeIsNew,BikeCondition,BikeNumGears,BikeSerialNum,BikeDescription,BikeDateAdded,BikePictName)
+	
+	VALUES (@BikeMakeId, @BikeModelId, @BikeFrameColorId, @BikeTrimColorId, @BikeFrameId, @BikeMsrp, @BikeListPrice, @BikeYear, @BikeIsNew, @BikeCondition, @BikeNumGears, @BikeSerialNum, @BikeDescription, @BikeDateAdded, @BikePictName);
+	
+	SET @BikeId=SCOPE_IDENTITY();
+END
+GO
+
+-- -  -   -    -     -      -       -        -
+
+IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
+	WHERE ROUTINE_NAME = 'BikeUpdate')
+		DROP PROCEDURE BikeUpdate
+GO
+
+CREATE PROCEDURE BikeUpdate (
+	@BikeId				int output,
+	@BikeMakeId			int,
+	@BikeModelId		int,	
+	@BikeFrameColorId	int,	
+	@BikeTrimColorId	int,
+	@BikeFrameId		int,
+	@BikeMsrp			dec(5,2),
+	@BikeListPrice		dec(5,2),
+	@BikeYear			int,
+	@BikeIsNew			binary(1),
+	@BikeCondition		int,
+	@BikeNumGears		int,
+	@BikeSerialNum		char(20),
+	@BikeDescription	text,
+	@BikeDateAdded		date,
+	@BikePictName		char(64)
+) AS
+BEGIN
+	UPDATE BikeTable SET
+		BikeMakeId			= @BikeMakeId,
+		BikeModelId			= @BikeModelId,
+		BikeFrameColorId	= @BikeFrameColorId,
+		BikeTrimColorId		= @BikeTrimColorId,
+		BikeFrameId			= @BikeFrameId,
+		BikeMsrp			= @BikeMsrp,
+		BikeListPrice		= @BikeListPrice,
+		BikeYear			= @BikeYear,
+		BikeIsNew			= @BikeIsNew,
+		BikeCondition		= @BikeCondition,
+		BikeNumGears		= @BikeNumGears,
+		BikeSerialNum		= @BikeSerialNum,
+		BikeDescription		= @BikeDescription,
+		BikeDateAdded		= @BikeDateAdded,
+		BikePictName		= @BikePictName
+	WHERE BikeId = @BikeId;
+END
+GO
+
+-- -  -   -    -     -      -       -        -
+
+IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
+	WHERE ROUTINE_NAME = 'BikeDelete')
+		DROP PROCEDURE BikeDelete
+GO
+-- -  -   -    -     -      -       -        -
+ 
+CREATE PROCEDURE BikeDelete (
+	@BikeId int
+) AS
+BEGIN
+	BEGIN TRANSACTION
+	
+	DELETE FROM PurchasedTable WHERE BikeId = @BikeId;
+	DELETE FROM FeatureTable WHERE BikeId = @BikeId;
+	DELETE FROM BikeTable WHERE BikeId = @BikeId;
+	
+	COMMIT TRANSACTION
+END
+GO

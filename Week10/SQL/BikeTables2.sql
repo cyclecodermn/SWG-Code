@@ -52,87 +52,90 @@ GO
 -- -  -   -    -     -      -       -        -
 
 CREATE TABLE BikeFrameTable ( 
-	BikeFrameId              int primary key identity(1,1) not null,
-	BikeFrame                varchar(64) NOT NULL,
+	BikeFrameId		int primary key identity(1,1) not null,
+	BikeFrame		varchar(64) NOT NULL,
  ) 
 GO
 
 CREATE TABLE BikeColorTable ( 
-	BikeColorId              int primary key identity(1,1) not null,
-	BikeColor                varchar(32) NOT NULL,
+	BikeColorId		int primary key identity(1,1) not null,
+	BikeColor		varchar(32) NOT NULL,
  )
 GO 
 
 CREATE TABLE ContactTable ( 
-	ContactId               int primary key identity(1,1) not null,
-	CntctLastName             varchar(64)  NOT NULL,
-	CntctFirstName            varchar(32)  NOT NULL,
-	CntctPhone				 char(12),
-	CntctEmail                varchar(32),
-	CntctMessage				 varchar(256)
+	ContactId		int primary key identity(1,1) not null,
+	CntctLastName	varchar(64)  NOT NULL,
+	CntctFirstName	varchar(32)  NOT NULL,
+	CntctPhone		char(12),
+	CntctEmail		varchar(32),
+	CntctMessage	varchar(256)
  ) 
 GO
 
 CREATE TABLE BikeMakeTable ( 
-	BikeMakeId               int primary key identity(1,1) not null,
-	BikeMake                 varchar(32)  NOT NULL,
-	MakeAddedDate datetime NOT NULL DEFAULT GETDATE() 
+	BikeMakeId		int primary key identity(1,1) not null,
+	BikeMake		varchar(32)  NOT NULL,
+	MakeAddedDate	datetime NOT NULL DEFAULT GETDATE() 
 )
 GO
 CREATE TABLE BikeModelTable ( 
-	BikeModelId              int primary key identity(1,1) not null,
-	BikeMakelId int foreign key references BikeModelTable(BikeModelId) null,	
-	BikeModel                varchar(32)  NOT NULL,
-	ModelAddedDate datetime NOT NULL DEFAULT GETDATE() 
+	BikeModelId		int primary key identity(1,1) not null,
+	BikeMakelId		int foreign key references BikeModelTable(BikeModelId) null,	
+	BikeModel		varchar(32)  NOT NULL,
+	ModelAddedDate	datetime NOT NULL DEFAULT GETDATE() 
  ) 
 GO
 
 CREATE TABLE SpecialTable ( 
-	SpecialId            int primary key identity(1,1) not null,
-	SpecialTitle                varchar(48)  NOT NULL,
-	SpecialDescription          varchar(256) NOT NULL,
+	SpecialId			int primary key identity(1,1) not null,
+	SpecialTitle		varchar(48)  NOT NULL,
+	SpecialDescription	varchar(256) NOT NULL,
  ) 
 
 CREATE TABLE BikeTable ( 
-	BikeId            int primary key identity(1,1) NOT NULL,
-	BikeMakeId int foreign key references BikeMakeTable(BikeMakeId) NOT NULL,
-	BikeModelId int foreign key references BikeModelTable(BikeModelId) NOT NULL,	
-	BikeFrameColorId int foreign key references BikeColorTable(BikeColorId) NOT NULL,	
-	BikeTrimColorId int foreign key references BikeColorTable(BikeColorId) NOT NULL,
-	BikeFrameId int foreign key references BikeFrameTable(BikeFrameId) NOT NULL,
+	BikeId				int primary key identity(1,1) NOT NULL,
+	BikeMakeId			int foreign key references BikeMakeTable(BikeMakeId) NOT NULL,
+	BikeModelId			int foreign key references BikeModelTable(BikeModelId) NOT NULL,	
+	BikeFrameColorId	int foreign key references BikeColorTable(BikeColorId) NOT NULL,	
+	BikeTrimColorId		int foreign key references BikeColorTable(BikeColorId) NOT NULL,
+	BikeFrameId			int foreign key references BikeFrameTable(BikeFrameId) NOT NULL,
 		
-	BikeMsrp                 dec  NOT NULL,
-	BikeListPrice            dec  NOT NULL,
-	BikeYear               int  NOT NULL,
-	BikeIsNew                binary(1) NOT NULL,
-	BikeCondition			 int NOT NULL,
-	BikeNumGears             int NOT NULL,
-	BikeSerialNum            char(20)  NOT NULL,
-	BikeDescription          text  NOT NULL,
-	BikeDateAdded            date  NOT NULL,
-	BikePictName             char(64)
+	BikeMsrp			dec  NOT NULL,
+	BikeListPrice		dec  NOT NULL,
+--	BikeMsrp			dec(5,2)  NOT NULL,
+--	BikeListPrice		dec(5,2)  NOT NULL,
+	BikeYear			int  NOT NULL,
+	BikeIsNew			binary(1) NOT NULL,
+	BikeCondition		int NOT NULL,
+	BikeNumGears		int NOT NULL,
+	BikeSerialNum		char(20)  NOT NULL,
+	BikeDescription		text  NOT NULL,
+	BikeDateAdded		date  NOT NULL,
+	BikePictName		char(64)
  ) 
 GO
 
 CREATE TABLE FeatureTable ( 
-	FeatureId            int  NOT NULL,
-	BikeId int foreign key references BikeTable(BikeId) null,	
-	FeatureDescription          varchar(256),
+	FeatureId			int  NOT NULL,
+	BikeId				int foreign key references BikeTable(BikeId) null,	
+	FeatureDescription	varchar(256),
  ) 
 GO
 
 CREATE TABLE PurchasedTable ( 
-	PurchaseSaleId               int primary key identity(1,1) NOT NULL,
-	BikeId int foreign key references BikeTable(BikeId) NOT NULL,
-	PurchasedPrice       decimal  NOT NULL,
-	PurchCustFirst			varchar(32),
-	PurchCustLast			varchar(64),
-	PurchCustPhone			varchar(16),
-	PurchCustAddress1		varchar(64),
-	PurchCustAddress2		varchar(64),
-	PurchCustCity			varchar(64),
-	PurchCustState			varchar(16),
-	PurchCustPostCode		varchar(16),
-	PurchFinType           varchar(32)  NOT NULL
+	PurchaseSaleId		int primary key identity(1,1) NOT NULL,
+	BikeId				int foreign key references BikeTable(BikeId) NOT NULL,
+	PurchasedPrice      decimal NOT NULL,
+--	PurchasedPrice      decimal(5,2)NOT NULL,
+	PurchCustFirst		varchar(32) NOT NULL,
+	PurchCustLast		varchar(64) NOT NULL,
+	PurchCustPhone		varchar(16) NOT NULL,
+	PurchCustAddress1	varchar(64) NOT NULL,
+	PurchCustAddress2	varchar(64) NOT NULL,
+	PurchCustCity		varchar(64) NOT NULL,
+	PurchCustState		varchar(16) NOT NULL,
+	PurchCustPostCode	varchar(16) NOT NULL,
+	PurchFinType		varchar(32) NOT NULL
  ) 
 
