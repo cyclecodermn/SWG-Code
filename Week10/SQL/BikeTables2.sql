@@ -59,7 +59,7 @@ GO
 
 CREATE TABLE BikeColorTable ( 
 	BikeColorId              int primary key identity(1,1) not null,
-	BikeColor                char(32) NOT NULL,
+	BikeColor                varchar(32) NOT NULL,
  )
 GO 
 
