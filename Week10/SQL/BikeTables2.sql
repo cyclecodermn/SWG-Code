@@ -37,8 +37,8 @@ IF EXISTS(SELECT * FROM sys.tables WHERE name='BikeFrameTable')
 	DROP TABLE BikeFrameTable
 GO
 
-IF EXISTS(SELECT * FROM sys.tables WHERE name='ColorTable')
-	DROP TABLE ColorTable
+IF EXISTS(SELECT * FROM sys.tables WHERE name='BikeColorTable')
+	DROP TABLE BikeColorTable
 GO
 
 IF EXISTS(SELECT * FROM sys.tables WHERE name='BikeMakeTable')
@@ -57,7 +57,7 @@ CREATE TABLE BikeFrameTable (
  ) 
 GO
 
-CREATE TABLE ColorTable ( 
+CREATE TABLE BikeColorTable ( 
 	BikeColorId              int primary key identity(1,1) not null,
 	BikeColor                char(32) NOT NULL,
  )
@@ -97,8 +97,8 @@ CREATE TABLE BikeTable (
 	BikeId            int primary key identity(1,1) NOT NULL,
 	BikeMakeId int foreign key references BikeMakeTable(BikeMakeId) NOT NULL,
 	BikeModelId int foreign key references BikeModelTable(BikeModelId) NOT NULL,	
-	BikeFrameColorId int foreign key references ColorTable(BikeColorId) NOT NULL,	
-	BikeTrimColorId int foreign key references ColorTable(BikeColorId) NOT NULL,
+	BikeFrameColorId int foreign key references BikeColorTable(BikeColorId) NOT NULL,	
+	BikeTrimColorId int foreign key references BikeColorTable(BikeColorId) NOT NULL,
 	BikeFrameId int foreign key references BikeFrameTable(BikeFrameId) NOT NULL,
 		
 	BikeMsrp                 dec  NOT NULL,

@@ -9,9 +9,10 @@ GO
 CREATE PROCEDURE DbReset AS
 BEGIN
 	DELETE FROM BikeFrameTable;
-	DELETE FROM BikeModelTable;
+	DELETE FROM SpecialTable;
+	DELETE FROM BikeColorTable;
 	DELETE FROM BikeMakeTable;
- 
+	DELETE FROM BikeModelTable;
 -- -  -   -    -     -      -       -        -
 	SET IDENTITY_INSERT BikeFrameTable ON;
 	
@@ -23,6 +24,28 @@ BEGIN
 
 	SET IDENTITY_INSERT BikeFrameTable OFF;
 
+-- -  -   -    -     -      -       -        -
+	SET IDENTITY_INSERT SpecialTable ON;
+	
+	INSERT INTO SpecialTable (SpecialId, SpecialTitle, SpecialDescription)
+	VALUES
+	(1,'Summer Sale','With summer here, it is a perfect time to try a new bike.'),
+	(2,'Fall Color Clearance', 'The leaves are falling and so are our prices.'),
+	(3,'Santa Special','Come in and talk with Santa about bringing a bike down your chimney.');
+
+	SET IDENTITY_INSERT SpecialTable OFF;
+-- -  -   -    -     -      -       -        -
+	SET IDENTITY_INSERT BikeColorTable ON;
+	
+	INSERT INTO BikeColorTable (BikeColorId, BikeColor)
+	VALUES
+	(1,'White'),
+	(2,'Light Grey'),
+	(3,'Grey'),
+	(4,'Dark Grey'),
+	(5,'Charchol');
+
+	SET IDENTITY_INSERT BikeColorTable OFF;
 -- -  -   -    -     -      -       -        -
 	SET IDENTITY_INSERT BikeMakeTable ON;
 	

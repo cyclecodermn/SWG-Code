@@ -31,7 +31,7 @@ namespace bikes.tests.IntegrationTests
             int ModelCount = Models.Count();
             Assert.AreEqual(3, ModelCount);
 
-            Assert.AreEqual("Surley", Models[1].BikeModel);
+            Assert.AreEqual("Long Haul Trucker", Models[1].BikeModel);
         }
     }
 }
