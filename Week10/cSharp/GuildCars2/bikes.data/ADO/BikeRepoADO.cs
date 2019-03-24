@@ -30,7 +30,8 @@ namespace bikes.data.ADO
                     if (dr.Read())
                     {
                         bike=new BikeTable();
-
+                        bike.BikeId = (int) dr["BikeId"];
+                        bike.BikeMakeId = (int)dr["BikeMakeId"];
                         bike.BikeModelId = (int)dr["BikeModelId"];
                         bike.BikeFrameColorId = (int)dr["BikeFrameColorId"];
                         bike.BikeTrimColorId = (int)dr["BikeTrimColorId"];

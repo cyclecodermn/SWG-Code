@@ -42,8 +42,33 @@ namespace bikes.tests.IntegrationTests
             var bike = repo.GetById(1);
 
             Assert.IsNotNull(bike);
-            Assert.AreEqual("12345678",bike.BikeSerialNum);
+            Assert.AreEqual(1, bike.BikeId);
+            Assert.AreEqual(1, bike.BikeMakeId);
+            Assert.AreEqual(1, bike.BikeFrameColorId);
+            Assert.AreEqual(1, bike.BikeTrimColorId);
+            Assert.AreEqual(1, bike.BikeFrameId);
+            Assert.AreEqual(1000.00M, bike.BikeMsrp);
+            Assert.AreEqual(990.00M, bike.BikeListPrice);
+            Assert.AreEqual(2019, bike.BikeYear);
+            Assert.AreEqual(true,bike.BikeisNew);
+            Assert.AreEqual(10, bike.BikeCondition);
+            Assert.AreEqual(18, bike.BikeNumGears);
+            Assert.AreEqual("12345678", bike.BikeSerialNum);
+            Assert.AreEqual("Fresh out of the box", bike.BikeDescription);
+            Assert.AreEqual("LongHaulTruckerPic1.jpg", bike.BikePictName);
+     
+            //BikeTable(BikeId, BikeMakeId, BikeModelId, BikeFrameColorId, BikeTrimColorId, BikeFrameId, BikeMsrp, BikeListPrice, BikeYear, BikeIsNew, BikeCondition, BikeNumGears, BikeSerialNum, BikeDescription, BikeDateAdded, BikePictName)
 
+            //(1, 1, 1, 1, 1, 1, 1000.00, 990.00, 2019, 1, 10, 18, 12345678, 'Fresh out of the box', GETDATE(), 'LongHaulTruckerPic1.jpg'),
+
+        }
+
+        [Test]
+        public void NotFoundListingReturnsNull()
+        {
+            var repo=new BikeRepoADO();
+            var bike = repo.GetById(999999);
+            Assert.IsNull(bike);
         }
     }
 }

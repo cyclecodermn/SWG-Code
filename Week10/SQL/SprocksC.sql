@@ -80,9 +80,11 @@ BEGIN
 	SET IDENTITY_INSERT BikeTable ON;
 
 	INSERT INTO 
-	BikeTable(BikeId,BikeMakeId,BikeModelId,BikeFrameColorId,BikeTrimColorId,BikeFrameId,BikeMsrp,BikeListPrice,BikeYear,BikeIsNew,BikeCondition,BikeNumGears,BikeSerialNum,BikeDescription,BikeDateAdded,BikePictName)
+	BikeTable(BikeId,BikeMakeId,BikeModelId,BikeFrameColorId,BikeTrimColorId,BikeFrameId,
+	BikeMsrp,BikeListPrice,BikeYear,BikeIsNew,BikeCondition,BikeNumGears,BikeSerialNum,
+	BikeDescription,BikeDateAdded,BikePictName)
 	VALUES 
-	(1,1,1,1,1,1,1000.00,990.00,2012,1,2,18,12345678,'Good used condition',GETDATE(),'LongHaulTruckerPic1.jpg'),
+	(1,1,1,1,1,1,1000.00,990.00,2019,1,10,18,12345678,'Fresh out of the box',GETDATE(),'LongHaulTruckerPic1.jpg'),
 	(2,2,2,2,2,2,2000.00,8800.00,2012,0,4,18,23456789,'Very ok',GETDATE(),'Bike2Pic.jpg');
 
 	SET IDENTITY_INSERT BikeTable OFF;
@@ -123,7 +125,7 @@ CREATE PROCEDURE BikeInsert (
 	@BikeSerialNum		char(20),
 	@BikeDescription	text,
 	@BikeDateAdded		date,
-	@BikePictName		char(64)
+	@BikePictName		varchar(64)
 ) AS
 BEGIN
 	INSERT INTO BikeTable (BikeMakeId,BikeModelId,BikeFrameColorId,BikeTrimColorId,BikeFrameId,BikeMsrp,BikeListPrice,BikeYear,BikeIsNew,BikeCondition,BikeNumGears,BikeSerialNum,BikeDescription,BikeDateAdded,BikePictName)
