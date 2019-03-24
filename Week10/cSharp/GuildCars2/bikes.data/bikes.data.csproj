@@ -42,7 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ADO\ModelRepoADO.cs" />
     <Compile Include="ADO\FrameRepoADO.cs" />
+    <Compile Include="Interfaces\IModelRepo.cs" />
     <Compile Include="Interfaces\IFrameRepo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />

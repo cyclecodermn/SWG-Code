@@ -7,7 +7,6 @@ GO
 CREATE PROCEDURE DbReset AS
 BEGIN
 
-	DELETE FROM BikeTable;
 	DELETE FROM BikeFrameTable;
 	DELETE FROM BikeModelTable;
 	DELETE FROM AspNetUsers WHERE id= '00000000-0000-0000-0000-000000000000';
@@ -35,15 +34,6 @@ BEGIN
 
 	INSERT INTO AspNetUsers(Id, firstName, lastName, EmailConfirmed, PhoneNumberConfirmed, Email,TwoFactorEnabled, LockoutEnabled, AccessFailedCount, UserName)
 	VALUES('00000000-0000-0000-0000-000000000000', 'James', 'Carter', 0, 0, 'test@test.com', 0, 0, 0, 'test');
-
-	SET IDENTITY_INSERT BikeTable ON;
-
-	INSERT INTO 
-	BikeTable(BikeId,BikeMakeId,BikeModelId,BikeFrameColorId,BikeTrimColorId,BikeFrameId,BikeMsrp,BikeListPrice,BikeYear,BikeIsNew,BikeCondition,BikeNumGears,BikeSerialNum,BikeDescription,BikeDateAdded,BikePictName)
-	VALUES (1,0,1,1,1,1,1000.00,990.00,2013,1,5,18,12345678,'Good used condition',GETDATE(),'LongHaulTruckerPic1.jpg');
-
-	SET IDENTITY_INSERT BikeTable OFF;
 	
 END
-
 

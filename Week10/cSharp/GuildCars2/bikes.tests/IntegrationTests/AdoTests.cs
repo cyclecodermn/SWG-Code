@@ -22,6 +22,16 @@ namespace bikes.tests.IntegrationTests
 
             Assert.AreEqual("Touring", frames[0].BikeFrame);
         }
+        [Test]
+        public void CanLoadModels()
+        {
+            var repo = new ModelRepoADO();
+            var Models = repo.GetAll();
 
+            int ModelCount = Models.Count();
+            Assert.AreEqual(3, ModelCount);
+
+            Assert.AreEqual("Surley", Models[1].BikeModel);
+        }
     }
 }
