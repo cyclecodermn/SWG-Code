@@ -19,6 +19,8 @@ BEGIN
 
 	DELETE FROM AspNetUsers;
 	DELETE FROM BikeTable;
+
+ DBCC CHECKIDENT('BikeTable', RESEED, 0)
 -- -  -   -    -     -      -       -        -
 	SET IDENTITY_INSERT BikeFrameTable ON;
 	
@@ -215,7 +217,7 @@ CREATE PROCEDURE BikeSelect (
 	@BikeId int
 ) AS
 BEGIN
-	SELECT BikeId,BikeMakeId,BikeModelId,BikeFrameColorId,BikeTrimColorId,BikeFrameId,BikeMsrp,BikeListPrice,BikeYear,BikeIsNew,BikeCondition,BikeNumGears,BikeSerialNum,BikeDescription,BikeDateAdded,BikePictName
+SELECT BikeMakeId,BikeModelId,BikeFrameColorId,BikeTrimColorId,BikeFrameId,BikeMsrp,BikeListPrice,BikeYear,BikeIsNew,BikeCondition,BikeNumGears,BikeSerialNum,BikeDescription,BikePictName
 	FROM BikeTable
 	WHERE BikeId = @BikeId
 END

@@ -17,7 +17,7 @@ namespace bikes.models.Tables
         public decimal BikeMsrp { get; set; }
         public decimal BikeListPrice { get; set; }
         public int BikeYear { get; set; }
-        public bool BikeisNew { get; set; }
+        public bool BikeIsNew { get; set; }
         public int BikeCondition { get; set; }
         public int BikeNumGears { get; set; }
         public string BikeSerialNum { get; set; }

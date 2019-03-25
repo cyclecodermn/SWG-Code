@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using bikes.data.ADO;
+using bikes.models.Tables;
 using NUnit.Framework;
 
 namespace bikes.tests.IntegrationTests
@@ -50,7 +51,7 @@ namespace bikes.tests.IntegrationTests
             Assert.AreEqual(1000.00M, bike.BikeMsrp);
             Assert.AreEqual(990.00M, bike.BikeListPrice);
             Assert.AreEqual(2019, bike.BikeYear);
-            Assert.AreEqual(true,bike.BikeisNew);
+            Assert.AreEqual(true,bike.BikeIsNew);
             Assert.AreEqual(10, bike.BikeCondition);
             Assert.AreEqual(18, bike.BikeNumGears);
             Assert.AreEqual("12345678", bike.BikeSerialNum);
@@ -69,6 +70,33 @@ namespace bikes.tests.IntegrationTests
             var repo=new BikeRepoADO();
             var bike = repo.GetById(999999);
             Assert.IsNull(bike);
+        }
+
+        [Test]
+        public void CanAddBike()
+        {
+            BikeTable BikeToAdd = new BikeTable();
+            var repo = new BikeRepoADO();
+
+//            BikeToAdd.BikeId =
+            BikeToAdd.BikeMakeId = 3;
+            BikeToAdd.BikeModelId = 3;
+            BikeToAdd.BikeFrameColorId = 3;
+            BikeToAdd.BikeTrimColorId = 3;
+            BikeToAdd.BikeFrameId = 3;
+            BikeToAdd.BikeMsrp = 3333M;
+            BikeToAdd.BikeListPrice = 2222M;
+            BikeToAdd.BikeYear = 2019;
+            BikeToAdd.BikeIsNew = true;
+            BikeToAdd.BikeCondition = 10;
+            BikeToAdd.BikeNumGears = 1;
+            BikeToAdd.BikeSerialNum = "34567890";
+            BikeToAdd.BikeDescription = "New bike added from Cs";
+            BikeToAdd.BikePictName = "bike3.png";
+
+            repo.Insert(BikeToAdd);
+            Assert.AreEqual(4,BikeToAdd.BikeId);
+
         }
     }
 }
