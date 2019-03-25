@@ -116,5 +116,97 @@ namespace bikes.tests.IntegrationTests
             Assert.AreEqual(3,BikeToAdd.BikeId);
 
         }
+
+        [Test]
+        public void CanUpdateBike()
+        {
+            BikeTable BikeToAdd = new BikeTable();
+            var repo = new BikeRepoADO();
+
+            BikeToAdd.BikeMakeId = 3;
+            BikeToAdd.BikeModelId = 3;
+            BikeToAdd.BikeFrameColorId = 3;
+            BikeToAdd.BikeTrimColorId = 3;
+            BikeToAdd.BikeFrameId = 3;
+            BikeToAdd.BikeMsrp = 3333.00M;
+            BikeToAdd.BikeListPrice = 2222.00M;
+            BikeToAdd.BikeYear = 2019;
+            BikeToAdd.BikeIsNew = true;
+            BikeToAdd.BikeCondition = 10;
+            BikeToAdd.BikeNumGears = 1;
+            BikeToAdd.BikeSerialNum = "34567890";
+            BikeToAdd.BikeDescription = "New bike added from Cs";
+            BikeToAdd.BikePictName = "bike3.png";
+
+            repo.Insert(BikeToAdd);
+
+            BikeTable BikeToUpdate = new BikeTable();
+
+            BikeToAdd.BikeMakeId = 1;
+            BikeToAdd.BikeModelId = 1;
+            BikeToAdd.BikeFrameColorId = 1;
+            BikeToAdd.BikeTrimColorId = 2;
+            BikeToAdd.BikeFrameId = 1;
+            BikeToAdd.BikeMsrp = 1234.00M;
+            BikeToAdd.BikeListPrice = 1122.00M;
+            BikeToAdd.BikeYear = 2018;
+            BikeToAdd.BikeIsNew = false;
+            BikeToAdd.BikeCondition = 8;
+            BikeToAdd.BikeNumGears = 2;
+            BikeToAdd.BikeSerialNum = "45678901";
+            BikeToAdd.BikeDescription = "Upadeted info from Cs";
+            BikeToAdd.BikePictName = "bike-update.png";
+
+            repo.Update(BikeToAdd);
+
+            var updatedBike = repo.GetById(3);
+
+            Assert.AreEqual(1, BikeToAdd.BikeMakeId);
+            Assert.AreEqual(1, BikeToAdd.BikeModelId);
+            Assert.AreEqual(1, BikeToAdd.BikeFrameColorId);
+            Assert.AreEqual(2, BikeToAdd.BikeTrimColorId);
+            Assert.AreEqual(1, BikeToAdd.BikeFrameId);
+            Assert.AreEqual(1234.00M, BikeToAdd.BikeMsrp);
+            Assert.AreEqual(1122.00M, BikeToAdd.BikeListPrice);
+            Assert.AreEqual(2018, BikeToAdd.BikeYear);
+            Assert.AreEqual(false, BikeToAdd.BikeIsNew);
+            Assert.AreEqual(8, BikeToAdd.BikeCondition);
+            Assert.AreEqual(2, BikeToAdd.BikeNumGears);
+            Assert.AreEqual("45678901", BikeToAdd.BikeSerialNum);
+            Assert.AreEqual("Upadeted info from Cs", BikeToAdd.BikeDescription);
+            Assert.AreEqual("bike-update.png", BikeToAdd.BikePictName);
+        }
+
+        [Test]
+        public void CanDeleteBike()
+        {
+            BikeTable BikeToAdd = new BikeTable();
+            var repo = new BikeRepoADO();
+
+            BikeToAdd.BikeMakeId = 3;
+            BikeToAdd.BikeModelId = 3;
+            BikeToAdd.BikeFrameColorId = 3;
+            BikeToAdd.BikeTrimColorId = 3;
+            BikeToAdd.BikeFrameId = 3;
+            BikeToAdd.BikeMsrp = 0.00M;
+            BikeToAdd.BikeListPrice = 0.00M;
+            BikeToAdd.BikeYear = 1984;
+            BikeToAdd.BikeIsNew = true;
+            BikeToAdd.BikeCondition = 0;
+            BikeToAdd.BikeNumGears = 1;
+            BikeToAdd.BikeSerialNum = "000000";
+            BikeToAdd.BikeDescription = "New bike added from Cs for delete test";
+            BikeToAdd.BikePictName = "delete.png";
+
+            repo.Insert(BikeToAdd);
+
+            var loaded = repo.GetById(3);
+            Assert.IsNotNull(loaded);
+
+            repo.Delete(3);
+            loaded = repo.GetById(3);
+            Assert.IsNull(loaded);
+        }
+
     }
 }

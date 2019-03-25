@@ -20,7 +20,7 @@ BEGIN
 	DELETE FROM AspNetUsers;
 	DELETE FROM BikeTable;
 
- DBCC CHECKIDENT('BikeTable', RESEED, 0)
+ DBCC CHECKIDENT('BikeTable', RESEED, 1)
 -- -  -   -    -     -      -       -        -
 	SET IDENTITY_INSERT BikeFrameTable ON;
 	
@@ -87,7 +87,7 @@ BEGIN
 	BikeDescription,BikeDateAdded,BikePictName)
 	VALUES 
 	(1,1,1,1,1,1,1000.00,990.00,2019,1,10,18,12345678,'Fresh out of the box',GETDATE(),'LongHaulTruckerPic1.jpg'),
-	(2,2,2,2,2,2,2000.00,8800.00,2012,0,4,18,23456789,'Very ok',GETDATE(),'Bike2Pic.jpg');
+	(2,2,2,2,2,2,2000.00,800.00,2012,0,4,18,23456789,'Very ok',GETDATE(),'Bike2Pic.jpg');
 
 	SET IDENTITY_INSERT BikeTable OFF;
 -- -  -   -    -     -      -       -        -
@@ -146,14 +146,14 @@ IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
 GO
 
 CREATE PROCEDURE BikeUpdate (
-	@BikeId				int output,
+	@BikeId				int,
 	@BikeMakeId			int,
 	@BikeModelId		int,	
 	@BikeFrameColorId	int,	
 	@BikeTrimColorId	int,
 	@BikeFrameId		int,
-	@BikeMsrp			dec(5,2),
-	@BikeListPrice		dec(5,2),
+	@BikeMsrp			money,
+	@BikeListPrice		money,
 	@BikeYear			int,
 	@BikeIsNew			binary(1),
 	@BikeCondition		int,
