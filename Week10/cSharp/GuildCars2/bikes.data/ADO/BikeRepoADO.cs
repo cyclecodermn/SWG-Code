@@ -30,7 +30,7 @@ namespace bikes.data.ADO
                     if (dr.Read())
                     {
                         bike = new BikeTable();
-                        bike.BikeId = (int)dr["BikeId"];
+//                        bike.BikeId = (int)dr["BikeId"];
                         bike.BikeMakeId = (int)dr["BikeMakeId"];
                         bike.BikeModelId = (int)dr["BikeModelId"];
                         bike.BikeFrameColorId = (int)dr["BikeFrameColorId"];
@@ -83,6 +83,7 @@ namespace bikes.data.ADO
                 cmd.Parameters.AddWithValue("@BikeListPrice", bike.BikeListPrice);
                 cmd.Parameters.AddWithValue("@BikeYear", bike.BikeYear);
                 cmd.Parameters.AddWithValue("@BikeIsNew", bike.BikeIsNew);
+                cmd.Parameters.AddWithValue("@BikeDateAdded", DateTime.Now);
                 cmd.Parameters.AddWithValue("@BikeCondition", bike.BikeCondition);
                 cmd.Parameters.AddWithValue("@BikeNumGears", bike.BikeNumGears);
                 cmd.Parameters.AddWithValue("@BikeSerialNum", bike.BikeSerialNum);

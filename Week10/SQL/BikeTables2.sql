@@ -101,10 +101,8 @@ CREATE TABLE BikeTable (
 	BikeTrimColorId		int foreign key references BikeColorTable(BikeColorId) NOT NULL,
 	BikeFrameId			int foreign key references BikeFrameTable(BikeFrameId) NOT NULL,
 		
-	BikeMsrp			dec  NOT NULL,
-	BikeListPrice		dec  NOT NULL,
---	BikeMsrp			dec(5,2)  NOT NULL,
---	BikeListPrice		dec(5,2)  NOT NULL,
+	BikeMsrp			money  NOT NULL,
+	BikeListPrice		money  NOT NULL,
 	BikeYear			int  NOT NULL,
 	BikeIsNew			bit NOT NULL,
 	BikeCondition		int NOT NULL,

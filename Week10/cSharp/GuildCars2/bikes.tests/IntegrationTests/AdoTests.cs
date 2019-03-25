@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +14,22 @@ namespace bikes.tests.IntegrationTests
     [TestFixture]
     public class AdoTests
     {
+        [SetUp]
+        public void Init()
+        {
+            using (var cn =
+                new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                var cmd= new SqlCommand();
+                cmd.CommandText = "DbReset";
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Connection = cn;
+                cn.Open();
+
+                cmd.ExecuteNonQuery();
+            }
+        }
         [Test]
         public void CanLoadFrames()
         {
@@ -43,7 +61,7 @@ namespace bikes.tests.IntegrationTests
             var bike = repo.GetById(1);
 
             Assert.IsNotNull(bike);
-            Assert.AreEqual(1, bike.BikeId);
+//            Assert.AreEqual(1, bike.BikeId);
             Assert.AreEqual(1, bike.BikeMakeId);
             Assert.AreEqual(1, bike.BikeFrameColorId);
             Assert.AreEqual(1, bike.BikeTrimColorId);
@@ -78,14 +96,14 @@ namespace bikes.tests.IntegrationTests
             BikeTable BikeToAdd = new BikeTable();
             var repo = new BikeRepoADO();
 
-//            BikeToAdd.BikeId =
+            BikeToAdd.BikeId =
             BikeToAdd.BikeMakeId = 3;
             BikeToAdd.BikeModelId = 3;
             BikeToAdd.BikeFrameColorId = 3;
             BikeToAdd.BikeTrimColorId = 3;
             BikeToAdd.BikeFrameId = 3;
-            BikeToAdd.BikeMsrp = 3333M;
-            BikeToAdd.BikeListPrice = 2222M;
+            BikeToAdd.BikeMsrp = 3333.00M;
+            BikeToAdd.BikeListPrice = 2222.00M;
             BikeToAdd.BikeYear = 2019;
             BikeToAdd.BikeIsNew = true;
             BikeToAdd.BikeCondition = 10;
@@ -95,7 +113,7 @@ namespace bikes.tests.IntegrationTests
             BikeToAdd.BikePictName = "bike3.png";
 
             repo.Insert(BikeToAdd);
-            Assert.AreEqual(4,BikeToAdd.BikeId);
+            Assert.AreEqual(3,BikeToAdd.BikeId);
 
         }
     }
