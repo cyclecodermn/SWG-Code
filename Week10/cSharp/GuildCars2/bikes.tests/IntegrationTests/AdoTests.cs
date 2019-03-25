@@ -217,6 +217,19 @@ namespace bikes.tests.IntegrationTests
 
             oneBike = repo.GetBikeDetails(1);
 
+          //  Assert.AreEqual(2, oneBike.BikeFrameColorId);
+           // Assert.AreEqual(1, oneBike.BikeTrimColorId);
+            Assert.AreEqual(1000.00M, oneBike.BikeSmrp);
+            Assert.AreEqual(990.00M, oneBike.BikeListPrice);
+            Assert.AreEqual(2019, oneBike.BikeYear);
+            Assert.AreEqual(true, oneBike.BikeIsNew);
+            Assert.AreEqual(10, oneBike.BikeCondition);
+            Assert.AreEqual(18, oneBike.BikeNumGears);
+            Assert.AreEqual("12345678", oneBike.BikeSerialNum);
+            Assert.AreEqual("Fresh out of the box", oneBike.BikeDescription);
+            Assert.AreEqual("LongHaulTruckerPic1.jpg", oneBike.BikePictName);
+
+
             Assert.AreEqual("Surley", oneBike.BikeMake);
             Assert.AreEqual("Long Haul Trucker", oneBike.BikeModel);
             Assert.AreEqual("Light Grey", oneBike.FrameColor);

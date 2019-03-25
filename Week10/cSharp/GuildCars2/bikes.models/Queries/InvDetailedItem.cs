@@ -21,8 +21,8 @@ namespace bikes.models.Queries
         public decimal BikeSmrp { get; set; }
         public decimal BikeListPrice { get; set; }
         public string BikePictName { get; set; }
-        public int BikeFrameColorId { get; set; }
-        public int BikeTrimColorId { get; set; }
+ //       public int BikeFrameColorId { get; set; }
+//        public int BikeTrimColorId { get; set; }
         public string BikeDescription { get; set; }
     }
 }
