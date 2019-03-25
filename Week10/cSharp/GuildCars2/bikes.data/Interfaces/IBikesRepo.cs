@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using bikes.models.Queries;
 using bikes.models.Tables;
 
 namespace bikes.data.Interfaces
@@ -13,5 +14,6 @@ namespace bikes.data.Interfaces
         void Insert(BikeTable bike);
         void Update(BikeTable bike);
         void Delete(int BikeId);
+        InvDetailedItem GetBikeDetails(int BikeId);
     }
 }

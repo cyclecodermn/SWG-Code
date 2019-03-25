@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using bikes.data.ADO;
+using bikes.models.Queries;
 using bikes.models.Tables;
 using NUnit.Framework;
 
@@ -51,7 +52,7 @@ namespace bikes.tests.IntegrationTests
             int ModelCount = Models.Count();
             Assert.AreEqual(3, ModelCount);
 
-            Assert.AreEqual("Long Haul Trucker", Models[1].BikeModel);
+            Assert.AreEqual("RidgeBack", Models[1].BikeModel);
         }
 
         [Test]
@@ -62,8 +63,8 @@ namespace bikes.tests.IntegrationTests
 
             Assert.IsNotNull(bike);
 //            Assert.AreEqual(1, bike.BikeId);
-            Assert.AreEqual(1, bike.BikeMakeId);
-            Assert.AreEqual(1, bike.BikeFrameColorId);
+            Assert.AreEqual(2, bike.BikeMakeId);
+            Assert.AreEqual(2, bike.BikeFrameColorId);
             Assert.AreEqual(1, bike.BikeTrimColorId);
             Assert.AreEqual(1, bike.BikeFrameId);
             Assert.AreEqual(1000.00M, bike.BikeMsrp);
@@ -208,5 +209,20 @@ namespace bikes.tests.IntegrationTests
             Assert.IsNull(loaded);
         }
 
+        [Test]
+        public void CanGetBikeDetails()
+        {
+            InvDetailedItem oneBike = null;
+            var repo = new BikeRepoADO();
+
+            oneBike = repo.GetBikeDetails(1);
+
+            Assert.AreEqual("Surley", oneBike.BikeMake);
+            Assert.AreEqual("Long Haul Trucker", oneBike.BikeModel);
+            Assert.AreEqual("Light Grey", oneBike.FrameColor);
+            Assert.AreEqual("White", oneBike.TrimColor);
+
+            Assert.IsNotNull(oneBike);
+        }
     }
 }

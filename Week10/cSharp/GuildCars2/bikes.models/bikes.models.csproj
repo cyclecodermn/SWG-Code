@@ -42,20 +42,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Querieis\AdminAddMake.cs" />
-    <Compile Include="Querieis\AdminAddModel.cs" />
-    <Compile Include="Querieis\AdminAddSpecial.cs" />
-    <Compile Include="Querieis\AdminBikeItem.cs" />
-    <Compile Include="Querieis\AdminEditBike.cs" />
-    <Compile Include="Querieis\InvDetailedItem.cs" />
-    <Compile Include="Querieis\FeaturedItem.cs" />
-    <Compile Include="Querieis\InvNewItem.cs" />
-    <Compile Include="Querieis\PurchaseItem.cs" />
-    <Compile Include="Querieis\ReportInventory.cs" />
-    <Compile Include="Querieis\ReportSales.cs" />
-    <Compile Include="Querieis\SaleItem.cs" />
-    <Compile Include="Querieis\SpecialItem.cs" />
-    <Compile Include="Querieis\InvUsedItem.cs" />
+    <Compile Include="Queries\AdminAddMake.cs" />
+    <Compile Include="Queries\AdminAddModel.cs" />
+    <Compile Include="Queries\AdminAddSpecial.cs" />
+    <Compile Include="Queries\AdminBikeItem.cs" />
+    <Compile Include="Queries\AdminEditBike.cs" />
+    <Compile Include="Queries\InvDetailedItem.cs" />
+    <Compile Include="Queries\FeaturedItem.cs" />
+    <Compile Include="Queries\InvNewItem.cs" />
+    <Compile Include="Queries\PurchaseItem.cs" />
+    <Compile Include="Queries\ReportInventory.cs" />
+    <Compile Include="Queries\ReportSales.cs" />
+    <Compile Include="Queries\SaleItem.cs" />
+    <Compile Include="Queries\SpecialItem.cs" />
+    <Compile Include="Queries\InvUsedItem.cs" />
     <Compile Include="Tables\BikeTable.cs" />
     <Compile Include="Tables\Color.cs" />
     <Compile Include="Tables\ContactTable.cs" />

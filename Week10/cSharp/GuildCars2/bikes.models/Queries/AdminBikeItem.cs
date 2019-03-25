@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace bikes.models.Querieis
+namespace bikes.models.Queries
 {
-    public class InvDetailedItem
+    public class AdminBikeItem
     {
         public bool BikeIsNew { get; set; }
         public int BikeYear { get; set; }

@@ -1,10 +1,49 @@
 USE GuildCars1
+-- -  -   -    -     -      -       -        -
+
+IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
+	WHERE ROUTINE_NAME = 'BikesRecentlyAdded')
+		DROP PROCEDURE BikesRecentlyAdded
+GO
+
+CREATE PROCEDURE BikesRecentlyAdded AS
+BEGIN
+	SELECT TOP 5 BikeFrameId, BikeFrame 
+	FROM BikeFrameTable
+END
+GO
+
+-- -  -   -    -     -      -       -        -
+
+IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
+	WHERE ROUTINE_NAME = 'FramesSelectAll')
+		DROP PROCEDURE FramesSelectAll
+GO
+
+CREATE PROCEDURE FramesSelectAll AS
+BEGIN
+	SELECT BikeFrameId, BikeFrame 
+	FROM BikeFrameTable
+END
+GO
+-- -  -   -    -     -      -       -        -
+
+IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
+	WHERE ROUTINE_NAME = 'ModelsSelectAll')
+		DROP PROCEDURE ModelsSelectAll
+GO
+
+CREATE PROCEDURE ModelsSelectAll AS
+BEGIN
+	SELECT BikeModelId, BikeModel 
+	FROM BikeModelTable
+END
+GO
+-- -  -   -    -     -      -       -        -
 IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
 	WHERE ROUTINE_NAME = 'DbReset')
 		DROP PROCEDURE DbReset
 GO
-
--- -  -   -    -     -      -       -        -
 
 CREATE PROCEDURE DbReset AS
 BEGIN
@@ -70,8 +109,8 @@ BEGIN
 	
 	INSERT INTO BikeModelTable (BikeModelId, BikeMakelId, BikeModel)
 	VALUES
-	(1,1,'RidgeBack'),
-	(2,2,'Long Haul Trucker'),
+	(1,1,'Long Haul Trucker'),
+	(2,2,'RidgeBack'),
 	(3,3,'520');
 
 	SET IDENTITY_INSERT BikeModelTable OFF;
@@ -86,8 +125,8 @@ BEGIN
 	BikeMsrp,BikeListPrice,BikeYear,BikeIsNew,BikeCondition,BikeNumGears,BikeSerialNum,
 	BikeDescription,BikeDateAdded,BikePictName)
 	VALUES 
-	(1,1,1,1,1,1,1000.00,990.00,2019,1,10,18,12345678,'Fresh out of the box',GETDATE(),'LongHaulTruckerPic1.jpg'),
-	(2,2,2,2,2,2,2000.00,800.00,2012,0,4,18,23456789,'Very ok',GETDATE(),'Bike2Pic.jpg');
+	(1,2,1,2,1,1,1000.00,990.00,2019,1,10,18,12345678,'Fresh out of the box',GETDATE(),'LongHaulTruckerPic1.jpg'),
+	(2,3,2,3,2,3,2000.00,800.00,2012,0,4,18,23456789,'Very ok',GETDATE(),'Bike2Pic.jpg');
 
 	SET IDENTITY_INSERT BikeTable OFF;
 -- -  -   -    -     -      -       -        -
@@ -223,3 +262,31 @@ SELECT BikeMakeId,BikeModelId,BikeFrameColorId,BikeTrimColorId,BikeFrameId,BikeM
 END
 GO
 
+-- -  -   -    -     -      -       -        -
+
+IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
+	WHERE ROUTINE_NAME = 'OneBikeDetails')
+		DROP PROCEDURE OneBikeDetails
+GO
+-- -  -   -    -     -      -       -        -
+
+CREATE PROCEDURE OneBikeDetails (
+	@BikeId int
+) AS
+BEGIN
+
+SELECT	BikeMake,BikeModel, c.BikeColor AS frameColor,  
+		ct.BikeColor AS trimColor, BikeFrame,BikeMsrp,BikeListPrice,
+		BikeYear,BikeIsNew,BikeCondition,BikeNumGears,BikeSerialNum,BikeDescription,BikePictName
+	FROM BikeTable bt
+		INNER JOIN BikeMakeTable mk ON mk.BikeMakeId = bt.BikeMakeId
+		INNER JOIN BikeModelTable md ON md.BikeModelId = bt.BikeModelId 
+		INNER JOIN BikeFrameTable fr ON fr.BikeFrameId = bt.BikeFrameId 
+
+		INNER JOIN BikeColorTable c ON c.BikeColorId = bt.BikeFrameColorId
+		INNER JOIN BikeColorTable ct ON ct.BikeColorId = bt.BikeTrimColorId
+		
+	WHERE BikeId = @BikeId
+END
+
+GO
