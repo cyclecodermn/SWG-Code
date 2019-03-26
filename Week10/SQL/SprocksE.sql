@@ -150,7 +150,10 @@ BEGIN
 	INSERT INTO FeatureTable (FeatureId, BikeId, FeatureDescription)
 	VALUES
 	(1,1,'This is a description for featured bike number 1'),
-	(2,2,'This is a description for featured bike number 2')
+	(2,3,'This is a description for featured bike number 2'),
+	(3,5,'This is a description for featured bike number 3'),
+	(4,7,'This is a description for featured bike number 4'),
+	(5,9,'This is a description for featured bike number 5');
 
 	SET IDENTITY_INSERT FeatureTable OFF;
 
@@ -323,14 +326,14 @@ IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
 		DROP PROCEDURE GetFeaturedBikes
 GO
 
---CREATE PROCEDURE GetFeaturedBikes AS
---BEGIN
---SELECT	FeatureId, BikeId, BikeYear BikeMake,BikeModel, BikeListPrice, BikePictName
---	FROM FeatureTable ft
---		INNER JOIN BikeTable bt ON bt.BikeId = ft.BikeId
---		INNER JOIN BikeMakeTable mk ON mk.BikeMakeId = bt.BikeMakeId
---		INNER JOIN BikeModelTable md ON md.BikeModelId = bt.BikeModelId 
---		INNER JOIN BikeFrameTable fr ON fr.BikeFrameId = bt.BikeFrameId 
---END
---GO
+CREATE PROCEDURE GetFeaturedBikes AS
+	BEGIN
+		SELECT	FeatureId, bt.BikeId, BikeYear, BikeMake,BikeModel, BikeListPrice, BikePictName
+			FROM FeatureTable ft
+				INNER JOIN BikeTable bt ON bt.BikeId = ft.BikeId
+				INNER JOIN BikeMakeTable mk ON mk.BikeMakeId = bt.BikeMakeId
+				INNER JOIN BikeModelTable md ON md.BikeModelId = bt.BikeModelId 
+				INNER JOIN BikeFrameTable fr ON fr.BikeFrameId = bt.BikeFrameId 
+	END
+GO
 

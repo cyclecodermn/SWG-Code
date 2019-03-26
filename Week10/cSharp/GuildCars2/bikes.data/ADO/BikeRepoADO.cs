@@ -31,21 +31,21 @@ namespace bikes.data.ADO
                     if (dr.Read())
                     {
                         bike = new BikeTable();
-//                        bike.BikeId = (int)dr["BikeId"];
-                        bike.BikeMakeId = (int) dr["BikeMakeId"];
-                        bike.BikeModelId = (int) dr["BikeModelId"];
-                        bike.BikeFrameColorId = (int) dr["BikeFrameColorId"];
-                        bike.BikeTrimColorId = (int) dr["BikeTrimColorId"];
-                        bike.BikeFrameId = (int) dr["BikeFrameId"];
-                        bike.BikeMsrp = (decimal) dr["BikeMsrp"];
-                        bike.BikeListPrice = (decimal) dr["BikeListPrice"];
-                        bike.BikeYear = (int) dr["BikeYear"];
+                        //                        bike.BikeId = (int)dr["BikeId"];
+                        bike.BikeMakeId = (int)dr["BikeMakeId"];
+                        bike.BikeModelId = (int)dr["BikeModelId"];
+                        bike.BikeFrameColorId = (int)dr["BikeFrameColorId"];
+                        bike.BikeTrimColorId = (int)dr["BikeTrimColorId"];
+                        bike.BikeFrameId = (int)dr["BikeFrameId"];
+                        bike.BikeMsrp = (decimal)dr["BikeMsrp"];
+                        bike.BikeListPrice = (decimal)dr["BikeListPrice"];
+                        bike.BikeYear = (int)dr["BikeYear"];
 
                         var intToBool = dr["BikeisNew"];
                         //bike.BikeisNew = (intToBool==1);
-                        bike.BikeIsNew = (bool) dr["BikeisNew"];
-                        bike.BikeCondition = (int) dr["BikeCondition"];
-                        bike.BikeNumGears = (int) dr["BikeNumGears"];
+                        bike.BikeIsNew = (bool)dr["BikeisNew"];
+                        bike.BikeCondition = (int)dr["BikeCondition"];
+                        bike.BikeNumGears = (int)dr["BikeNumGears"];
                         bike.BikeSerialNum = dr["BikeSerialNum"].ToString();
                         bike.BikeDescription = dr["BikeDescription"].ToString();
 
@@ -53,7 +53,7 @@ namespace bikes.data.ADO
                             bike.BikePictName = dr["BikePictName"].ToString();
 
                         BikeFrameTable currentRow = new BikeFrameTable();
-                        currentRow.BikeFrameId = (int) dr["BikeFrameId"];
+                        currentRow.BikeFrameId = (int)dr["BikeFrameId"];
                         //currentRow.BikeFrame = dr["BikeFrame"].ToString();
 
                     }
@@ -94,7 +94,7 @@ namespace bikes.data.ADO
 
                 cn.Open();
                 cmd.ExecuteNonQuery();
-                bike.BikeId = (int) param.Value;
+                bike.BikeId = (int)param.Value;
 
 
             }
@@ -146,6 +146,42 @@ namespace bikes.data.ADO
             }
         }
 
+        public IEnumerable<FeaturedItem> GetFeatured()
+        {
+            List<FeaturedItem> FeaturedBikes = new List<FeaturedItem>();
+
+            using (var cn = new SqlConnection(Settings.GetConnectionString()))
+
+            {
+                SqlCommand cmd = new SqlCommand("GetFeaturedBikes", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                //cmd.Parameters.AddWithValue("@BikeId", BikeId);
+                cn.Open();
+
+                using (SqlDataReader dr = cmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        FeaturedItem row = new FeaturedItem();
+
+                        row.FeatureId = (int)dr["FeatureId"];
+                        row.BikeId = (int)dr["BikeId"];
+                        row.BikeMake = (string)dr["BikeMake"];
+                        row.BikeModel = (string)dr["BikeModel"];
+                        row.BikeYear = (int)dr["BikeYear"];
+                        row.BikeListPrice = (decimal)dr["BikeListPrice"];
+
+                        if (dr["BikePictName"] != DBNull.Value)
+                            row.BikePictName = dr["BikePictName"].ToString();
+                        FeaturedBikes.Add(row);
+                    }
+                }
+            }
+
+            return FeaturedBikes;
+
+        }
+
         public InvDetailedItem GetBikeDetails(int BikeId)
         {
             InvDetailedItem bike = null;
@@ -164,8 +200,8 @@ namespace bikes.data.ADO
                     {
                         bike = new InvDetailedItem();
                         //                        bike.BikeId = (int)dr["BikeId"];
-//                        bike.BikeFrameColorId = (int)dr["BikeFrameColorId"];
-//                        bike.BikeTrimColorId = (int)dr["BikeTrimColorId"];
+                        //                        bike.BikeFrameColorId = (int)dr["BikeFrameColorId"];
+                        //                        bike.BikeTrimColorId = (int)dr["BikeTrimColorId"];
                         bike.BikeSmrp = (decimal)dr["BikeMsrp"];
                         bike.BikeListPrice = (decimal)dr["BikeListPrice"];
                         bike.BikeYear = (int)dr["BikeYear"];
@@ -188,7 +224,7 @@ namespace bikes.data.ADO
                             bike.BikePictName = dr["BikePictName"].ToString();
 
                         BikeFrameTable currentRow = new BikeFrameTable();
-                   //     currentRow.BikeFrameId = (int)dr["BikeFrameId"];
+                        //     currentRow.BikeFrameId = (int)dr["BikeFrameId"];
                         //currentRow.BikeFrame = dr["BikeFrame"].ToString();
 
                     }

@@ -14,6 +14,7 @@ namespace bikes.data.Interfaces
         void Insert(BikeTable bike);
         void Update(BikeTable bike);
         void Delete(int BikeId);
+        IEnumerable<FeaturedItem> GetFeatured();
         InvDetailedItem GetBikeDetails(int BikeId);
     }
 }

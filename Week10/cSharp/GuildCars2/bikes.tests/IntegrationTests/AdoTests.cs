@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
@@ -237,5 +238,22 @@ namespace bikes.tests.IntegrationTests
 
             Assert.IsNotNull(oneBike);
         }
-    }
+
+        [Test]
+        public void CanLoadFeaturedBikes()
+        {
+            var repo = new BikeRepoADO();
+            List<FeaturedItem> FeaturedBike = repo.GetFeatured().ToList();
+
+            Assert.AreEqual(5, FeaturedBike.Count());
+
+            Assert.AreEqual(1, FeaturedBike[0].FeatureId);
+            Assert.AreEqual(2019, FeaturedBike[0].BikeYear);
+            Assert.AreEqual("Surley", FeaturedBike[0].BikeMake);
+            Assert.AreEqual("Long Haul Trucker", FeaturedBike[0].BikeModel);
+            Assert.AreEqual(1100, FeaturedBike[0].BikeListPrice);
+        }
+
+}
+
 }
