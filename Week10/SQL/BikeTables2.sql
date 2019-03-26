@@ -115,7 +115,7 @@ CREATE TABLE BikeTable (
 GO
 
 CREATE TABLE FeatureTable ( 
-	FeatureId			int  NOT NULL,
+	FeatureId			int primary key identity(1,1) NOT NULL,
 	BikeId				int foreign key references BikeTable(BikeId) null,	
 	FeatureDescription	varchar(256),
  ) 

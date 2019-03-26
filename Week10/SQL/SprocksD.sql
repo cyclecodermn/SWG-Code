@@ -1,6 +1,10 @@
 USE GuildCars1
--- -  -   -    -     -      -       -        -
 
+-- -  -   -    -     -      -       -        -
+-- I followed the video to create the procedure below
+-- but I probably won't use it since it relates more to
+-- ShackUp than Guild Bikes. The FeaturedBike procedure 
+-- is derived from the 1 below and is used.
 IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
 	WHERE ROUTINE_NAME = 'BikesRecentlyAdded')
 		DROP PROCEDURE BikesRecentlyAdded
@@ -48,6 +52,7 @@ GO
 CREATE PROCEDURE DbReset AS
 BEGIN
 
+	DELETE FROM FeatureTable;
 	DELETE FROM PurchasedTable;
 	DELETE FROM BikeTable;
 	DELETE FROM BikeFrameTable;
@@ -60,6 +65,7 @@ BEGIN
 	DELETE FROM BikeTable;
 
  DBCC CHECKIDENT('BikeTable', RESEED, 1)
+
 -- -  -   -    -     -      -       -        -
 	SET IDENTITY_INSERT BikeFrameTable ON;
 	
@@ -129,6 +135,17 @@ BEGIN
 	(2,3,2,3,2,3,2000.00,800.00,2012,0,4,18,23456789,'Very ok',GETDATE(),'Bike2Pic.jpg');
 
 	SET IDENTITY_INSERT BikeTable OFF;
+
+-- -  -   -    -     -      -       -        -
+	SET IDENTITY_INSERT FeatureTable ON;
+	
+	INSERT INTO FeatureTable (FeatureId, BikeId, FeatureDescription)
+	VALUES
+	(1,1,'This is a description for featured bike number 1'),
+	(2,2,'This is a description for featured bike number 2')
+
+	SET IDENTITY_INSERT FeatureTable OFF;
+
 -- -  -   -    -     -      -       -        -
 
 	SET IDENTITY_INSERT PurchasedTable ON;
@@ -290,3 +307,22 @@ SELECT	BikeMake,BikeModel, c.BikeColor AS frameColor,
 END
 
 GO
+
+-- -  -   -    -     -      -       -        -
+
+IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
+	WHERE ROUTINE_NAME = 'GetFeaturedBikes')
+		DROP PROCEDURE GetFeaturedBikes
+GO
+
+--CREATE PROCEDURE GetFeaturedBikes AS
+--BEGIN
+--SELECT	FeatureId, BikeId, BikeYear BikeMake,BikeModel, BikeListPrice, BikePictName
+--	FROM FeatureTable ft
+--		INNER JOIN BikeTable bt ON bt.BikeId = ft.BikeId
+--		INNER JOIN BikeMakeTable mk ON mk.BikeMakeId = bt.BikeMakeId
+--		INNER JOIN BikeModelTable md ON md.BikeModelId = bt.BikeModelId 
+--		INNER JOIN BikeFrameTable fr ON fr.BikeFrameId = bt.BikeFrameId 
+--END
+--GO
+

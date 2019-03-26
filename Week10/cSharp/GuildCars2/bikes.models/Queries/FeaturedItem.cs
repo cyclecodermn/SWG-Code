@@ -14,6 +14,7 @@ namespace bikes.models.Queries
         public int BikeYear { get; set; }
         public string BikeMake { get; set; }
         public string BikeModel { get; set; }
+        public decimal BikeListPrice { get; set; }
         public string BikePictName { get; set; }
     }
 }
