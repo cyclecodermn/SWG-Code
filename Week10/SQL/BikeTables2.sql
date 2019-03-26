@@ -114,13 +114,6 @@ CREATE TABLE BikeTable (
  ) 
 GO
 
-CREATE TABLE FeatureTable ( 
-	FeatureId			int primary key identity(1,1) NOT NULL,
-	BikeId				int foreign key references BikeTable(BikeId) null,	
-	FeatureDescription	varchar(256),
- ) 
-GO
-
 CREATE TABLE PurchasedTable ( 
 	PurchaseSaleId		int primary key identity(1,1) NOT NULL,
 	BikeId				int foreign key references BikeTable(BikeId) NOT NULL,
@@ -137,3 +130,10 @@ CREATE TABLE PurchasedTable (
 	PurchFinType		varchar(32) NOT NULL
  ) 
 
+ 
+CREATE TABLE FeatureTable ( 
+	FeatureId			int primary key identity(1,1) NOT NULL,
+	BikeId				int foreign key references BikeTable(BikeId) null,	
+	FeatureDescription	varchar(256),
+ ) 
+GO

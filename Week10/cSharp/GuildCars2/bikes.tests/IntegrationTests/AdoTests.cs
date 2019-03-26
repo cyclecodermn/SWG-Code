@@ -67,13 +67,13 @@ namespace bikes.tests.IntegrationTests
             Assert.AreEqual(2, bike.BikeFrameColorId);
             Assert.AreEqual(1, bike.BikeTrimColorId);
             Assert.AreEqual(1, bike.BikeFrameId);
-            Assert.AreEqual(1000.00M, bike.BikeMsrp);
-            Assert.AreEqual(990.00M, bike.BikeListPrice);
+            Assert.AreEqual(1111.00M, bike.BikeMsrp);
+            Assert.AreEqual(1100.00M, bike.BikeListPrice);
             Assert.AreEqual(2019, bike.BikeYear);
             Assert.AreEqual(true,bike.BikeIsNew);
             Assert.AreEqual(10, bike.BikeCondition);
             Assert.AreEqual(18, bike.BikeNumGears);
-            Assert.AreEqual("12345678", bike.BikeSerialNum);
+            Assert.AreEqual("1111111", bike.BikeSerialNum);
             Assert.AreEqual("Fresh out of the box", bike.BikeDescription);
             Assert.AreEqual("LongHaulTruckerPic1.jpg", bike.BikePictName);
      
@@ -114,7 +114,7 @@ namespace bikes.tests.IntegrationTests
             BikeToAdd.BikePictName = "bike3.png";
 
             repo.Insert(BikeToAdd);
-            Assert.AreEqual(3,BikeToAdd.BikeId);
+            Assert.AreEqual(11,BikeToAdd.BikeId);
 
         }
 
@@ -219,13 +219,13 @@ namespace bikes.tests.IntegrationTests
 
           //  Assert.AreEqual(2, oneBike.BikeFrameColorId);
            // Assert.AreEqual(1, oneBike.BikeTrimColorId);
-            Assert.AreEqual(1000.00M, oneBike.BikeSmrp);
-            Assert.AreEqual(990.00M, oneBike.BikeListPrice);
+            Assert.AreEqual(1111.00M, oneBike.BikeSmrp);
+            Assert.AreEqual(1100.00M, oneBike.BikeListPrice);
             Assert.AreEqual(2019, oneBike.BikeYear);
             Assert.AreEqual(true, oneBike.BikeIsNew);
             Assert.AreEqual(10, oneBike.BikeCondition);
             Assert.AreEqual(18, oneBike.BikeNumGears);
-            Assert.AreEqual("12345678", oneBike.BikeSerialNum);
+            Assert.AreEqual("1111111", oneBike.BikeSerialNum);
             Assert.AreEqual("Fresh out of the box", oneBike.BikeDescription);
             Assert.AreEqual("LongHaulTruckerPic1.jpg", oneBike.BikePictName);
 
