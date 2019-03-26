@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using bikes.data.Interfaces.Factories;
 
 namespace GuildCars2.Controllers
 {
@@ -10,9 +11,9 @@ namespace GuildCars2.Controllers
     {
         public ActionResult Index()
         {
+            var model = BikesRepoFactory.GetRepo().GetFeatured();
 
-
-            return View();
+            return View(model);
         }
 
         public ActionResult Contact()

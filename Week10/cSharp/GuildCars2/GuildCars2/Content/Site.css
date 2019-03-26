@@ -22,3 +22,9 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.featuredBikes {
+    border-style: solid;
+    border-color: #cce6ff;
+    text-align: center;
+}

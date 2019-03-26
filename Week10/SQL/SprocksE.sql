@@ -131,15 +131,15 @@ BEGIN
 	BikeMsrp,BikeListPrice,BikeYear,BikeIsNew,BikeCondition,BikeNumGears,BikeSerialNum,
 	BikeDescription,BikeDateAdded,BikePictName)
 	VALUES 
-	(1,2,1,2,1,1,1111.00,1100.00,2019,1,10,18,1111111,'Fresh out of the box',GETDATE(),'LongHaulTruckerPic1.jpg'),
+	(1,2,1,2,1,1,1111.00,1100.00,2019,1,10,18,1111111,'Fresh out of the box',GETDATE(),'bike-pic (1).jpg'),
 	(2,3,2,3,2,3,2222.00,2200.00,2019,1,9,18,2222222,'Scratch from the factory',GETDATE(),'Bike2Pic.jpg'),
-	(3,2,3,2,3,2,333.00,300.00,2012,0,4,1,3333333,'Very ok',GETDATE(),'Bike3Pic.jpg'),
+	(3,2,3,2,3,2,333.00,300.00,2012,0,4,1,3333333,'Very ok',GETDATE(),'bike-pic (2).jpg'),
 	(4,1,3,1,3,1,444.00,400.00,2004,1,4,1,4444444,'Description 4',GETDATE(),'Bike4Pic.jpg'),
-	(5,1,2,3,1,2,555.00,500.00,2005,0,5,1,5555555,'Description 5',GETDATE(),'Bike5Pic.jpg'),
+	(5,1,2,3,1,2,555.00,500.00,2005,0,5,1,5555555,'Description 5',GETDATE(),'bike-pic (3).jpg'),
 	(6,2,3,1,2,3,666.00,600.00,2006,1,6,1,666666,'Description 6',GETDATE(),'Bike6Pic.jpg'),
-	(7,3,1,2,3,1,777.00,700.00,2007,0,7,1,777777,'Description 7',GETDATE(),'Bike7Pic.jpg'),
+	(7,3,1,2,3,1,777.00,700.00,2007,0,7,1,777777,'Description 7',GETDATE(),'bike-pic (4).jpg'),
 	(8,1,2,3,1,2,888.00,800.00,2008,1,8,1,888888,'Description 8',GETDATE(),'Bike8Pic.jpg'),
-	(9,2,3,1,2,3,999.00,900.00,2009,0,9,1,999999,'Description 9',GETDATE(),'Bike9Pic.jpg'),
+	(9,2,3,1,2,3,999.00,900.00,2009,0,9,1,999999,'Description 9',GETDATE(),'bike-pic (5).jpg'),
 	(10,3,2,1,3,3,100.00,10.00,2010,1,10,1,101010,'Description 10',GETDATE(),'Bike10Pic.jpg');
 
 	SET IDENTITY_INSERT BikeTable OFF;
