@@ -79,7 +79,7 @@ namespace bikes.tests.IntegrationTests
             Assert.AreEqual("Fresh out of the box", bike.BikeDescription);
             Assert.AreEqual("bike-pic (1).jpg", bike.BikePictName);
      
-            //BikeTable(BikeId, BikeMakeId, BikeModelId, BikeFrameColorId, BikeTrimColorId, BikeFrameId, BikeMsrp, BikeListPrice, BikeYear, BikeIsNew, BikeCondition, BikeNumGears, BikeSerialNum, BikeDescription, BikeDateAdded, BikePictName)
+            //BikeTable(BikeId, BikeMakeId, BikeModelId, BikeFrameColorId, BikeTrimColorId, BikeFrameId, BikeMsrp, BikeListPrice, BikeYear, BikeIsNew, BikeCondition, BikeNumGears, BikeSerialNum, BikeDescription, BikeDateAdded, BikePictName) 
 
             //(1, 1, 1, 1, 1, 1, 1000.00, 990.00, 2019, 1, 10, 18, 12345678, 'Fresh out of the box', GETDATE(), 'LongHaulTruckerPic1.jpg'),
 
