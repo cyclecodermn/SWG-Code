@@ -37,7 +37,7 @@ namespace bikes.data.ADO
                         bike.FrameColor = (string)dr["FrameColor"];
                         bike.TrimColor = (string)dr["TrimColor"];
                         bike.BikeFrame = (string)dr["BikeFrame"];
-                        bike.Msrp = (decimal)dr["Msrp"];
+                        bike.BikeMsrp = (decimal)dr["BikeMsrp"];
                         bike.BikeListPrice = (decimal)dr["BikeListPrice"];
                         bike.BikeYear = (int)dr["BikeYear"];
 
@@ -202,7 +202,7 @@ namespace bikes.data.ADO
                         //                        bike.BikeId = (int)dr["BikeId"];
                         //                        bike.BikeFrameColorId = (int)dr["BikeFrameColorId"];
                         //                        bike.BikeTrimColorId = (int)dr["BikeTrimColorId"];
-                        bike.BikeSmrp = (decimal)dr["BikeMsrp"];
+                        bike.BikeMsrp = (decimal)dr["BikeMsrp"];
                         bike.BikeListPrice = (decimal)dr["BikeListPrice"];
                         bike.BikeYear = (int)dr["BikeYear"];
 

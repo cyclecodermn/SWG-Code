@@ -8,7 +8,9 @@ namespace bikes.models.Queries
 {
     public class InvDetailedItem
     {
-        public decimal Msrp { get; set; }
+        //public decimal Msrp { get; set; }
+        //Removed line abo ve because bikeMsrp is below, which matches db name.
+
         public string FrameColor { get; set; }
         public string TrimColor { get; set; }
         public bool BikeIsNew { get; set; }
@@ -19,7 +21,7 @@ namespace bikes.models.Queries
         public int BikeNumGears { get; set; }
         public int BikeCondition { get; set; }
         public string BikeSerialNum { get; set; }
-        public decimal BikeSmrp { get; set; }
+        public decimal BikeMsrp { get; set; }
         public decimal BikeListPrice { get; set; }
         public string BikePictName { get; set; }
  //       public int BikeFrameColorId { get; set; }

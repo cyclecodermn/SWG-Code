@@ -64,10 +64,11 @@ namespace bikes.tests.IntegrationTests
 
             Assert.IsNotNull(bike);
 //            Assert.AreEqual(1, bike.BikeId);
-            Assert.AreEqual(2, bike.BikeMakeId);
-            Assert.AreEqual(2, bike.BikeFrameColorId);
-            Assert.AreEqual(1, bike.BikeTrimColorId);
-            Assert.AreEqual(1, bike.BikeFrameId);
+            Assert.AreEqual("Surley", bike.BikeMake);
+            Assert.AreEqual("Long Haul Trucker", bike.BikeModel);
+            Assert.AreEqual("Light Grey", bike.FrameColor);
+            Assert.AreEqual("White", bike.TrimColor);
+            Assert.AreEqual("Touring", bike.BikeFrame);
             Assert.AreEqual(1111.00M, bike.BikeMsrp);
             Assert.AreEqual(1100.00M, bike.BikeListPrice);
             Assert.AreEqual(2019, bike.BikeYear);
@@ -76,7 +77,7 @@ namespace bikes.tests.IntegrationTests
             Assert.AreEqual(18, bike.BikeNumGears);
             Assert.AreEqual("1111111", bike.BikeSerialNum);
             Assert.AreEqual("Fresh out of the box", bike.BikeDescription);
-            Assert.AreEqual("LongHaulTruckerPic1.jpg", bike.BikePictName);
+            Assert.AreEqual("bike-pic (1).jpg", bike.BikePictName);
      
             //BikeTable(BikeId, BikeMakeId, BikeModelId, BikeFrameColorId, BikeTrimColorId, BikeFrameId, BikeMsrp, BikeListPrice, BikeYear, BikeIsNew, BikeCondition, BikeNumGears, BikeSerialNum, BikeDescription, BikeDateAdded, BikePictName)
 
@@ -220,7 +221,7 @@ namespace bikes.tests.IntegrationTests
 
           //  Assert.AreEqual(2, oneBike.BikeFrameColorId);
            // Assert.AreEqual(1, oneBike.BikeTrimColorId);
-            Assert.AreEqual(1111.00M, oneBike.BikeSmrp);
+            Assert.AreEqual(1111.00M, oneBike.BikeMsrp);
             Assert.AreEqual(1100.00M, oneBike.BikeListPrice);
             Assert.AreEqual(2019, oneBike.BikeYear);
             Assert.AreEqual(true, oneBike.BikeIsNew);
@@ -228,7 +229,7 @@ namespace bikes.tests.IntegrationTests
             Assert.AreEqual(18, oneBike.BikeNumGears);
             Assert.AreEqual("1111111", oneBike.BikeSerialNum);
             Assert.AreEqual("Fresh out of the box", oneBike.BikeDescription);
-            Assert.AreEqual("LongHaulTruckerPic1.jpg", oneBike.BikePictName);
+            Assert.AreEqual("bike-pic (1).jpg", oneBike.BikePictName);
 
 
             Assert.AreEqual("Surley", oneBike.BikeMake);
