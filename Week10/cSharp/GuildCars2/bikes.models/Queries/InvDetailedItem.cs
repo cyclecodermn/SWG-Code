@@ -8,6 +8,7 @@ namespace bikes.models.Queries
 {
     public class InvDetailedItem
     {
+        public decimal Msrp { get; set; }
         public string FrameColor { get; set; }
         public string TrimColor { get; set; }
         public bool BikeIsNew { get; set; }

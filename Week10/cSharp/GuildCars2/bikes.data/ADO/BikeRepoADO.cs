@@ -14,14 +14,14 @@ namespace bikes.data.ADO
     public class BikeRepoADO : IBikesRepo
 
     {
-        public BikeTable GetById(int BikeId)
+        public InvDetailedItem GetById(int BikeId)
         {
-            BikeTable bike = null;
+            InvDetailedItem bike = null;
 
             using (var cn = new SqlConnection(Settings.GetConnectionString()))
 
             {
-                SqlCommand cmd = new SqlCommand("BikeSelect", cn);
+                SqlCommand cmd = new SqlCommand("OneBikeDetails", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@BikeId", BikeId);
                 cn.Open();
@@ -30,14 +30,14 @@ namespace bikes.data.ADO
                 {
                     if (dr.Read())
                     {
-                        bike = new BikeTable();
+                        bike = new InvDetailedItem();
                         //                        bike.BikeId = (int)dr["BikeId"];
-                        bike.BikeMakeId = (int)dr["BikeMakeId"];
-                        bike.BikeModelId = (int)dr["BikeModelId"];
-                        bike.BikeFrameColorId = (int)dr["BikeFrameColorId"];
-                        bike.BikeTrimColorId = (int)dr["BikeTrimColorId"];
-                        bike.BikeFrameId = (int)dr["BikeFrameId"];
-                        bike.BikeMsrp = (decimal)dr["BikeMsrp"];
+                        bike.BikeMake = (string)dr["BikeMake"];
+                        bike.BikeModel = (string)dr["BikeModel"];
+                        bike.FrameColor = (string)dr["FrameColor"];
+                        bike.TrimColor = (string)dr["TrimColor"];
+                        bike.BikeFrame = (string)dr["BikeFrame"];
+                        bike.Msrp = (decimal)dr["Msrp"];
                         bike.BikeListPrice = (decimal)dr["BikeListPrice"];
                         bike.BikeYear = (int)dr["BikeYear"];
 
@@ -52,8 +52,8 @@ namespace bikes.data.ADO
                         if (dr["BikePictName"] != DBNull.Value)
                             bike.BikePictName = dr["BikePictName"].ToString();
 
-                        BikeFrameTable currentRow = new BikeFrameTable();
-                        currentRow.BikeFrameId = (int)dr["BikeFrameId"];
+                        //InvDetailedItem currentRow = new InvDetailedItem();
+                        //currentRow.BikeFrame = (string)dr["BikeFrame"];
                         //currentRow.BikeFrame = dr["BikeFrame"].ToString();
 
                     }

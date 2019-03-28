@@ -20,17 +20,16 @@
 
             <div class="col-xs-12 col-sm-6 col-md-4">
                 
-                <p class="@Html.ActionLink("view details","Details","LIstings", new {id=bike.BikeId},null)</p>
-<!--                <a href="http://bbc.com" style="text-decoration: none;"> -->
+                <a href="@Url.Action("Details","Bikes", new {id=bike.BikeId},null)">
+                    @*<a href="http://npr.org" style="text-decoration: none;" @bikeLink>*@
+
                     <p class="featuredBikes">
-                        <img src="@Url.Content("~/Images/" + bike.BikePictName)" height="150" width="150"/>
-                        <br/>@bike.BikeYear @bike.BikeMake @bike.BikeModel
-                        <br/>@bike.BikeListPrice
+                        <img src="@Url.Content("~/Images/" + bike.BikePictName)" height="150" width="150" />
+                        <br />@bike.BikeYear @bike.BikeMake @bike.BikeModel
+                        <br />@bike.BikeListPrice
                     </p>
-                <!--                </a> -->
-
-
-</div>
+                </a>
+            </div>
         }
     </div>
 </div>

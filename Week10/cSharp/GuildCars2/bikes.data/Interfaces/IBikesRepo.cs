@@ -10,7 +10,7 @@ namespace bikes.data.Interfaces
 {
     public interface IBikesRepo
     {
-        BikeTable GetById(int BikeId);
+        InvDetailedItem GetById(int BikeId);
         void Insert(BikeTable bike);
         void Update(BikeTable bike);
         void Delete(int BikeId);

@@ -144,7 +144,7 @@ BEGIN
 
 	SET IDENTITY_INSERT BikeTable OFF;
 
--- -  -   -    -     -      -       -        -
+-- -  -   -    -     -      -       -        -pro
 	SET IDENTITY_INSERT FeatureTable ON;
 	
 	INSERT INTO FeatureTable (FeatureId, BikeId, FeatureDescription)
