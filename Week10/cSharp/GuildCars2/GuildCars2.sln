@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.438
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuildCars2", "GuildCars2\GuildCars2.csproj", "{894C21E4-93F6-4195-9C44-EF4D3C26B509}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuildCars2.ui", "GuildCars2\GuildCars2.ui.csproj", "{894C21E4-93F6-4195-9C44-EF4D3C26B509}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bikes.models", "bikes.models\bikes.models.csproj", "{8D8998F5-608B-4C7E-957A-021EBB9188D6}"
 EndProject

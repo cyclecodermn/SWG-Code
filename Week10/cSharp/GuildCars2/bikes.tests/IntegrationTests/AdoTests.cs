@@ -22,7 +22,7 @@ namespace bikes.tests.IntegrationTests
             using (var cn =
                 new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
             {
-                var cmd= new SqlCommand();
+                var cmd = new SqlCommand();
                 cmd.CommandText = "DbReset";
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
@@ -45,7 +45,7 @@ namespace bikes.tests.IntegrationTests
         }
 
         [Test]
-        public void CanLoadModels()
+        public void CanLoadModel()
         {
             var repo = new ModelRepoADO();
             var Models = repo.GetAll();
@@ -57,13 +57,26 @@ namespace bikes.tests.IntegrationTests
         }
 
         [Test]
+        public void CanLoadMake()
+        {
+            var repo = new MakeRepoADO();
+            var Models = repo.GetAll();
+
+            int ModelCount = Models.Count();
+            Assert.AreEqual(3, ModelCount);
+
+            Assert.AreEqual("Surley", Models[1].BikeMake);
+        }
+
+
+        [Test]
         public void CanLoadBike()
         {
             var repo = new BikeRepoADO();
             var bike = repo.GetById(1);
 
             Assert.IsNotNull(bike);
-//            Assert.AreEqual(1, bike.BikeId);
+            //            Assert.AreEqual(1, bike.BikeId);
             Assert.AreEqual("Surley", bike.BikeMake);
             Assert.AreEqual("Long Haul Trucker", bike.BikeModel);
             Assert.AreEqual("Light Grey", bike.FrameColor);
@@ -72,13 +85,13 @@ namespace bikes.tests.IntegrationTests
             Assert.AreEqual(1111.00M, bike.BikeMsrp);
             Assert.AreEqual(1100.00M, bike.BikeListPrice);
             Assert.AreEqual(2019, bike.BikeYear);
-            Assert.AreEqual(true,bike.BikeIsNew);
+            Assert.AreEqual(true, bike.BikeIsNew);
             Assert.AreEqual(10, bike.BikeCondition);
             Assert.AreEqual(18, bike.BikeNumGears);
             Assert.AreEqual("1111111", bike.BikeSerialNum);
             Assert.AreEqual("Fresh out of the box", bike.BikeDescription);
             Assert.AreEqual("bike-pic (1).jpg", bike.BikePictName);
-     
+
             //BikeTable(BikeId, BikeMakeId, BikeModelId, BikeFrameColorId, BikeTrimColorId, BikeFrameId, BikeMsrp, BikeListPrice, BikeYear, BikeIsNew, BikeCondition, BikeNumGears, BikeSerialNum, BikeDescription, BikeDateAdded, BikePictName)
 
             //(1, 1, 1, 1, 1, 1, 1000.00, 990.00, 2019, 1, 10, 18, 12345678, 'Fresh out of the box', GETDATE(), 'LongHaulTruckerPic1.jpg'),
@@ -88,7 +101,7 @@ namespace bikes.tests.IntegrationTests
         [Test]
         public void NotFoundListingReturnsNull()
         {
-            var repo=new BikeRepoADO();
+            var repo = new BikeRepoADO();
             var bike = repo.GetById(999999);
             Assert.IsNull(bike);
         }
@@ -116,7 +129,7 @@ namespace bikes.tests.IntegrationTests
             BikeToAdd.BikePictName = "bike3.png";
 
             repo.Insert(BikeToAdd);
-            Assert.AreEqual(11,BikeToAdd.BikeId);
+            Assert.AreEqual(11, BikeToAdd.BikeId);
 
         }
 
@@ -219,8 +232,8 @@ namespace bikes.tests.IntegrationTests
 
             oneBike = repo.GetBikeDetails(1);
 
-          //  Assert.AreEqual(2, oneBike.BikeFrameColorId);
-           // Assert.AreEqual(1, oneBike.BikeTrimColorId);
+            //  Assert.AreEqual(2, oneBike.BikeFrameColorId);
+            // Assert.AreEqual(1, oneBike.BikeTrimColorId);
             Assert.AreEqual(1111.00M, oneBike.BikeMsrp);
             Assert.AreEqual(1100.00M, oneBike.BikeListPrice);
             Assert.AreEqual(2019, oneBike.BikeYear);
@@ -255,6 +268,22 @@ namespace bikes.tests.IntegrationTests
             Assert.AreEqual(1100, FeaturedBike[0].BikeListPrice);
         }
 
-}
+        //[Test]
+        //public void CanLoadContacts()
+        //{
+        //    var repo = new ContactTable();
+        //    List<FeaturedItem> FeaturedBike = repo.GetFeatured().ToList();
+
+        //    Assert.AreEqual(5, FeaturedBike.Count());
+
+        //    Assert.AreEqual(1, FeaturedBike[0].FeatureId);
+        //    Assert.AreEqual(2019, FeaturedBike[0].BikeYear);
+        //    Assert.AreEqual("Surley", FeaturedBike[0].BikeMake);
+        //    Assert.AreEqual("Long Haul Trucker", FeaturedBike[0].BikeModel);
+        //    Assert.AreEqual(1100, FeaturedBike[0].BikeListPrice);
+        //}
+
+
+    }
 
 }

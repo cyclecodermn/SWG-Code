@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace bikes.models.Tables
 {
-    class ContactTable
+    public class ContactTable
     {
         public int ContactId { get; set; }
         public string CntctLastName { get; set; }
