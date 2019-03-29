@@ -45,9 +45,8 @@
     <Compile Include="ADO\BikeRepoADO.cs" />
     <Compile Include="ADO\ModelRepoADO.cs" />
     <Compile Include="ADO\FrameRepoADO.cs" />
-    <Compile Include="Factories\AccountRepoFactory.cs" />
-    <Content Include="Factories\BikesRepoFactory.cs.txt" />
-    <Content Include="Interfaces\IBikesRepo.cs.txt" />
+    <Compile Include="Interfaces\Factories\BikesRepoFactory.cs" />
+    <Compile Include="Interfaces\IBikesRepo.cs" />
     <Compile Include="Interfaces\IModelRepo.cs" />
     <Compile Include="Interfaces\IFrameRepo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
