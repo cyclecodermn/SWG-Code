@@ -14,18 +14,33 @@ namespace GuildCars2.Controllers
     {
 
 
+        //[Route("api/contact/add/{userId}/{listingId}")]
+        //[AcceptVerbs("POST")]
+        //public IHttpActionResult AddContact(string userId, int listingId)
+        //{
+        //    var repo = AccountRepositoryFactory.GetRepository();
+
+        //    try
+        //    {
+        //        repo.AddContact(userId, listingId);
+        //        return Ok();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return BadRequest(ex.Message);
+        //    }
+        //}
 
 
 
-
-        [Route("api/model/add/{FrameId}")]
+        [Route("api/model/add/{newModel}")]
         [AcceptVerbs("POST")]
-        public IHttpActionResult AddModel(BikeModelTable NewModel)
+        public IHttpActionResult AddModel(string newModel)
         {
             var repo = ModelRepoFactory.GetRepo();
             try
             {
-                repo.Insert(NewModel);
+                repo.Insert(newModel);
                 return Ok();
             }
             catch (Exception ex)
@@ -35,19 +50,7 @@ namespace GuildCars2.Controllers
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
 
 
         [Route("api/make/add/{makeId}/")]

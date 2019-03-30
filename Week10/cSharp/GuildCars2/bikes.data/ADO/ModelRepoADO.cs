@@ -42,7 +42,7 @@ namespace bikes.data.ADO
             return Models;
         }
 
-        public void Insert(BikeModelTable NewModel)
+        public void Insert(string NewModel)
         {
             using (var cn = new SqlConnection(Settings.GetConnectionString()))
             {
@@ -55,7 +55,7 @@ namespace bikes.data.ADO
                 cmd.Parameters.Add(param);
 
  //               cmd.Parameters.AddWithValue("@ModelId", NewModel.BikeModelId);
-                cmd.Parameters.AddWithValue("@BikeModel", NewModel.BikeModel);
+                cmd.Parameters.AddWithValue("@BikeModel", NewModel);
 
                 cn.Open();
 

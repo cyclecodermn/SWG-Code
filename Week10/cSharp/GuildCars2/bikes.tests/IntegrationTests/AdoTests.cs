@@ -284,10 +284,10 @@ namespace bikes.tests.IntegrationTests
             var repo = new ModelRepoADO();
 
             ModelToAdd.BikeModelId = 4;
-            ModelToAdd.BikeModel = "329-1858";
+            string BikeModel = "329-1858";
             //ModelToAdd.BikeModelId = 3;
 
-            repo.Insert(ModelToAdd);
+            repo.Insert(BikeModel);
             Assert.AreEqual(4, ModelToAdd.BikeModelId);
 
         }
