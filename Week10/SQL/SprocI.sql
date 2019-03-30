@@ -20,6 +20,61 @@ GO
 -- -  -   -    -     -      -       -        -
 
 IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
+	WHERE ROUTINE_NAME = 'OneBikeDetails')
+		DROP PROCEDURE OneBikeDetails
+GO
+-- -  -   -    -     -      -       -        -
+
+CREATE PROCEDURE OneBikeDetails (
+	@BikeId int
+) AS
+BEGIN
+
+SELECT	BikeMake,BikeModel, c.BikeColor AS frameColor,  
+		ct.BikeColor AS trimColor, BikeFrame,BikeMsrp,BikeListPrice,
+		BikeYear,BikeIsNew,BikeCondition,BikeNumGears,BikeSerialNum,BikeDescription,BikePictName
+	FROM BikeTable bt
+		INNER JOIN BikeMakeTable mk ON mk.BikeMakeId = bt.BikeMakeId
+		INNER JOIN BikeModelTable md ON md.BikeModelId = bt.BikeModelId 
+		INNER JOIN BikeFrameTable fr ON fr.BikeFrameId = bt.BikeFrameId 
+
+		INNER JOIN BikeColorTable c ON c.BikeColorId = bt.BikeFrameColorId
+		INNER JOIN BikeColorTable ct ON ct.BikeColorId = bt.BikeTrimColorId
+		
+	WHERE BikeId = @BikeId
+END
+
+GO
+
+-- -  -   -    -     -      -       -        -
+
+IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
+	WHERE ROUTINE_NAME = 'BikeSelectAll')
+		DROP PROCEDURE BikeSelectAll
+GO
+-- -  -   -    -     -      -       -        -
+
+CREATE PROCEDURE BikeSelectAll 
+AS
+BEGIN
+
+SELECT	BikeId,BikeMake,BikeModel, c.BikeColor AS frameColor,  
+		ct.BikeColor AS trimColor, BikeFrame,BikeMsrp,BikeListPrice,
+		BikeYear,BikeIsNew,BikeCondition,BikeNumGears,BikeSerialNum,BikeDescription,BikePictName
+	FROM BikeTable bt
+		INNER JOIN BikeMakeTable mk ON mk.BikeMakeId = bt.BikeMakeId
+		INNER JOIN BikeModelTable md ON md.BikeModelId = bt.BikeModelId 
+		INNER JOIN BikeFrameTable fr ON fr.BikeFrameId = bt.BikeFrameId 
+
+		INNER JOIN BikeColorTable c ON c.BikeColorId = bt.BikeFrameColorId
+		INNER JOIN BikeColorTable ct ON ct.BikeColorId = bt.BikeTrimColorId
+END
+
+GO
+
+-- -  -   -    -     -      -       -        -
+
+IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
 	WHERE ROUTINE_NAME = 'FramesSelectAll')
 		DROP PROCEDURE FramesSelectAll
 GO
@@ -305,35 +360,6 @@ SELECT BikeMakeId,BikeModelId,BikeFrameColorId,BikeTrimColorId,BikeFrameId,BikeM
 	FROM BikeTable
 	WHERE BikeId = @BikeId
 END
-GO
-
--- -  -   -    -     -      -       -        -
-
-IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
-	WHERE ROUTINE_NAME = 'OneBikeDetails')
-		DROP PROCEDURE OneBikeDetails
-GO
--- -  -   -    -     -      -       -        -
-
-CREATE PROCEDURE OneBikeDetails (
-	@BikeId int
-) AS
-BEGIN
-
-SELECT	BikeMake,BikeModel, c.BikeColor AS frameColor,  
-		ct.BikeColor AS trimColor, BikeFrame,BikeMsrp,BikeListPrice,
-		BikeYear,BikeIsNew,BikeCondition,BikeNumGears,BikeSerialNum,BikeDescription,BikePictName
-	FROM BikeTable bt
-		INNER JOIN BikeMakeTable mk ON mk.BikeMakeId = bt.BikeMakeId
-		INNER JOIN BikeModelTable md ON md.BikeModelId = bt.BikeModelId 
-		INNER JOIN BikeFrameTable fr ON fr.BikeFrameId = bt.BikeFrameId 
-
-		INNER JOIN BikeColorTable c ON c.BikeColorId = bt.BikeFrameColorId
-		INNER JOIN BikeColorTable ct ON ct.BikeColorId = bt.BikeTrimColorId
-		
-	WHERE BikeId = @BikeId
-END
-
 GO
 
 -- -  -   -    -     -      -       -        -

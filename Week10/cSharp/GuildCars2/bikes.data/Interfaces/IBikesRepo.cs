@@ -16,5 +16,7 @@ namespace bikes.data.Interfaces
         void Delete(int BikeId);
         IEnumerable<FeaturedItem> GetFeatured();
         InvDetailedItem GetBikeDetails(int BikeId);
+        List<InvDetailedItem> GetAll();
+
     }
 }

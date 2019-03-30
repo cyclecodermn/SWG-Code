@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using bikes.data.ADO;
 using bikes.data.Interfaces;
+using bikes.data.Interfaces.Factories;
 using bikes.data.Interfaces.FactoriesFactories;
 using bikes.models.Tables;
 
@@ -42,6 +43,21 @@ namespace GuildCars2.Controllers
         public IHttpActionResult GetAllModels()
         {
             var repo = ModelRepoFactory.GetRepo();
+            try
+            {
+                return Ok(repo.GetAll());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [Route("api/bike/getall/")]
+        [AcceptVerbs("GET")]
+        public IHttpActionResult GetAllbikes()
+        {
+            var repo = BikeRepoFactory.GetRepo();
             try
             {
                 return Ok(repo.GetAll());

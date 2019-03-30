@@ -230,5 +230,52 @@ namespace bikes.data.ADO
             }
             return bike;
         }
+
+        public List<InvDetailedItem> GetAll()
+        {
+            List<InvDetailedItem> Bikes = new List<InvDetailedItem>();
+
+            using (var cn = new SqlConnection(Settings.GetConnectionString()))
+
+            {
+                SqlCommand cmd = new SqlCommand("BikeSelectAll", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cn.Open();
+
+                using (SqlDataReader dr = cmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        InvDetailedItem currentRow = new InvDetailedItem();
+
+                        currentRow.BikeId = (int)dr["BikeId"];
+                        currentRow.BikeMake = (string)dr["BikeMake"];
+                        currentRow.BikeModel = (string)dr["BikeModel"];
+                        currentRow.FrameColor = (string)dr["FrameColor"];
+                        currentRow.TrimColor = (string)dr["TrimColor"];
+                        currentRow.BikeFrame = (string)dr["BikeFrame"];
+                        currentRow.BikeMsrp = (decimal)dr["BikeMsrp"];
+                        currentRow.BikeListPrice = (decimal)dr["BikeListPrice"];
+                        currentRow.BikeYear = (int)dr["BikeYear"];
+
+                        var intToBool = dr["BikeisNew"];
+                        //currentRow.BikeisNew = (intToBool==1);
+                        currentRow.BikeIsNew = (bool)dr["BikeisNew"];
+                        currentRow.BikeCondition = (int)dr["BikeCondition"];
+                        currentRow.BikeNumGears = (int)dr["BikeNumGears"];
+                        currentRow.BikeSerialNum = dr["BikeSerialNum"].ToString();
+                        currentRow.BikeDescription = dr["BikeDescription"].ToString();
+
+                        if (dr["BikePictName"] != DBNull.Value)
+                            currentRow.BikePictName = dr["BikePictName"].ToString();
+
+                        Bikes.Add(currentRow);
+                    }
+                }
+            }
+
+            return Bikes;
+        }
+
     }
 }

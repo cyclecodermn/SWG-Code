@@ -15,8 +15,6 @@ namespace bikes.data.ADO
     {
         public List<BikeModelTable> GetAll()
         {
-
-
             List<BikeModelTable> Models = new List<BikeModelTable>();
 
             using (var cn = new SqlConnection(Settings.GetConnectionString()))

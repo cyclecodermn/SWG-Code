@@ -11,7 +11,7 @@ namespace GuildCars2.Controllers
     {
         public ActionResult Index()
         {
-            var model = BikesRepoFactory.GetRepo().GetFeatured();
+            var model = BikeRepoFactory.GetRepo().GetFeatured();
 
             return View(model);
         }

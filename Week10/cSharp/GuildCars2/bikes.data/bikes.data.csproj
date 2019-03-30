@@ -43,10 +43,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ADO\BikeRepoADO.cs" />
-    <Compile Include="ADO\MakeRepo.cs" />
+    <Compile Include="ADO\MakeRepoADO.cs" />
     <Compile Include="ADO\ModelRepoADO.cs" />
     <Compile Include="ADO\FrameRepoADO.cs" />
-    <Compile Include="Factories\BikesRepoFactory.cs" />
+    <Compile Include="Factories\BikeRepoFactory.cs" />
     <Compile Include="Factories\MakeRepoFactory.cs" />
     <Compile Include="Factories\ModelRepoFactory.cs" />
     <Compile Include="Interfaces\IBikesRepo.cs" />

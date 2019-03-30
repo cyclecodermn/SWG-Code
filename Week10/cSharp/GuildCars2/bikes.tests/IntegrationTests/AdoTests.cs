@@ -49,7 +49,22 @@ namespace bikes.tests.IntegrationTests
         }
 
         [Test]
-        public void CanLoadModel()
+        public void CanLoadAllBikes()
+        {
+            var repo = new BikeRepoADO();
+            List<InvDetailedItem> Bikes = repo.GetAll();
+
+            int BikeCount = Bikes.Count();
+            Assert.AreEqual(10, BikeCount);
+
+            Assert.AreEqual("Surley", Bikes[2].BikeMake);
+            Assert.AreEqual(2005, Bikes[4].BikeYear);
+            Assert.AreEqual(true, Bikes[9].BikeIsNew);
+        }
+
+
+        [Test]
+        public void CanLoadAllModels()
         {
             var repo = new ModelRepoADO();
             var Models = repo.GetAll();
@@ -61,7 +76,7 @@ namespace bikes.tests.IntegrationTests
         }
 
         [Test]
-        public void CanLoadMake()
+        public void CanLoadAllMakes()
         {
             var repo = new MakeRepoADO();
             var Models = repo.GetAll();
@@ -95,10 +110,6 @@ namespace bikes.tests.IntegrationTests
             Assert.AreEqual("1111111", bike.BikeSerialNum);
             Assert.AreEqual("Fresh out of the box", bike.BikeDescription);
             Assert.AreEqual("bike-pic (1).jpg", bike.BikePictName);
-
-            //BikeTable(BikeId, BikeMakeId, BikeModelId, BikeFrameColorId, BikeTrimColorId, BikeFrameId, BikeMsrp, BikeListPrice, BikeYear, BikeIsNew, BikeCondition, BikeNumGears, BikeSerialNum, BikeDescription, BikeDateAdded, BikePictName)
-
-            //(1, 1, 1, 1, 1, 1, 1000.00, 990.00, 2019, 1, 10, 18, 12345678, 'Fresh out of the box', GETDATE(), 'LongHaulTruckerPic1.jpg'),
 
         }
 
@@ -229,7 +240,7 @@ namespace bikes.tests.IntegrationTests
         }
 
         [Test]
-        public void CanGetBikeDetails()
+        public void CanGetOneBikeDetails()
         {
             InvDetailedItem oneBike = null;
             var repo = new BikeRepoADO();

@@ -12,7 +12,7 @@ namespace GuildCars2.Controllers
         // GET: Bikes
         public ActionResult Details(int id)
         {
-            var repo = BikesRepoFactory.GetRepo();
+            var repo = BikeRepoFactory.GetRepo();
             var model = repo.GetById(id);
 
             return View(model);

@@ -8,6 +8,7 @@ namespace bikes.models.Queries
 {
     public class InvDetailedItem
     {
+        public int BikeId { get; set; }
         //public decimal Msrp { get; set; }
         //Removed line abo ve because bikeMsrp is below, which matches db name.
 

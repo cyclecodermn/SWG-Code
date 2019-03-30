@@ -7,7 +7,7 @@ using bikes.data.ADO;
 
 namespace bikes.data.Interfaces.Factories
 {
-    public static class BikesRepoFactory
+    public static class BikeRepoFactory
     {
 
         public static IBikesRepo GetRepo()
