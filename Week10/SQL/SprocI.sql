@@ -381,6 +381,26 @@ CREATE PROCEDURE GetFeaturedBikes AS
 GO
 
 -- -  -   -    -     -      -       -        -
+
+IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
+	WHERE ROUTINE_NAME = 'GetNewOrUsedBikes')
+		DROP PROCEDURE GetNewOrUsedBikes
+GO
+
+CREATE PROCEDURE GetNewOrUsedBikes(
+	@NewOrUsed nvarchar(1)
+)
+AS
+	BEGIN
+		SELECT	bt.BikeId, BikeYear, BikeMake,BikeModel, BikeListPrice, BikePictName
+			FROM BikeTable bt
+				INNER JOIN BikeMakeTable mk ON mk.BikeMakeId = bt.BikeMakeId
+				INNER JOIN BikeModelTable md ON md.BikeModelId = bt.BikeModelId 
+				INNER JOIN BikeFrameTable fr ON fr.BikeFrameId = bt.BikeFrameId 
+	WHERE BikeIsNew = @NewOrUsed
+	END
+GO
+-- -  -   -    -     -      -       -        -
 IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
    WHERE ROUTINE_NAME = 'ContactInsert')
       DROP PROCEDURE ContactInsert

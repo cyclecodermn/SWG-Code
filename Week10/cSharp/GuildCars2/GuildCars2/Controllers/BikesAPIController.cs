@@ -14,10 +14,26 @@ namespace GuildCars2.Controllers
 {
     public class BikesAPIController : ApiController
     {
-//        private static IDvdRepository _repo = DvdFactory.Create();
+        //        private static IDvdRepository _repo = DvdFactory.Create();
         //private IModelRepo _ModelRepo = ModelRepoFactory.GetRepo();
         //[Route("dvds/{category}/{term}")]
 
+
+        [Route("api/bike/delete/{bikeId}")]
+        [AcceptVerbs("DELETE")]
+        public IHttpActionResult DeleteBike(int bikeId)
+        {
+            var repo = BikeRepoFactory.GetRepo();
+            try
+            {
+                repo.Delete(bikeId);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
 
 
 

@@ -62,6 +62,21 @@ namespace bikes.tests.IntegrationTests
             Assert.AreEqual(true, Bikes[9].BikeIsNew);
         }
 
+        [Test]
+        public void CanLoadNewBikes()
+        {
+            var repo = new BikeRepoADO();
+            List<InvDetailedItem> Bikes = repo.GetAll();
+
+            int BikeCount = Bikes.Count();
+            Assert.AreEqual(10, BikeCount);
+
+            Assert.AreEqual("Surley", Bikes[2].BikeMake);
+            Assert.AreEqual(2005, Bikes[4].BikeYear);
+            Assert.AreEqual(true, Bikes[9].BikeIsNew);
+        }
+
+
 
         [Test]
         public void CanLoadAllModels()
