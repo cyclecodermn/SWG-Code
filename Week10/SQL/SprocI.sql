@@ -31,6 +31,23 @@ BEGIN
 END
 GO
 -- -  -   -    -     -      -       -        -
+IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
+   WHERE ROUTINE_NAME = 'ModelInsert')
+      DROP PROCEDURE ModelInsert
+GO
+
+CREATE PROCEDURE ModelInsert (
+	@ModelId int output,
+	@BikeModel nvarchar(32)
+) AS
+BEGIN
+	INSERT INTO BikeModelTable(BikeModel,ModelAddedDate)
+	VALUES  (@BikeModel,GETDATE());
+
+	SET @ModelId=SCOPE_IDENTITY();
+END
+GO
+-- -  -   -    -     -      -       -        -
 
 IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
 	WHERE ROUTINE_NAME = 'ModelsSelectAll')

@@ -112,7 +112,7 @@ namespace bikes.tests.IntegrationTests
             BikeTable BikeToAdd = new BikeTable();
             var repo = new BikeRepoADO();
 
-            BikeToAdd.BikeId =
+//            BikeToAdd.BikeId =
             BikeToAdd.BikeMakeId = 3;
             BikeToAdd.BikeModelId = 3;
             BikeToAdd.BikeFrameColorId = 3;
@@ -276,13 +276,21 @@ namespace bikes.tests.IntegrationTests
 
         //    Assert.AreEqual(5, FeaturedBike.Count());
 
-        //    Assert.AreEqual(1, FeaturedBike[0].FeatureId);
-        //    Assert.AreEqual(2019, FeaturedBike[0].BikeYear);
-        //    Assert.AreEqual("Surley", FeaturedBike[0].BikeMake);
-        //    Assert.AreEqual("Long Haul Trucker", FeaturedBike[0].BikeModel);
-        //    Assert.AreEqual(1100, FeaturedBike[0].BikeListPrice);
-        //}
+        //    Assert.AreEqual(1, FeaturedBike[0        [Test]
+        [Test]
+        public void CanAddModel()
+        {
+            BikeModelTable ModelToAdd = new BikeModelTable();
+            var repo = new ModelRepoADO();
 
+            ModelToAdd.BikeModelId = 4;
+            ModelToAdd.BikeModel = "329-1858";
+            //ModelToAdd.BikeModelId = 3;
+
+            repo.Insert(ModelToAdd);
+            Assert.AreEqual(4, ModelToAdd.BikeModelId);
+
+        }
 
     }
 

@@ -95,8 +95,6 @@ namespace bikes.data.ADO
                 cn.Open();
                 cmd.ExecuteNonQuery();
                 bike.BikeId = (int)param.Value;
-
-
             }
         }
 
