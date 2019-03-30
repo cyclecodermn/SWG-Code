@@ -26,7 +26,16 @@
                     <li>@Html.ActionLink("Used Inventory", "UsedInv", "Home")</li>
                     <li>@Html.ActionLink("Specials", "Specials", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
+                
+                
+                
+                    @if(Request.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Admin", "Admin", "Home")</li>
+                    }
+
+                
+                    </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
@@ -44,3 +53,21 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
+
+@section Scripts
+{
+    @*@if (Request.IsAuthenticated)*@
+    @if (true)
+    {
+        <script>
+            var userId = '@ViewBag.UserId';
+            var listingId = @Model.ListingId;
+            var isFavorite = false;
+
+            $(document).ready(function() {
+                checkIfContact();
+                checkIfFavorite();
+            });
+        </script>
+    }
+}

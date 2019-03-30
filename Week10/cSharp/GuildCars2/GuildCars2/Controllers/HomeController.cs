@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using bikes.data.Interfaces.Factories;
+using GuildCars2.Utilities;
 
 namespace GuildCars2.Controllers
 {
@@ -11,6 +12,11 @@ namespace GuildCars2.Controllers
     {
         public ActionResult Index()
         {
+            if (Request.IsAuthenticated)
+            {
+                ViewBag.UserId = AuthorizeUtilities.GetUserId(this);
+            }
+
             var model = BikeRepoFactory.GetRepo().GetFeatured();
 
             return View(model);
@@ -22,5 +28,8 @@ namespace GuildCars2.Controllers
 
             return View();
         }
+
+        //I added user stuff from video 32 below this line.
+
     }
 }
