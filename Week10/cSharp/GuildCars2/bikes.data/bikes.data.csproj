@@ -47,6 +47,7 @@
     <Compile Include="ADO\ModelRepoADO.cs" />
     <Compile Include="ADO\FrameRepoADO.cs" />
     <Compile Include="Factories\BikesRepoFactory.cs" />
+    <Compile Include="Factories\MakeRepoFactory.cs" />
     <Compile Include="Factories\ModelRepoFactory.cs" />
     <Compile Include="Interfaces\IBikesRepo.cs" />
     <Compile Include="Interfaces\IMakeRepo.cs" />

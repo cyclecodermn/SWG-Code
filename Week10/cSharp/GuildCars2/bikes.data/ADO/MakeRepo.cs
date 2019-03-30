@@ -38,5 +38,33 @@ namespace bikes.data.ADO
             }
             return Makes;
         }
+
+
+        public void Insert(BikeMakeTable NewMake)
+        {
+            using (var cn = new SqlConnection(Settings.GetConnectionString()))
+            {
+                SqlCommand cmd = new SqlCommand("MakeInsert", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter param = new SqlParameter("@MakeId", SqlDbType.Int);
+                param.Direction = ParameterDirection.Output;
+
+                cmd.Parameters.Add(param);
+
+                //               cmd.Parameters.AddWithValue("@MakeId", NewMake.BikeMakeId);
+                //cmd.Parameters.AddWithValue("@BikeMakeId", NewMake.BikeMakeId);
+                cmd.Parameters.AddWithValue("@BikeMake", NewMake.BikeMake);
+
+                cn.Open();
+
+                cmd.ExecuteNonQuery();
+
+                //. = (int)param.Value;
+                NewMake.BikeMakeId = (int)param.Value;
+            }
+        }
+
+
     }
 }

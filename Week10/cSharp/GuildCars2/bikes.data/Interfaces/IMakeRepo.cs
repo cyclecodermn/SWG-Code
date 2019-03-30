@@ -10,5 +10,6 @@ namespace bikes.data.Interfaces
     public interface IMakeRepo
     {
         List<BikeMakeTable> GetAll();
+        void Insert(BikeMakeTable NewMake);
     }
 }

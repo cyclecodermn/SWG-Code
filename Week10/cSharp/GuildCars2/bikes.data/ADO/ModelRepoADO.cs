@@ -42,7 +42,7 @@ namespace bikes.data.ADO
             return Models;
         }
 
-        public void Insert(string NewModel)
+        public void Insert(BikeModelTable NewModel)
         {
             using (var cn = new SqlConnection(Settings.GetConnectionString()))
             {
@@ -55,14 +55,14 @@ namespace bikes.data.ADO
                 cmd.Parameters.Add(param);
 
  //               cmd.Parameters.AddWithValue("@ModelId", NewModel.BikeModelId);
-                cmd.Parameters.AddWithValue("@BikeModel", NewModel);
+                cmd.Parameters.AddWithValue("@BikeModel", NewModel.BikeModel);
 
                 cn.Open();
 
                 cmd.ExecuteNonQuery();
 
-                //               NewModel.NewModelId = (int)param.Value;
-
+                //. = (int)param.Value;
+                NewModel.BikeModelId = (int)param.Value;
             }
         }
     }

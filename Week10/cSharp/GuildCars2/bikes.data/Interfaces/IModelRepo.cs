@@ -10,6 +10,6 @@ namespace bikes.data.Interfaces
     public interface IModelRepo
     {
         List<BikeModelTable> GetAll();
-        void Insert(string NewModel);
+        void Insert(BikeModelTable NewModel);
     }
 }

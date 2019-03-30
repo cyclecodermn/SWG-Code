@@ -19,6 +19,10 @@ namespace bikes.tests.IntegrationTests
         [SetUp]
         public void Init()
         {
+            //
+            // Note: I probably have to add a line to Sprocs for each table with a count, like:
+            //  DBCC CHECKIDENT('BikeModelTable', RESEED, 1)
+            //
             using (var cn =
                 new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
             {
@@ -283,12 +287,24 @@ namespace bikes.tests.IntegrationTests
             BikeModelTable ModelToAdd = new BikeModelTable();
             var repo = new ModelRepoADO();
 
-            ModelToAdd.BikeModelId = 4;
-            string BikeModel = "329-1858";
-            //ModelToAdd.BikeModelId = 3;
+            //ModelToAdd.BikeModelId = 4;
+            ModelToAdd.BikeModel = "329-1858";
 
-            repo.Insert(BikeModel);
+            repo.Insert(ModelToAdd);
             Assert.AreEqual(4, ModelToAdd.BikeModelId);
+
+        }
+        [Test]
+        public void CanAddMake()
+        {
+            BikeMakeTable MakeToAdd = new BikeMakeTable();
+            var repo = new MakeRepoADO();
+
+            //MakeToAdd.BikeMakeId = 4;
+            MakeToAdd.BikeMake = "329-1858";
+
+            repo.Insert(MakeToAdd);
+            Assert.AreEqual(4, MakeToAdd.BikeMakeId);
 
         }
 

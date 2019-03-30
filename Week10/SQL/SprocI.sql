@@ -31,23 +31,6 @@ BEGIN
 END
 GO
 -- -  -   -    -     -      -       -        -
-IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
-   WHERE ROUTINE_NAME = 'ModelInsert')
-      DROP PROCEDURE ModelInsert
-GO
-
-CREATE PROCEDURE ModelInsert (
-	@ModelId int output,
-	@BikeModel nvarchar(32)
-) AS
-BEGIN
-	INSERT INTO BikeModelTable(BikeModel,ModelAddedDate)
-	VALUES  (@BikeModel,GETDATE());
-
-	SET @ModelId=SCOPE_IDENTITY();
-END
-GO
--- -  -   -    -     -      -       -        -
 
 IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
 	WHERE ROUTINE_NAME = 'ModelsSelectAll')
@@ -69,6 +52,7 @@ GO
 CREATE PROCEDURE DbReset AS
 BEGIN
 
+	DELETE FROM ContactTable;
 	DELETE FROM FeatureTable;
 	DELETE FROM PurchasedTable;
 	DELETE FROM BikeTable;
@@ -82,6 +66,8 @@ BEGIN
 	DELETE FROM BikeTable;
 
  DBCC CHECKIDENT('BikeTable', RESEED, 1)
+ DBCC CHECKIDENT('BikeModelTable', RESEED, 1)
+ DBCC CHECKIDENT('BikeMakeTable', RESEED, 1)
 
 -- -  -   -    -     -      -       -        -
 	SET IDENTITY_INSERT BikeFrameTable ON;
@@ -420,16 +406,36 @@ GO
 
 -- -  -   -    -     -      -       -        -
 IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
+   WHERE ROUTINE_NAME = 'ModelInsert')
+      DROP PROCEDURE ModelInsert
+GO
+
+CREATE PROCEDURE ModelInsert (
+	@ModelId int output,
+	@BikeModel nvarchar(32)
+) AS
+BEGIN
+	INSERT INTO BikeModelTable(BikeModel,ModelAddedDate)
+	VALUES  (@BikeModel,GETDATE());
+
+	SET @ModelId=SCOPE_IDENTITY();
+END
+GO
+-- -  -   -    -     -      -       -        -
+IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
    WHERE ROUTINE_NAME = 'MakeInsert')
       DROP PROCEDURE MakeInsert
 GO
 
 CREATE PROCEDURE MakeInsert (
-	@NewMake nvarchar(32)
+	@MakeId int output,
+	@BikeMake nvarchar(32)
 ) AS
 BEGIN
-	INSERT INTO BikeMakeTable(BikeMake)
-	VALUES (@NewMake)
+	INSERT INTO BikeMakeTable(BikeMake,MakeAddedDate)
+	VALUES (@BikeMake,GETDATE());
+
+	SET @MakeId=SCOPE_IDENTITY();
 END
 GO
 -- -  -   -    -     -      -       -        -

@@ -7,16 +7,16 @@ using bikes.data.ADO;
 
 namespace bikes.data.Interfaces.FactoriesFactories
 {
-    public static class ModelRepoFactory
+    public static class MakeRepoFactory
     {
-        public static IModelRepo GetRepo()
+        public static IMakeRepo GetRepo()
         {
             switch (Settings.GetRepositoryType())
             {
                 case "ADO":
-                    return new ModelRepoADO();
+                    return new MakeRepoADO();
                 default:
-                    throw new Exception("Could not find valid RepositoryType configuration value for Model.");
+                    throw new Exception("Could not find valid RepositoryType configuration value for Make.");
             }
         }
     }
