@@ -36,6 +36,28 @@ namespace bikes.tests.IntegrationTests
                 cmd.ExecuteNonQuery();
             }
         }
+
+
+        [Test]
+        public void CanSearchOnMinPrice()
+        {
+            var repo = new BikeRepoADO();
+
+            var found = repo.Search(new ListingSearchParameters { MinPrice = 500M });
+
+            Assert.AreEqual(7, found.Count());
+        }
+
+        [Test]
+        public void CanSearchOnMaxPrice()
+        {
+            var repo = new BikeRepoADO();
+
+            var found = repo.Search(new ListingSearchParameters { MaxPrice = 500M });
+
+            Assert.AreEqual(4, found.Count());
+        }
+
         [Test]
         public void CanLoadFrames()
         {

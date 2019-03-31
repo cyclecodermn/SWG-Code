@@ -47,9 +47,11 @@
     <Compile Include="Queries\AdminAddSpecial.cs" />
     <Compile Include="Queries\AdminBikeItem.cs" />
     <Compile Include="Queries\AdminEditBike.cs" />
+    <Compile Include="Queries\BikeShortItem.cs" />
     <Compile Include="Queries\InvDetailedItem.cs" />
     <Compile Include="Queries\FeaturedItem.cs" />
     <Compile Include="Queries\InvNewItem.cs" />
+    <Compile Include="Queries\ListingSearchParameters.cs" />
     <Compile Include="Queries\PurchaseItem.cs" />
     <Compile Include="Queries\ReportInventory.cs" />
     <Compile Include="Queries\ReportSales.cs" />

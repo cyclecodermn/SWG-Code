@@ -277,5 +277,67 @@ namespace bikes.data.ADO
             return Bikes;
         }
 
+        public IEnumerable<BikeShortItem> Search(ListingSearchParameters parameters)
+        {
+            List<BikeShortItem> Bikes = new List<BikeShortItem>();
+
+            using (var cn = new SqlConnection(Settings.GetConnectionString()))
+            {
+                string query = "SELECT TOP 12 BikeId, BikeMsrp, BikeListPrice, BikePictName FROM BikeTable WHERE 1 = 1 ";
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = cn;
+
+                if (parameters.MinPrice.HasValue)
+                {
+                    query += "AND BikeListPrice >= @MinPrice ";
+                    cmd.Parameters.AddWithValue("@MinPrice", parameters.MinPrice.Value);
+                }
+
+                if (parameters.MaxPrice.HasValue)
+                {
+                    query += "AND BikeListPrice <= @MaxPrice ";
+                    cmd.Parameters.AddWithValue("@MaxPrice", parameters.MaxPrice.Value);
+                }
+
+                //if (!string.IsNullOrEmpty(parameters.City))
+                //{
+                //    query += "AND City LIKE @City ";
+                //    cmd.Parameters.AddWithValue("@City", parameters.City + '%');
+                //}
+
+                //if (!string.IsNullOrEmpty(parameters.StateId))
+                //{
+                //    query += "AND StateId = @StateId ";
+                //    cmd.Parameters.AddWithValue("@StateId", parameters.StateId);
+                //}
+
+                //query += "ORDER BY CreatedDate DESC";
+                cmd.CommandText = query;
+
+                cn.Open();
+
+                using (SqlDataReader dr = cmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        BikeShortItem row = new BikeShortItem();
+                        //BikeId, BikeMsrp, BikeListPrice, ImageFileName
+                        row.BikeId = (int)dr["BikeId"];
+                        row.BikeMsrp = (decimal)dr["BikeMsrp"];
+                        row.BikeListPrice = (decimal)dr["BikeListPrice"];
+                        //row.City = dr["City"].ToString();
+                        //row.Price = (decimal)dr["Price"];
+
+                        if (dr["BikePictName"] != DBNull.Value)
+                            row.BikePictName = dr["BikePictName"].ToString();
+
+                        Bikes.Add(row);
+                    }
+                }
+            }
+
+            return Bikes;
+
+        }
     }
 }
