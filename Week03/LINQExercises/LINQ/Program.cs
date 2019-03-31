@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace LINQ
 {
@@ -11,7 +12,7 @@ namespace LINQ
         {
             //PrintAllProducts();
             //PrintAllCustomers();
-            Exercise31();
+            Exercise01();
 
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
@@ -80,7 +81,45 @@ namespace LINQ
 
         /// <summary>
         /// Print all products that are out of stock.
-        /// </summary>
+        /// </summary
+        /// >
+
+        static void Exercise01()
+        {
+            List<Product> outOfStock = new List<Product>();
+
+            List<Product> products = DataLoader.LoadProducts();
+
+            var onlyMT = products.Where(p => p.UnitsInStock == 0);
+            bool has1 = products.Any(p => p.Category == "John");
+            bool has2 = products.Any(p => p.Category == "Cond");
+  
+
+
+            
+
+            //has3 = from prod in products where prod.Category.Contains("cond");
+
+            //var onlyMT = from p in products
+            //             where p.UnitsInStock == 0
+            //             select p;
+
+            //foreach (Product p in products) {
+            //    if (p.UnitsInStock==0)
+            //    {
+            //        outOfStock.Add(p);
+
+            //    }
+
+            //}
+            //PrintProductInformation(onlyMT);
+            Console.WriteLine(has1);
+            Console.WriteLine(has2);
+            Console.ReadLine();
+        }
+
+
+
         static void Exercise1()
         {
             List<Product> outOfStock = new List<Product>();

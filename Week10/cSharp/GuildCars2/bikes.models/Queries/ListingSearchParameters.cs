@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace bikes.models.Queries
 {
-    public class ListingSearchParameters
+    /// <summary>
+    /// Params are MinPrice,MaxPrice,MinYear,MaxYear,MakeModelOrYr,StateId
+    /// </summary>
+    public class BikeSearchParameters
     {
         public decimal? MinPrice { get; set; }
         public decimal? MaxPrice { get; set; }

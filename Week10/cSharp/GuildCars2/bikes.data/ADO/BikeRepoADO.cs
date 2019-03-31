@@ -277,13 +277,23 @@ namespace bikes.data.ADO
             return Bikes;
         }
 
-        public IEnumerable<BikeShortItem> Search(ListingSearchParameters parameters)
+        public IEnumerable<BikeShortItem> Search(BikeSearchParameters parameters)
         {
             List<BikeShortItem> Bikes = new List<BikeShortItem>();
 
+            FrameRepoADO FrameRepo = new FrameRepoADO();
+            List<BikeFrameTable> AllFrames = FrameRepo.GetAll();
+
+            ModelRepoADO ModelRepo = new ModelRepoADO();
+            List<BikeModelTable> AllModels = ModelRepo.GetAll();
+
+
             using (var cn = new SqlConnection(Settings.GetConnectionString()))
             {
-                string query = "SELECT TOP 12 BikeId, BikeMsrp, BikeListPrice, BikePictName FROM BikeTable WHERE 1 = 1 ";
+                //string query = "SELECT TOP 12 BikeId, BikeMsrp, BikeListPrice, BikePictName FROM BikeTable bt ";
+                string query = GetAllBikeSQL();
+
+
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = cn;
 
@@ -299,6 +309,28 @@ namespace bikes.data.ADO
                     cmd.Parameters.AddWithValue("@MaxPrice", parameters.MaxPrice.Value);
                 }
 
+                if (!string.IsNullOrEmpty(parameters.MakeModelOrYr))
+                {
+                    bool isFrame = AllFrames.Any(p => p.BikeFrame == parameters.MakeModelOrYr);
+
+                    if (isFrame)
+                    {
+                        query += "AND BikeFrame LIKE @MakeModelOrYr ";
+                        cmd.Parameters.AddWithValue("@MakeModelOrYr", parameters.MakeModelOrYr + '%');
+                    }
+
+                    bool isModel = AllModels.Any(p => p.BikeModel == parameters.MakeModelOrYr);
+
+                    if (isModel)
+                    {
+                        query += "AND BikeModel LIKE @MakeModelOrYr ";
+                        cmd.Parameters.AddWithValue("@MakeModelOrYr", parameters.MakeModelOrYr + '%');
+                    }
+
+
+                }
+
+
                 //if (!string.IsNullOrEmpty(parameters.City))
                 //{
                 //    query += "AND City LIKE @City ";
@@ -312,6 +344,12 @@ namespace bikes.data.ADO
                 //}
 
                 //query += "ORDER BY CreatedDate DESC";
+                /////////////////////////////////////////////////////////////
+
+
+
+
+
                 cmd.CommandText = query;
 
                 cn.Open();
@@ -338,6 +376,24 @@ namespace bikes.data.ADO
 
             return Bikes;
 
+        }
+
+        private string GetAllBikeSQL()
+        {
+            string query = "SELECT TOP 12 BikeId, BikeMake, BikeModel, c.BikeColor AS frameColor, ";
+            query += " ct.BikeColor AS trimColor, BikeFrame,BikeMsrp,BikeListPrice,";
+            query += " BikeYear,BikeIsNew,BikeCondition,BikeNumGears,BikeSerialNum,BikeDescription,BikePictName";
+
+            query += " FROM BikeTable bt ";
+            query += " INNER JOIN BikeMakeTable mk ON mk.BikeMakeId = bt.BikeMakeId ";
+            query += " INNER JOIN BikeModelTable md ON md.BikeModelId = bt.BikeModelId ";
+
+            query += " INNER JOIN BikeFrameTable fr ON fr.BikeFrameId = bt.BikeFrameId ";
+            query += " INNER JOIN BikeColorTable c ON c.BikeColorId = bt.BikeFrameColorId ";
+            query += " INNER JOIN BikeColorTable ct ON ct.BikeColorId = bt.BikeTrimColorId ";
+
+            query += " WHERE 1 = 1  ";
+            return query;
         }
     }
 }

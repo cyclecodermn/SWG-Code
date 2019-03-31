@@ -10,6 +10,9 @@ using bikes.models.Tables;
 
 namespace bikes.data.ADO
 {
+    /// <summary>
+    /// GetAll Returns  List<BikeFrameTable> 
+    /// </summary>
     public class FrameRepoADO : IFrameRepo
 
     {

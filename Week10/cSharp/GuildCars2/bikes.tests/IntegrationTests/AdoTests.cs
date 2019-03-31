@@ -37,13 +37,33 @@ namespace bikes.tests.IntegrationTests
             }
         }
 
+        [Test]
+        public void CanSearchOnBikeModel()
+        {
+            var repo = new BikeRepoADO();
+
+            var found = repo.Search(new BikeSearchParameters { MakeModelOrYr = "RidgeBack" });
+
+            Assert.AreEqual(4, found.Count());
+        }
+
+        [Test]
+        public void CanSearchOnBikeFrame()
+        {
+            var repo = new BikeRepoADO();
+
+            var found = repo.Search(new BikeSearchParameters { MakeModelOrYr = "Touring" });
+
+            Assert.AreEqual(3, found.Count());
+        }
+
 
         [Test]
         public void CanSearchOnMinPrice()
         {
             var repo = new BikeRepoADO();
 
-            var found = repo.Search(new ListingSearchParameters { MinPrice = 500M });
+            var found = repo.Search(new BikeSearchParameters { MinPrice = 500M });
 
             Assert.AreEqual(7, found.Count());
         }
@@ -53,7 +73,7 @@ namespace bikes.tests.IntegrationTests
         {
             var repo = new BikeRepoADO();
 
-            var found = repo.Search(new ListingSearchParameters { MaxPrice = 500M });
+            var found = repo.Search(new BikeSearchParameters { MaxPrice = 500M });
 
             Assert.AreEqual(4, found.Count());
         }
@@ -164,7 +184,7 @@ namespace bikes.tests.IntegrationTests
             BikeTable BikeToAdd = new BikeTable();
             var repo = new BikeRepoADO();
 
-//            BikeToAdd.BikeId =
+            //            BikeToAdd.BikeId =
             BikeToAdd.BikeMakeId = 3;
             BikeToAdd.BikeModelId = 3;
             BikeToAdd.BikeFrameColorId = 3;

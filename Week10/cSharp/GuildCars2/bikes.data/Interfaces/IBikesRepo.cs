@@ -17,6 +17,6 @@ namespace bikes.data.Interfaces
         IEnumerable<FeaturedItem> GetFeatured();
         InvDetailedItem GetBikeDetails(int BikeId);
         List<InvDetailedItem> GetAll();
-        IEnumerable<BikeShortItem> Search(ListingSearchParameters parameters);
+        IEnumerable<BikeShortItem> Search(BikeSearchParameters parameters);
     }
 }
