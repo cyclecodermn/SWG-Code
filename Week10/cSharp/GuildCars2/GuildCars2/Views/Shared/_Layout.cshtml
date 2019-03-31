@@ -27,7 +27,7 @@
                     <li>@Html.ActionLink("Specials", "Specials", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 
-                
+                    @Html.Partial("_LoginPartial")
                 
                     @if(Request.IsAuthenticated)
                     {
@@ -36,7 +36,7 @@
 
                 
                     </ul>
-                @Html.Partial("_LoginPartial")
+                
             </div>
         </div>
     </div>

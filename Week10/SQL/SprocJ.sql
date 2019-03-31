@@ -180,8 +180,9 @@ BEGIN
 	SET IDENTITY_INSERT BikeModelTable OFF;
 -- -  -   -    -     -      -       -        -
 	INSERT INTO AspNetUsers(Id, firstName, lastName, EmailConfirmed, PhoneNumberConfirmed, Email,TwoFactorEnabled, LockoutEnabled, AccessFailedCount, UserName)
-	VALUES('00000000-0000-0000-0000-000000000000', 'James', 'Carter', 1, 1, 'test@test.com', 0, 0, 0, 'test'),
-	VALUES('41cc81c5-5290-4bc5-864c-dfa43f2f8020', 'Sue', 'David', 1, 1, 'sue@sgul.ac.uk', 0, 0, 0, 'sue');
+	VALUES
+	('00000000-0000-0000-0000-000000000000', 'James', 'Carter', 1, 1, 'test@test.com', 0, 0, 0, 'test'),
+	('41cc81c5-5290-4bc5-864c-dfa43f2f8020', 'Sue', 'David', 1, 1, 'sue@sgul.ac.uk', 0, 0, 0, 'sue');
 
 
 -- -  -   -    -     -      -       -        -
