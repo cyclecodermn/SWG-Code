@@ -51,7 +51,7 @@
     <Compile Include="Queries\InvDetailedItem.cs" />
     <Compile Include="Queries\FeaturedItem.cs" />
     <Compile Include="Queries\InvNewItem.cs" />
-    <Compile Include="Queries\ListingSearchParameters.cs" />
+    <Compile Include="Queries\BikeSearchParameters.cs" />
     <Compile Include="Queries\PurchaseItem.cs" />
     <Compile Include="Queries\ReportInventory.cs" />
     <Compile Include="Queries\ReportSales.cs" />

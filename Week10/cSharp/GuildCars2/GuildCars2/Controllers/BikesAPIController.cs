@@ -8,6 +8,7 @@ using bikes.data.ADO;
 using bikes.data.Interfaces;
 using bikes.data.Interfaces.Factories;
 using bikes.data.Interfaces.FactoriesFactories;
+using bikes.models.Queries;
 using bikes.models.Tables;
 
 namespace GuildCars2.Controllers
@@ -18,6 +19,31 @@ namespace GuildCars2.Controllers
         //private IModelRepo _ModelRepo = ModelRepoFactory.GetRepo();
         //[Route("dvds/{category}/{term}")]
 
+        [Route("api/listings/search")]
+        [AcceptVerbs("GET")]
+        public IHttpActionResult Search(decimal? minPrice, decimal? maxPrice, int? minYear, int? maxYear, string makeModelOrYr)
+        {
+            var repo = BikeRepoFactory.GetRepo();
+
+            try
+            {
+                var parameters = new BikeSearchParameters()
+                {
+                    MinPrice = minPrice,
+                    MaxPrice = maxPrice,
+                    MinYear = minYear,
+                    MaxYear = maxYear,
+                    MakeModelOrYr = makeModelOrYr
+                };
+
+                var result = repo.Search(parameters);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
 
         [Route("api/bike/delete/{bikeId}")]
         [AcceptVerbs("DELETE")]

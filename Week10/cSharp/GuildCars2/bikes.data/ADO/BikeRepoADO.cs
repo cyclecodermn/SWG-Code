@@ -309,6 +309,17 @@ namespace bikes.data.ADO
                     cmd.Parameters.AddWithValue("@MaxPrice", parameters.MaxPrice.Value);
                 }
 
+                if (parameters.MinYear.HasValue)
+                {
+                    query += "AND BikeYear >= @MinYear ";
+                    cmd.Parameters.AddWithValue("@MinYear", parameters.MinYear.Value);
+                }
+                if (parameters.MaxYear.HasValue)
+                {
+                    query += "AND BikeYear <= @MaxYear ";
+                    cmd.Parameters.AddWithValue("@MaxYear", parameters.MaxYear.Value);
+                }
+
                 if (!string.IsNullOrEmpty(parameters.MakeModelOrYr))
                 {
                     bool isFrame = AllFrames.Any(p => p.BikeFrame == parameters.MakeModelOrYr);
@@ -326,7 +337,6 @@ namespace bikes.data.ADO
                         query += "AND BikeModel LIKE @MakeModelOrYr ";
                         cmd.Parameters.AddWithValue("@MakeModelOrYr", parameters.MakeModelOrYr + '%');
                     }
-
 
                 }
 
@@ -346,10 +356,6 @@ namespace bikes.data.ADO
                 //query += "ORDER BY CreatedDate DESC";
                 /////////////////////////////////////////////////////////////
 
-
-
-
-
                 cmd.CommandText = query;
 
                 cn.Open();
@@ -361,6 +367,15 @@ namespace bikes.data.ADO
                         BikeShortItem row = new BikeShortItem();
                         //BikeId, BikeMsrp, BikeListPrice, ImageFileName
                         row.BikeId = (int)dr["BikeId"];
+                        row.BikeIsNew = (bool)dr["BikeIsNew"];
+                        row.BikeYear = (int)dr["BikeYear"];
+                        row.BikeMake = (string)dr["BikeMake"];
+                        row.BikeModel = (string)dr["BikeModel"];
+                        row.BikeFrame = (string)dr["BikeFrame"];
+                        row.BikeNumGears = (int)dr["BikeNumGears"];
+                        row.BikeCondition = (int)dr["BikeCondition"];
+                        row.BikeSerialNum = (string)dr["BikeSerialNum"];
+
                         row.BikeMsrp = (decimal)dr["BikeMsrp"];
                         row.BikeListPrice = (decimal)dr["BikeListPrice"];
                         //row.City = dr["City"].ToString();

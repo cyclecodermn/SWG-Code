@@ -16,6 +16,5 @@ namespace bikes.models.Queries
         public int? MinYear { get; set; }
         public int? MaxYear { get; set; }
         public string MakeModelOrYr { get; set; }
-        public string StateId { get; set; }
     }
 }

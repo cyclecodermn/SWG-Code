@@ -58,6 +58,44 @@ namespace bikes.tests.IntegrationTests
         }
 
 
+
+
+
+
+
+
+
+
+        [Test]
+        public void CanSearchOnMinYear()
+        {
+            var repo = new BikeRepoADO();
+
+            var found = repo.Search(new BikeSearchParameters { MinYear = 2006 });
+
+            Assert.AreEqual(8, found.Count());
+        }
+
+        [Test]
+        public void CanSearchOnMaxYear()
+        {
+            var repo = new BikeRepoADO();
+
+            var found = repo.Search(new BikeSearchParameters { MaxYear = 2007 });
+
+            Assert.AreEqual(4, found.Count());
+        }
+
+
+
+
+
+
+
+
+
+
+
         [Test]
         public void CanSearchOnMinPrice()
         {
