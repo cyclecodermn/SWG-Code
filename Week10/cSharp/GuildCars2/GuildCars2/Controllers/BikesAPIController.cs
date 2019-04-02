@@ -19,7 +19,7 @@ namespace GuildCars2.Controllers
         //private IModelRepo _ModelRepo = ModelRepoFactory.GetRepo();
         //[Route("dvds/{category}/{term}")]
 
-        [Route("api/listings/search")]
+        [Route("api/bikes/search")]
         [AcceptVerbs("GET")]
         public IHttpActionResult Search(decimal? minPrice, decimal? maxPrice, int? minYear, int? maxYear, string makeModelOrYr)
         {
