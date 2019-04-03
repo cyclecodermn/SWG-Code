@@ -15,6 +15,7 @@ namespace bikes.models.Queries
         public decimal? MaxPrice { get; set; }
         public int? MinYear { get; set; }
         public int? MaxYear { get; set; }
+        public bool? IsNew { get; set; }
         public string MakeModelOrYr { get; set; }
     }
 }

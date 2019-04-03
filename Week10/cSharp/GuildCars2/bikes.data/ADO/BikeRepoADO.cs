@@ -297,6 +297,13 @@ namespace bikes.data.ADO
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = cn;
 
+                if (parameters.IsNew.HasValue)
+                {
+                    query += "AND BikeIsNew >= @BikeIsNew ";
+                    cmd.Parameters.AddWithValue("@BikeIsNew", parameters.IsNew);
+                }
+
+
                 if (parameters.MinPrice.HasValue)
                 {
                     query += "AND BikeListPrice >= @MinPrice ";
@@ -396,7 +403,7 @@ namespace bikes.data.ADO
         private string GetAllBikeSQL()
         {
             string query = "SELECT TOP 12 BikeId, BikeMake, BikeModel, c.BikeColor AS frameColor, ";
-            query += " ct.BikeColor AS trimColor, BikeFrame,BikeMsrp,BikeListPrice,";
+            query += " ct.BikeColor AS trimColor, BikeFrame,BikeMsrp,BikeListPrice, ";
             query += " BikeYear,BikeIsNew,BikeCondition,BikeNumGears,BikeSerialNum,BikeDescription,BikePictName";
 
             query += " FROM BikeTable bt ";

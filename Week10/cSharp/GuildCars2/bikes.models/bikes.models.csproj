@@ -68,6 +68,7 @@
     <Compile Include="Tables\BikeModelTable.cs" />
     <Compile Include="Tables\PurchaseTable.cs" />
     <Compile Include="Tables\SpecialTable.cs" />
+    <Compile Include="VMs\DropDownPriceYear.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

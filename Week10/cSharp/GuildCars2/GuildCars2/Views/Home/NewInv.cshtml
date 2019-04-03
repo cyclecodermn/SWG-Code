@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "NewInv";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <h2>New Inventory</h2>
+        <p>
+            Here you can search for a listing that meets your needs.
+        </p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <form id="searchForm" class="form-inline">
+            <div class="form-group">
+                <label for="minRate">Min Price</label>
+                <input type="text" class="form-control" id="minRate">
+            </div>
+            <div class="form-group">
+                <label for="maxRate">Max Price</label>
+                <input type="text" class="form-control" id="maxRate">
+            </div>
+            <div class="form-group">
+                <label for="city">City</label>
+                <input type="text" class="form-control" id="city">
+            </div>
+
+            <div class="form-group">
+                <label for="state">Year-Price</label>
+
+            </div>
+
+
+            <div class="form-group">
+                <!--Ajax Friendly-->
+                <select class="form-control" id="YearId">
+                    @for (decimal year = 2000; year <= DateTime.Now.Year+1; year += 1)
+                    {
+                        <option value="@(year / 500)" selected="@(year  == DateTime.Now.Year)">@year</option>
+                    }
+                </select>
+            </div>
+
+            <div class="form-group">
+                <!--Ajax Friendly-->
+                <select class="form-control" id="CostId">
+                    @for (decimal cost = 500; cost <= 2500; cost += 250)
+                    {
+                        <option value="@(cost / 500)" selected="@(cost  == 1000)">@cost</option>
+                    }
+                </select>
+            </div>
+
+            <button id="btnSearch" class="btn btn-default">Search</button>
+        </form>
+    </div>
+</div>
+<div class="row">
+    <div id="searchResults" class="col-xs-12">
+
+    </div>
+</div>

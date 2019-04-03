@@ -38,6 +38,16 @@ namespace bikes.tests.IntegrationTests
         }
 
         [Test]
+        public void CanSearchIsNew()
+        {
+            var repo = new BikeRepoADO();
+
+            var found = repo.Search(new BikeSearchParameters { IsNew = true });
+
+            Assert.AreEqual(6, found.Count());
+        }
+
+        [Test]
         public void CanSearchOnBikeModel()
         {
             var repo = new BikeRepoADO();
