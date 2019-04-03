@@ -35,12 +35,17 @@
                 </tr>
             </trbody>
         </table>
-        <p><a class="btn btn-default">Contact Us</a>
               
         <table>
             <trbody>
                 <tr><td>@Model.BikeDescription</td></tr>
             </trbody>
         </table>
+
+        <p></p>
+        <form>
+            @Html.ActionLink("Contact Us","Contact","Home",new { serialNo=Model.BikeSerialNum},new{@class="btn btn-primary"})
+        </form> 
+
     </div>
 </div>

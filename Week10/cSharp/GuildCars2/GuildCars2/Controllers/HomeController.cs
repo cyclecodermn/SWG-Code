@@ -32,37 +32,17 @@ namespace GuildCars2.Controllers
         public ActionResult NewInv()
         {
             ViewBag.Message = "New Inventory page.";
-            // Left off here, need to ge a model to send to the NewInv view, which I just added.
-
-            BikeRepoADO repo   = new BikeRepoADO();
-            //IEnumerable<BikeShortItem> model = new List<BikeShortItem>();
-
-            //model = repo.Search(new BikeSearchParameters { IsNew = true });
-            
-            List<DropDownPriceYear> model = new List<DropDownPriceYear>();
-
-            //model.BikeYears = new List<int>();
-            //model.BikePrice = new List<decimal>();
-
-            int i = 0;
-            for (int theYear = 2000; theYear <= DateTime.Now.Year + 1; theYear++)
-            {
-                model.Add(new DropDownPriceYear());
-                model[i].YearId = theYear;
-                model[i].BikeYear = theYear;
-                i++;
-            }
 
 
-            return View(model);
+            return View();
         }
 
-
-        public ActionResult Contact()
+        [Route("~/Home/Contact/{serialNo?}")]
+        public ActionResult Contact(string serialNo)
         {
             ViewBag.Message = "Your contact page.";
 
-            return View();
+            return View(serialNo as object);
         }
 
         //I added user stuff from video 32 below this line.
