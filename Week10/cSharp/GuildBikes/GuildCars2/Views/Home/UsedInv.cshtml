@@ -1,0 +1,154 @@
+﻿
+@{
+    ViewBag.Title = "UsedInv";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <h2>Used Inventory</h2>
+        <p>
+            Here you can search for a listing that meets your needs.
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <h3>Quick Search</h3>
+    </div>
+</div>
+
+<form id="searchForm" class="form-inline">
+
+    <div class="row">
+        <div class="col-xs-4">
+            <div class="form-group">
+                <input type="text" class="form-control" id="makeModelOrYr">
+            </div>
+        </div>
+
+
+        <div class="col-xs-4">
+            <div class="form-group">
+                <!--Ajax Friendly-->
+                <label for="MinPrice">Price</label>
+                <select class="form-control" id="minPrice">
+                    @for (decimal price = 500; price <= 2500; price += 200)
+                    {
+                        <option value="@(price)" selected="@(price  == 700)">@price</option>
+                    }
+                </select>
+                <!--Ajax Friendly-->
+                <select class="form-control" id="maxPrice">
+                    @for (decimal price = 500; price <= 2500; price += 200)
+                    {
+                        <option value="@(price)" selected="@(price  == 1700)">@price</option>
+                    }
+                </select>
+
+
+            </div>
+
+        </div>
+
+        <div class="col-xs-4">
+            <div class="form-group">
+                <!--Ajax Friendly-->
+                <label for="MinYearId">Year</label>
+                <select class="form-control" id="minYear">
+                    @for (decimal year = 2000; year <= DateTime.Now.Year + 1; year += 1)
+                    {
+                        <option value="@(year)" selected="@(year  == 2007)">@year</option>
+                    }
+                </select>
+                <!--Ajax Friendly-->
+                <select class="form-control" id="maxYear">
+                    @for (decimal year = 2000; year <= DateTime.Now.Year + 1; year += 1)
+                    {
+                        <option value="@(year)" selected="@(year  == DateTime.Now.Year)">@year</option>
+                    }
+                </select>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <center>
+                <br />
+                <button id="btnSearch" class="btn btn-default" onclick="search()">Search</button>
+            </center>
+        </div>
+    </div>
+</form>
+
+
+<div class="row">
+    <div id="searchResults" class="col-xs-12">
+
+    </div>
+</div>
+
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function() {
+
+            $("#searchForm").submit(function (e) {
+                //alert("Reached top of search script");
+
+                search();
+                return false;
+            });
+        });
+
+        function search() {
+            var params;
+            var imagePath = '@Url.Content("~/Images/")';
+            var detailsPath = '@Url.Action("Details", "Bikes")/';
+
+            params = 'minPrice=' + $('#minPrice').val() +
+                '&maxPrice=' + $('#maxPrice').val() +
+                '&minYear=' + $('#minYear').val() +
+                '&maxYear=' + $('#maxYear').val() +
+                '&makeModelOrYr=' + $('#makeModelOrYr').val();
+
+            $.ajax({
+                type: 'GET',
+                url: 'http://localhost:64332/api/bikes/search?' + params,
+                success: function(results) {
+                    $('#searchResults').empty();
+                    //alert(params);
+
+                    $.each(results,
+                        function(index, bikeResults) {
+                            var html = '<div class="col-xs-12 col-sm-6 col-md-4">' +
+                                '<p class="bikeListing"><img src="' + imagePath + bikeResults.bikePictName +
+                                '"height="100" width="100"/></p>' +
+                                '<p class="bikeListing"><strong>' +
+                                bikeResults.bikeModel +
+                                ', ' +
+                                bikeResults.bikeMake +
+                                '</strong></p>' +
+                                '<p class="bikeListing">' +
+                                bikeResults.bikeYear +
+                                '<p class="bikeListing"><a href="' +
+                                detailsPath +
+                                bikeResults.bikeId +
+                                '">view details</a></p>' +
+                                '</div>';
+
+                            $('#searchResults').append(html.toString());
+                        });
+
+
+                },
+                error: function() {
+                    alert('Error performing search, try again later!')
+                }
+            });
+        }
+    </script>
+}
