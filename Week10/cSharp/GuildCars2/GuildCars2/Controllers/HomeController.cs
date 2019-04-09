@@ -37,6 +37,15 @@ namespace GuildCars2.Controllers
             return View();
         }
 
+        public ActionResult UsedInv()
+        {
+            ViewBag.Message = "Used Inventory page.";
+
+
+            return View();
+        }
+
+
         [Route("~/Home/Contact/{serialNo?}")]
         public ActionResult Contact(string serialNo)
         {

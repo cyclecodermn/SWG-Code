@@ -12,7 +12,7 @@ namespace LINQ
         {
             //PrintAllProducts();
             //PrintAllCustomers();
-            Exercise01();
+            Exercise1();
 
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
@@ -125,7 +125,6 @@ namespace LINQ
             List<Product> outOfStock = new List<Product>();
 
             List<Product> products = DataLoader.LoadProducts();
-
             var onlyMT = products.Where(p => p.UnitsInStock == 0);
 
             //var onlyMT = from p in products
