@@ -123,21 +123,54 @@
 
                     $.each(results,
                         function(index, bikeResults) {
-                            var html = '<div class="col-xs-12 col-sm-6 col-md-4">' +
-                                '<p class="bikeListing"><img src="' + imagePath + bikeResults.bikePictName +
-                                '"height="100" width="100"/></p>' +
-                                '<p class="bikeListing"><strong>' +
-                                bikeResults.bikeModel +
-                                ', ' +
-                                bikeResults.bikeMake +
-                                '</strong></p>' +
-                                '<p class="bikeListing">' +
-                                bikeResults.bikeYear +
-                                '<p class="bikeListing"><a href="' +
-                                detailsPath +
-                                bikeResults.bikeId +
-                                '">view details</a></p>' +
-                                '</div>';
+                            var html =
+
+                                '<table width="95%" border="2">'+
+                                    '<tr>'+
+                                    '<td>'+'Yr+Make+Model'+'</td>'+
+                                    '<td>'+'blank'+'</td>'+
+                                    '<td>'+'blank'+'</td>'+
+                                    '<td>'+'blank'+'</td>'+
+                                    '<td>'+'blank'+'</td>'+
+                                    '<td>'+'blank'+'</td>'+
+                                    '<td>'+'blank'+'</td>'+
+                                    '</tr>'+
+
+
+                                	
+                                    '<tr>'+
+                                    '<td rowspan="3">'+'Pict'+'</td>'+
+                                    '<td align="right">'+'<strong>'+'Frame:'+'</strong>'+'</td>'+
+                                    '<td>'+'frameType'+'</td>'+
+                                    '<td align="right">'+'<strong>'+'Frame:'+'</strong>'+'</td>'+
+                                    '<td>'+'frClr'+'</td>'+
+                                    '<td align="right">'+'<strong>'+'Sale Price:'+'</strong>'+'</td>'+
+                                    '<td>'+'listPrice'+'</td>'+
+                                    '</tr>'+
+
+
+                                    '<tr>'+
+                                    '<td align="right">'+'<strong>'+'Gears:'+'</strong>'+'</td>'+
+                                    '<td>'+'numGears'+'</td>'+
+                                    '<td align="right">'+'<strong>'+'Trim:'+'</strong>'+'</td>'+
+                                    '<td>'+'trClr'+'</td>'+
+                            '<td align="right">'+'<strong>'+'MSRP:'+'</strong>'+'</td>'+
+                                '<td>'+'msrpPrice'+'</td>'+
+                                '</tr>'+
+
+                                
+                                    '<tr>'+
+                                    '<td align="right">'+'<strong>'+'Condition:'+'</strong>'+'</td>'+
+                                    '<td>'+'condNum'+'</td>'+
+                                    '<td align="right">'+'<strong>'+'Serial #:'+'</strong>'+'</td>'+
+                                    '<td>'+'serNum'+'</td>'+
+                                    '<td align="right">'+'blank'+'</td>'+
+                                    '<td>'+'detailsBtn'+'</td>'+
+                                    '</tr>'+
+
+
+
+                                '</table>';
 
                             $('#searchResults').append(html.toString());
                         });
