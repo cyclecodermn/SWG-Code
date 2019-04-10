@@ -1,4 +1,5 @@
-﻿@{
+﻿@using System.Web.UI.WebControls
+@{
     ViewBag.Title = "New Inventory";
 }
 
@@ -31,38 +32,46 @@
                 <!--Ajax Friendly-->
                 <label for="MinPrice">Price</label>
                 <select class="form-control" id="minPrice">
-                    @for (decimal price = 500; price <= 2500; price += 200)
+                    @{
+                        string menuItem = "No Min";
+                    }
+                    @for (int price = 500; price <= 2500; price += 200)
                     {
-                        <option value="@(price)" selected="@(price  == 700)">@price</option>
+                        <option value="@(menuItem)" selected="@(menuItem == "No Min")">@menuItem</option>
+                        menuItem = price.ToString();
                     }
                 </select>
                 <!--Ajax Friendly-->
+                @{ menuItem = "No Max"; }
                 <select class="form-control" id="maxPrice">
-                    @for (decimal price = 500; price <= 2500; price += 200)
+                    @for (int price = 500; price <= 2500; price += 200)
                     {
-                        <option value="@(price)" selected="@(price  == 1700)">@price</option>
+                        <option value="@(menuItem)" selected="@(menuItem == "No Max")">@menuItem</option>
+                        menuItem = price.ToString();
                     }
                 </select>
-
             </div>
-
         </div>
 
         <div class="col-xs-4">
             <div class="form-group">
                 <!--Ajax Friendly-->
+                @{ menuItem = "No Min"; }
                 <label for="MinYearId">Year</label>
                 <select class="form-control" id="minYear">
-                    @for (decimal year = 2000; year <= DateTime.Now.Year + 1; year += 1)
+                    @for (int year = 1999; year <= DateTime.Now.Year + 1; year += 1)
                     {
-                        <option value="@(year)" selected="@(year  == 2007)">@year</option>
+                        <option value="@(menuItem)" selected="@(menuItem == "No Min")">@menuItem</option>
+                        menuItem = year.ToString();
                     }
                 </select>
                 <!--Ajax Friendly-->
+                @{ menuItem = "No Max"; }
                 <select class="form-control" id="maxYear">
                     @for (decimal year = 2000; year <= DateTime.Now.Year + 1; year += 1)
                     {
-                        <option value="@(year)" selected="@(year  == DateTime.Now.Year)">@year</option>
+                        <option value="@(menuItem)" selected="@(menuItem == "No Max")">@menuItem</option>
+                        menuItem = year.ToString();
                     }
                 </select>
             </div>
@@ -80,7 +89,6 @@
     </div>
 </form>
 
-
 <div class="row">
     <div id="searchResults" class="col-xs-12">
 
@@ -93,9 +101,8 @@
     <script>
         $(document).ready(function() {
 
+            search();
             $("#searchForm").submit(function (e) {
-                //alert("Reached top of search script");
-
                 search();
                 return false;
             });
@@ -124,7 +131,7 @@
                             var html =
 
                             '<hr>' + '<br \>' +
-                            '<table width="95%" border="0">'+
+                            '<table width="80%" border="0" align="center">'+
                                 '<tr>'+
                                 '<td colspan="2">' + '<b>' + bikeResults.bikeYear + ' ' +
                                     bikeResults.bikeMake + ' ' + bikeResults.bikeModel + '</b>' + '</td>' +
@@ -132,7 +139,7 @@
                                 '<td>'+'</td>'+
                                 '<td>'+'</td>'+
                                 '<td>'+'</td>'+
-                                '<td>'+'</td>'+
+                                '<td>'+bikeResults.bikeIsNew +'</td>'+
                                 '</tr>'+
 
                                 '<tr>'+
