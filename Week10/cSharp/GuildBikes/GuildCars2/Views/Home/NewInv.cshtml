@@ -6,7 +6,7 @@
     <div class="col-xs-12">
         <h2>New Inventory</h2>
         <p>
-            Here you can search for a listing that meets your needs.
+            Here you can search for any bike you'd like.
         </p>
     </div>
 </div>
@@ -26,7 +26,6 @@
             </div>
         </div>
 
-
         <div class="col-xs-4">
             <div class="form-group">
                 <!--Ajax Friendly-->
@@ -44,7 +43,6 @@
                         <option value="@(price)" selected="@(price  == 1700)">@price</option>
                     }
                 </select>
-
 
             </div>
 
@@ -125,54 +123,52 @@
                         function(index, bikeResults) {
                             var html =
 
-                                '<table width="95%" border="2">'+
-                                    '<tr>'+
-                                '<td>' + bikeResults.bikeYear+' '+bikeResults.bikeMake+' '+bikeResults.bikeModel+'</td>'+
-                                    '<td>'+'</td>'+
-                                    '<td>'+'</td>'+
-                                    '<td>'+'</td>'+
-                                    '<td>'+'</td>'+
-                                    '<td>'+'</td>'+
-                                    '<td>'+'</td>'+
-                                    '</tr>'+
-                                	
-                                    '<tr>'+
-                                    '<td width="15%" rowspan="3">'+'<img src="' + imagePath + bikeResults.bikePictName +
-                                    '"height="100" width="100"/>'+'</td>'+
-                                    '<td align="right">'+'<strong>'+'Frame:'+'</strong>'+'</td>'+
-                                    '<td>'+bikeResults.bikeFrame +'</td>'+
-                                    '<td align="right">'+'<strong>'+'Frame:'+'</strong>'+'</td>'+
-                                    '<td>'+bikeResults.bikeFrameColor+'</td>'+
-                                    '<td align="right">'+'<strong>'+'Sale Price:'+'</strong>'+'</td>'+
-                                    '<td>'+bikeResults.bikeListPrice+'</td>'+
-                                    '</tr>'+
+                            '<hr>' + '<br \>' +
+                            '<table width="95%" border="0">'+
+                                '<tr>'+
+                                '<td colspan="2">' + '<b>' + bikeResults.bikeYear + ' ' +
+                                    bikeResults.bikeMake + ' ' + bikeResults.bikeModel + '</b>' + '</td>' +
+                                '<td>'+'</td>'+
+                                '<td>'+'</td>'+
+                                '<td>'+'</td>'+
+                                '<td>'+'</td>'+
+                                '<td>'+'</td>'+
+                                '</tr>'+
 
-                                    '<tr>'+
-                                    '<td align="right">'+'<strong>'+'Gears:'+'</strong>'+'</td>'+
-                                    '<td>'+bikeResults.bikeNumGears+'</td>'+
-                                    '<td align="right">'+'<strong>'+'Trim:'+'</strong>'+'</td>'+
-                                    '<td>' + bikeResults.bikeTrimColor+'</td>'+
-                                    '<td align="right">'+'<strong>'+'MSRP:'+'</strong>'+'</td>'+
-                                    '<td>'+bikeResults.bikeMsrp+'</td>'+
-                                    '</tr>'+
+                                '<tr>'+
+                                '<td width="15%" rowspan="3">'+'<img src="' + imagePath + bikeResults.bikePictName +
+                                '"height="100" width="100"/>'+'</td>'+
+                                '<td width="14%" align="right">'+'<strong>'+'Frame:'+'</strong>'+'</td>'+
+                                '<td width="14%">'+bikeResults.bikeFrame +'</td>'+
+                                '<td width="14%" align="right">'+'<strong>'+'Frame:'+'</strong>'+'</td>'+
+                                '<td width="14%">'+bikeResults.bikeFrameColor+'</td>'+
+                                '<td width="14%" align="right">'+'<strong>'+'Sale Price:'+'</strong>'+'</td>'+
+                                '<td width="14%">'+bikeResults.bikeListPrice+'</td>'+
+                                '</tr>'+
 
-                                
-                                    '<tr>'+
-                                    '<td align="right">'+'<strong>'+'Condition:'+'</strong>'+'</td>'+
-                                    '<td>'+bikeResults.bikeCondition+'</td>'+
-                                    '<td align="right">'+'<strong>'+'Serial #:'+'</strong>'+'</td>'+
-                                    '<td>'+bikeResults.bikeSerialNum+'</td>'+
-                                    '<td align="right">'+'</td>'+
-                                    '<td>'+'detailsBtn'+'</td>'+
-                                    '</tr>'+
+                                '<tr>'+
+                                '<td align="right">'+'<strong>'+'Gears:'+'</strong>'+'</td>'+
+                                '<td>'+bikeResults.bikeNumGears+'</td>'+
+                                '<td align="right">'+'<strong>'+'Trim:'+'</strong>'+'</td>'+
+                                '<td>' + bikeResults.bikeTrimColor+'</td>'+
+                                '<td align="right">'+'<strong>'+'MSRP:'+'</strong>'+'</td>'+
+                                '<td>'+bikeResults.bikeMsrp+'</td>'+
+                                '</tr>'+
 
+                                '<tr>'+
+                                '<td align="right">'+'<strong>'+'Condition:'+'</strong>'+'</td>'+
+                                '<td>'+bikeResults.bikeCondition+'</td>'+
+                                '<td align="right">'+'<strong>'+'Serial #:'+'</strong>'+'</td>'+
+                                '<td>'+bikeResults.bikeSerialNum+'</td>'+
+                                '<td align="right">'+'</td>'+
+                                '<td>' + '<a href="http://localhost:64332/api/bike/getone/2">' +
+                                    'detailsBtn</a>' + '</td>' +
+                                '</tr>'+
 
-
-                                '</table>';
+                            '</table>';
 
                             $('#searchResults').append(html.toString());
                         });
-
 
                 },
                 error: function() {

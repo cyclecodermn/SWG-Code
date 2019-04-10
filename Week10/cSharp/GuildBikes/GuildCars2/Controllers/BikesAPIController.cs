@@ -111,6 +111,20 @@ namespace GuildBikes.Controllers
         }
 
 
+        [Route("api/bike/getone/{id}")]
+        [AcceptVerbs("GET")]
+        public IHttpActionResult GetOneBike(int id)
+        {
+            var repo = BikeRepoFactory.GetRepo();
+            try
+            {
+                return Ok(repo.GetById(id));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
 
         [Route("api/model/add/{newMake}")]
         [AcceptVerbs("POST")]
