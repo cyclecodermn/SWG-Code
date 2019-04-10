@@ -52,9 +52,14 @@ namespace bikes.tests.IntegrationTests
         {
             var repo = new BikeRepoADO();
 
-            var found = repo.Search(new BikeSearchParameters { MakeModelOrYr = "RidgeBack" });
+            var found = repo.Search(new BikeSearchParameters { MakeModelOrYr = "RidgeBack" }).ToList();
 
             Assert.AreEqual(4, found.Count());
+
+            Assert.AreEqual("RidgeBack", found[0].BikeModel);
+            Assert.AreEqual("RidgeBack", found[1].BikeModel);
+            Assert.AreEqual("RidgeBack", found[2].BikeModel);
+
         }
 
         [Test]
@@ -62,9 +67,13 @@ namespace bikes.tests.IntegrationTests
         {
             var repo = new BikeRepoADO();
 
-            var found = repo.Search(new BikeSearchParameters { MakeModelOrYr = "Touring" });
+            //List<BikeShortItem> found = new List<BikeShortItem>();
+            var found = repo.Search(new BikeSearchParameters { MakeModelOrYr = "Touring" }).ToList();
 
             Assert.AreEqual(3, found.Count());
+            Assert.AreEqual("Touring", found[0].BikeFrame);
+            Assert.AreEqual("Touring", found[1].BikeFrame);
+            Assert.AreEqual("Touring", found[2].BikeFrame);
         }
 
         [Test]

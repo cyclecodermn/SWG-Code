@@ -101,19 +101,21 @@
     <script>
         $(document).ready(function() {
 
-            search();
+            search(true);
             $("#searchForm").submit(function (e) {
-                search();
+                search(true);
                 return false;
             });
         });
 
-        function search() {
+        function search(isNew) {
             var params;
             var imagePath = '@Url.Content("~/Images/")';
             var detailsPath = '@Url.Action("Details", "Bikes")/';
 
-            params = 'minPrice=' + $('#minPrice').val() +
+            params =
+                'isNew='+isNew+
+                '&minPrice=' + $('#minPrice').val() +
                 '&maxPrice=' + $('#maxPrice').val() +
                 '&minYear=' + $('#minYear').val() +
                 '&maxYear=' + $('#maxYear').val() +
@@ -124,7 +126,7 @@
                 url: 'http://localhost:64332/api/bikes/search?' + params,
                 success: function(results) {
                     $('#searchResults').empty();
-                    //alert(params);
+                   // alert(params);
 
                     $.each(results,
                         function(index, bikeResults) {
@@ -168,7 +170,7 @@
                                 '<td align="right">'+'<strong>'+'Serial #:'+'</strong>'+'</td>'+
                                 '<td>'+bikeResults.bikeSerialNum+'</td>'+
                                 '<td align="right">'+'</td>'+
-                                '<td>' + '<a href="http://localhost:64332/api/bike/getone/2">' +
+                                '<td>' + '<a href="http://localhost:64332/Bikes/Details/'+bikeResults.bikeId+'">' +
                                     'detailsBtn</a>' + '</td>' +
                                 '</tr>'+
 

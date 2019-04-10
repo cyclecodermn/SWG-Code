@@ -287,12 +287,17 @@ namespace bikes.data.ADO
             ModelRepoADO ModelRepo = new ModelRepoADO();
             List<BikeModelTable> AllModels = ModelRepo.GetAll();
 
+            MakeRepoADO MakeRepo = new MakeRepoADO();
+            List<BikeMakeTable> AllMakes = MakeRepo.GetAll();
+
+            List<int> AllYears = new List<int>();
+            for (int i=2000; i<=DateTime.Now.Year; i++)
+                AllYears.Add(i);
 
             using (var cn = new SqlConnection(Settings.GetConnectionString()))
             {
                 //string query = "SELECT TOP 12 BikeId, BikeMsrp, BikeListPrice, BikePictName FROM BikeTable bt ";
                 string query = GetAllBikeSQL();
-
 
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = cn;
@@ -327,6 +332,9 @@ namespace bikes.data.ADO
                     cmd.Parameters.AddWithValue("@MaxYear", parameters.MaxYear.Value);
                 }
 
+                //parameters.MakeModelOrYr = parameters.MakeModelOrYr.TrimStart();
+                //parameters.MakeModelOrYr = parameters.MakeModelOrYr.TrimEnd();
+
                 if (!string.IsNullOrEmpty(parameters.MakeModelOrYr))
                 {
                     bool isFrame = AllFrames.Any(p => p.BikeFrame == parameters.MakeModelOrYr);
@@ -334,7 +342,7 @@ namespace bikes.data.ADO
                     if (isFrame)
                     {
                         query += "AND BikeFrame LIKE @MakeModelOrYr ";
-                        cmd.Parameters.AddWithValue("@MakeModelOrYr", parameters.MakeModelOrYr + '%');
+                        cmd.Parameters.AddWithValue("@MakeModelOrYr", parameters.MakeModelOrYr);
                     }
 
                     bool isModel = AllModels.Any(p => p.BikeModel == parameters.MakeModelOrYr);
@@ -342,6 +350,23 @@ namespace bikes.data.ADO
                     if (isModel)
                     {
                         query += "AND BikeModel LIKE @MakeModelOrYr ";
+                        cmd.Parameters.AddWithValue("@MakeModelOrYr", parameters.MakeModelOrYr + '%');
+                    }
+
+                    bool isMake = AllMakes.Any(p => p.BikeMake == parameters.MakeModelOrYr);
+
+                    if (isMake)
+                    {
+                        query += "AND BikeMake LIKE @MakeModelOrYr ";
+                        cmd.Parameters.AddWithValue("@MakeModelOrYr", parameters.MakeModelOrYr + '%');
+                    }
+
+                    int searchNum;
+                    bool isNum = Int32.TryParse(parameters.MakeModelOrYr, out searchNum);
+
+                    if (isNum && searchNum>1999 && searchNum<DateTime.Now.Year+1)
+                    {
+                        query += "AND BikeYear LIKE @MakeModelOrYr ";
                         cmd.Parameters.AddWithValue("@MakeModelOrYr", parameters.MakeModelOrYr + '%');
                     }
 
@@ -366,16 +391,12 @@ namespace bikes.data.ADO
                         row.BikeNumGears = (int)dr["BikeNumGears"];
                         row.BikeCondition = (int)dr["BikeCondition"];
                         row.BikeSerialNum = (string)dr["BikeSerialNum"];
-                        row.BikeTrimColor = (string) dr["trimColor"];
-                        row.BikeFrameColor = (string) dr["frameColor"];
+                        row.BikeTrimColor = (string)dr["trimColor"];
+                        row.BikeFrameColor = (string)dr["frameColor"];
 
                         row.BikeMsrp = (decimal)dr["BikeMsrp"];
                         row.BikeListPrice = (decimal)dr["BikeListPrice"];
-                        //row.City = dr["City"].ToString();
-                        //row.Price = (decimal)dr["Price"];
-
-                        if (dr["BikePictName"] != DBNull.Value)
-                            row.BikePictName = dr["BikePictName"].ToString();
+                        row.BikePictName = dr["BikePictName"].ToString();
 
                         Bikes.Add(row);
                     }

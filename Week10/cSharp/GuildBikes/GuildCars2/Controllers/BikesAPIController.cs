@@ -21,7 +21,7 @@ namespace GuildBikes.Controllers
 
         [Route("api/bikes/search")]
         [AcceptVerbs("GET")]
-        public IHttpActionResult Search(decimal? minPrice, decimal? maxPrice, int? minYear, int? maxYear, string makeModelOrYr)
+        public IHttpActionResult Search(bool? isNew, decimal? minPrice, decimal? maxPrice, int? minYear, int? maxYear, string makeModelOrYr)
         {
             var repo = BikeRepoFactory.GetRepo();
 
@@ -29,6 +29,7 @@ namespace GuildBikes.Controllers
             {
                 var parameters = new BikeSearchParameters()
                 {
+                    IsNew = isNew,
                     MinPrice = minPrice,
                     MaxPrice = maxPrice,
                     MinYear = minYear,
