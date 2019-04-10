@@ -127,44 +127,42 @@
 
                                 '<table width="95%" border="2">'+
                                     '<tr>'+
-                                    '<td>'+'Yr+Make+Model'+'</td>'+
-                                    '<td>'+'blank'+'</td>'+
-                                    '<td>'+'blank'+'</td>'+
-                                    '<td>'+'blank'+'</td>'+
-                                    '<td>'+'blank'+'</td>'+
-                                    '<td>'+'blank'+'</td>'+
-                                    '<td>'+'blank'+'</td>'+
+                                '<td>' + bikeResults.bikeYear+' '+bikeResults.bikeMake+' '+bikeResults.bikeModel+'</td>'+
+                                    '<td>'+'</td>'+
+                                    '<td>'+'</td>'+
+                                    '<td>'+'</td>'+
+                                    '<td>'+'</td>'+
+                                    '<td>'+'</td>'+
+                                    '<td>'+'</td>'+
                                     '</tr>'+
-
-
                                 	
                                     '<tr>'+
-                                    '<td rowspan="3">'+'Pict'+'</td>'+
+                                    '<td width="15%" rowspan="3">'+'<img src="' + imagePath + bikeResults.bikePictName +
+                                    '"height="100" width="100"/>'+'</td>'+
                                     '<td align="right">'+'<strong>'+'Frame:'+'</strong>'+'</td>'+
-                                    '<td>'+'frameType'+'</td>'+
+                                    '<td>'+bikeResults.bikeFrame +'</td>'+
                                     '<td align="right">'+'<strong>'+'Frame:'+'</strong>'+'</td>'+
-                                    '<td>'+'frClr'+'</td>'+
+                                    '<td>'+bikeResults.bikeFrameColor+'</td>'+
                                     '<td align="right">'+'<strong>'+'Sale Price:'+'</strong>'+'</td>'+
-                                    '<td>'+'listPrice'+'</td>'+
+                                    '<td>'+bikeResults.bikeListPrice+'</td>'+
                                     '</tr>'+
-
 
                                     '<tr>'+
                                     '<td align="right">'+'<strong>'+'Gears:'+'</strong>'+'</td>'+
-                                    '<td>'+'numGears'+'</td>'+
+                                    '<td>'+bikeResults.bikeNumGears+'</td>'+
                                     '<td align="right">'+'<strong>'+'Trim:'+'</strong>'+'</td>'+
-                                    '<td>'+'trClr'+'</td>'+
-                            '<td align="right">'+'<strong>'+'MSRP:'+'</strong>'+'</td>'+
-                                '<td>'+'msrpPrice'+'</td>'+
-                                '</tr>'+
+                                    '<td>' + bikeResults.bikeTrimColor+'</td>'+
+                                    '<td align="right">'+'<strong>'+'MSRP:'+'</strong>'+'</td>'+
+                                    '<td>'+bikeResults.bikeMsrp+'</td>'+
+                                    '</tr>'+
 
                                 
                                     '<tr>'+
                                     '<td align="right">'+'<strong>'+'Condition:'+'</strong>'+'</td>'+
-                                    '<td>'+'condNum'+'</td>'+
+                                    '<td>'+bikeResults.bikeCondition+'</td>'+
                                     '<td align="right">'+'<strong>'+'Serial #:'+'</strong>'+'</td>'+
-                                    '<td>'+'serNum'+'</td>'+
-                                    '<td align="right">'+'blank'+'</td>'+
+                                    '<td>'+bikeResults.bikeSerialNum+'</td>'+
+                                    '<td align="right">'+'</td>'+
                                     '<td>'+'detailsBtn'+'</td>'+
                                     '</tr>'+
 

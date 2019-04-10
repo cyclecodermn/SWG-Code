@@ -20,7 +20,7 @@ namespace bikes.models.Queries
         public decimal BikeMsrp { get; set; }
         public decimal BikeListPrice { get; set; }
         public string BikePictName { get; set; }
-        public int BikeFrameColorId { get; set; }
-        public int BikeTrimColorId { get; set; }
+        public string BikeFrameColor { get; set; }
+        public string BikeTrimColor { get; set; }
     }
 }

@@ -347,22 +347,6 @@ namespace bikes.data.ADO
 
                 }
 
-
-                //if (!string.IsNullOrEmpty(parameters.City))
-                //{
-                //    query += "AND City LIKE @City ";
-                //    cmd.Parameters.AddWithValue("@City", parameters.City + '%');
-                //}
-
-                //if (!string.IsNullOrEmpty(parameters.StateId))
-                //{
-                //    query += "AND StateId = @StateId ";
-                //    cmd.Parameters.AddWithValue("@StateId", parameters.StateId);
-                //}
-
-                //query += "ORDER BY CreatedDate DESC";
-                /////////////////////////////////////////////////////////////
-
                 cmd.CommandText = query;
 
                 cn.Open();
@@ -382,6 +366,8 @@ namespace bikes.data.ADO
                         row.BikeNumGears = (int)dr["BikeNumGears"];
                         row.BikeCondition = (int)dr["BikeCondition"];
                         row.BikeSerialNum = (string)dr["BikeSerialNum"];
+                        row.BikeTrimColor = (string) dr["trimColor"];
+                        row.BikeFrameColor = (string) dr["frameColor"];
 
                         row.BikeMsrp = (decimal)dr["BikeMsrp"];
                         row.BikeListPrice = (decimal)dr["BikeListPrice"];
