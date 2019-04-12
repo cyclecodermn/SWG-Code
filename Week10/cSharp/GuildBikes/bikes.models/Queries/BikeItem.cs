@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace bikes.models.Queries
 {
-    public class InvNewItem
+    public class BikeItem
     {
         public bool BikeIsNew { get; set; }
         public int BikeYear { get; set; }
