@@ -12,18 +12,26 @@ namespace bikes.models.VMs
 {
     public class BikeAddViewModel: IValidatableObject
     {
+        public IEnumerable<SelectListItem> BikeMakes { get; set; }
+        public IEnumerable<SelectListItem> BikeModels { get; set; }
+
+        public List<SelectListItem> BikeYearItems { get; set; }
         public IEnumerable<SelectListItem> BikeYears { get; set; }
 
         public List<SelectListItem> BikeGearItems { get; set; }
         public IEnumerable<SelectListItem> BikeGears { get; set; }
         
         public List<SelectListItem> FrameColorItems { get; set; }
-        public IEnumerable<SelectListItem> FrameColors { get; set; }
+        public string FrameColor { get; set; }
+        public IEnumerable<SelectListItem> TrimColor { get; set; }
+
+        public List<SelectListItem> FrameItems { get; set; }
+        public string FrameType { get; set; }
 
 
+        public List<SelectListItem> ConditionItems { get; set; }
+        public string Condition { get; set; }
 
-        public IEnumerable<SelectListItem> BikeMakes { get; set; }
-        public IEnumerable<SelectListItem> BikeModels { get; set; }
 
         public BikeTable Bike { get; set; }
         public HttpPostedFileBase ImageUpload { get; set; }

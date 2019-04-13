@@ -5,8 +5,6 @@
 
 <h2>Add</h2>
 
-
-
 <div class="row">
     <div class="col-xs-12 col-sm-6 col-md-4">
         <h2>Add Bike</h2>
@@ -30,8 +28,25 @@
                 @Html.DropDownListFor(m => m.Bike.BikeModelId, Model.BikeModels, new { @class = "form-control" })
             </div>
             <div class="form-group">
+                <label>Year</label>
+                @Html.DropDownListFor(m => m.BikeYears, Model.BikeYearItems, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                <label>Condition</label>
+                @Html.DropDownListFor(m => m.Condition, Model.ConditionItems, new { @class = "form-control" })
+            </div>
+
+
+
+
+            <div class="form-group">
                 <label>MSRP</label>
                 @Html.TextBoxFor(m => m.Bike.BikeMsrp, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label>List Price</label>
+                @Html.TextBoxFor(m => m.Bike.BikeListPrice, new { @class = "form-control" })
             </div>
             @*<div class="form-group">
                 <label>Model Year</label>
@@ -43,28 +58,31 @@
                 </label>
             </div>
 
+            <div class="form-group">
+                <label>Frame Type</label>
+                @Html.DropDownListFor(m => m.FrameType, Model.FrameItems, new { @class = "form-control" })
+            </div>
+
 
             <div class="form-group">
                 <label>Frame Color</label>
-                @Html.DropDownListFor(m => m.FrameColors, Model.FrameColorItems, new { @class = "form-control" })
+                @Html.DropDownListFor(m => m.FrameColor, Model.FrameColorItems, new { @class = "form-control" })
             </div>
-
 
             <div class="form-group">
-                <label>List Price</label>
-                @Html.TextBoxFor(m => m.Bike.BikeListPrice, new { @class = "form-control" })
+                <label>Trim Color</label>
+                @Html.DropDownListFor(m => m.TrimColor, Model.FrameColorItems, new { @class = "form-control" })
             </div>
+
             <div class="form-group">
                 <label>Bike Condition (1-10, 1 is new & no marks)</label>
                 @Html.TextBoxFor(m => m.Bike.BikeCondition, new { @class = "form-control" })
             </div>
 
-
-
             <div class="form-group">
                 <label>Number of Gears</label>
                 @Html.DropDownListFor(m => m.BikeGears, Model.BikeGearItems, new { @class = "form-control" })
-             </div>
+            </div>
 
 
 
