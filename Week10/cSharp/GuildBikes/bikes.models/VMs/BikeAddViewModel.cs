@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,8 @@ namespace bikes.models.VMs
     {
         public IEnumerable<SelectListItem> BikeMakes { get; set; }
         public IEnumerable<SelectListItem> BikeModels { get; set; }
+        public IEnumerable<SelectListItem> BikeFrames { get; set; }
+        public IEnumerable<SelectListItem> BikeColors { get; set; }
 
         public List<SelectListItem> BikeYearItems { get; set; }
         public IEnumerable<SelectListItem> BikeYears { get; set; }
@@ -25,8 +28,8 @@ namespace bikes.models.VMs
         public string FrameColor { get; set; }
         public IEnumerable<SelectListItem> TrimColor { get; set; }
 
-        public List<SelectListItem> FrameItems { get; set; }
-        public string FrameType { get; set; }
+        //public List<SelectListItem> FrameItems { get; set; }
+        //public string FrameType { get; set; }
 
 
         public List<SelectListItem> ConditionItems { get; set; }
@@ -36,9 +39,49 @@ namespace bikes.models.VMs
         public BikeTable Bike { get; set; }
         public HttpPostedFileBase ImageUpload { get; set; }
 
+
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            throw new NotImplementedException();
+            List<ValidationResult> errors = new List<ValidationResult>();
+
+            if (string.IsNullOrEmpty(Bike.BikeSerialNum))
+            {
+                errors.Add(new ValidationResult("Serial Number is required"));
+            }
+
+            if (string.IsNullOrEmpty(Bike.BikeDescription))
+            {
+                errors.Add(new ValidationResult("Description is required"));
+            }
+
+            if (ImageUpload != null && ImageUpload.ContentLength > 0)
+            {
+                var extensions = new string[] { ".jpg", ".png", ".gif", ".jpeg" };
+
+                var extension = Path.GetExtension(ImageUpload.FileName);
+
+                if (!extensions.Contains(extension))
+                {
+                    errors.Add(new ValidationResult("Image file must be a jpg, png, gif, or jpeg."));
+                }
+            }
+            else
+            {
+                errors.Add(new ValidationResult("Image file is required"));
+            }
+
+            if (Bike.BikeListPrice <= 0)
+            {
+                errors.Add(new ValidationResult("List price must be greater than 0"));
+            }
+
+            if (Bike.BikeMsrp <= 0)
+            {
+                errors.Add(new ValidationResult("MSRP must be greater than 0"));
+            }
+
+            return errors;
         }
+
     }
 }

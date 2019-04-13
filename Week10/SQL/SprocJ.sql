@@ -99,7 +99,18 @@ BEGIN
 END
 GO
 -- -  -   -    -     -      -       -        --- -  -   -    -     -      -       -        -
+IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
+	WHERE ROUTINE_NAME = 'ColorsSelectAll')
+		DROP PROCEDURE ColorsSelectAll
+GO
 
+CREATE PROCEDURE ColorsSelectAll AS
+BEGIN
+	SELECT BikeColorId, BikeColor
+	FROM BikeColorTable
+END
+GO
+-- -  -   -    -     -      -       -        -
 IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
 	WHERE ROUTINE_NAME = 'ModelsSelectAll')
 		DROP PROCEDURE ModelsSelectAll

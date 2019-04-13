@@ -81,6 +81,7 @@
     <Compile Include="Queries\SaleItem.cs" />
     <Compile Include="Queries\SpecialItem.cs" />
     <Compile Include="Queries\InvUsedItem.cs" />
+    <Compile Include="Tables\BikeColorTable.cs" />
     <Compile Include="Tables\BikeTable.cs" />
     <Compile Include="Tables\ContactTable.cs" />
     <Compile Include="Tables\ContactUs.cs" />

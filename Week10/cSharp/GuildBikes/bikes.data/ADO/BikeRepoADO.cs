@@ -72,7 +72,7 @@ namespace bikes.data.ADO
                 cmd.CommandType = CommandType.StoredProcedure;
                 SqlParameter param = new SqlParameter("@BikeId", SqlDbType.Int);
                 param.Direction = ParameterDirection.Output;
-
+                 
                 cmd.Parameters.Add(param);
 
                 //cmd.Parameters.AddWithValue("@BikeId", bike.BikeId);

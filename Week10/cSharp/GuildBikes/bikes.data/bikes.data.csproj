@@ -43,15 +43,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ADO\BikeRepoADO.cs" />
+    <Compile Include="ADO\ColorRepoADO .cs" />
     <Compile Include="ADO\SpecialRepoADO.cs" />
     <Compile Include="ADO\MakeRepoADO.cs" />
     <Compile Include="ADO\ModelRepoADO.cs" />
     <Compile Include="ADO\FrameRepoADO.cs" />
     <Compile Include="Factories\BikeRepoFactory.cs" />
     <Compile Include="Factories\MakeRepoFactory.cs" />
+    <Compile Include="Factories\FrameRepoFactory.cs" />
+    <Compile Include="Factories\ModelColorFactory.cs" />
     <Compile Include="Factories\SpecialRepoFactory.cs" />
     <Compile Include="Factories\ModelRepoFactory.cs" />
     <Compile Include="Interfaces\IBikesRepo.cs" />
+    <Compile Include="Interfaces\IColorRepo.cs" />
     <Compile Include="Interfaces\ISpecialRepo.cs" />
     <Compile Include="Interfaces\IMakeRepo.cs" />
     <Compile Include="Interfaces\IModelRepo.cs" />

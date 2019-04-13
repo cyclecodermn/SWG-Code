@@ -8,6 +8,7 @@ namespace bikes.models.Tables
 {
     public class BikeTable
     {
+        public string UserId { get; set; }
         public int BikeId { get; set; }
         public int BikeMakeId { get; set; }
         public int BikeModelId { get; set; }
