@@ -37,9 +37,6 @@
                 @Html.DropDownListFor(m => m.Bike.BikeCondition, Model.ConditionItems, new { @class = "form-control" })
             </div>
 
-
-
-
             <div class="form-group">
                 <label>MSRP</label>
                 @Html.TextBoxFor(m => m.Bike.BikeMsrp, new { @class = "form-control" })
@@ -71,7 +68,7 @@
 
             <div class="form-group">
                 <label>Trim Color</label>
-                @Html.DropDownListFor(m => m.Bike.BikeTrimColorId, Model.FrameColorItems, new { @class = "form-control" })
+                @Html.DropDownListFor(m => m.Bike.BikeTrimColorId, Model.BikeColors, new { @class = "form-control" })
             </div>
 
             <div class="form-group">
