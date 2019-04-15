@@ -12,13 +12,13 @@
         {
             @Html.ValidationSummary()
             @*<div class="form-group">
-                <label>Nickname</label>
-                @Html.TextBoxFor(m => m.Bike., new { @class = "form-control" })
-            </div>*@
+                    <label>Nickname</label>
+                    @Html.TextBoxFor(m => m.Bike., new { @class = "form-control" })
+                </div>*@
             @*<div class="form-group">
-                <label>City</label>
-                @Html.TextBoxFor(m => m.Bike.City, new { @class = "form-control" })
-            </div>*@
+                    <label>City</label>
+                    @Html.TextBoxFor(m => m.Bike.City, new { @class = "form-control" })
+                </div>*@
             <div class="form-group">
                 <label>Make</label>
                 @Html.DropDownListFor(m => m.Bike.BikeMakeId, Model.BikeMakes, new { @class = "form-control" })
@@ -46,9 +46,9 @@
                 @Html.TextBoxFor(m => m.Bike.BikeListPrice, new { @class = "form-control" })
             </div>
             @*<div class="form-group">
-                <label>Model Year</label>
-                @Html.DropDownListFor(m => m.Bike.BikeTrimColorId, Model.BikeColors, new { @class = "form-control" })
-            </div>*@
+                    <label>Model Year</label>
+                    @Html.DropDownListFor(m => m.Bike.BikeTrimColorId, Model.BikeColors, new { @class = "form-control" })
+                </div>*@
             <div class="checkbox">
                 <label>
                     @Html.CheckBoxFor(m => m.Bike.BikeIsNew) New
@@ -59,7 +59,6 @@
                 <label>Frame Type</label>
                 @Html.DropDownListFor(m => m.Bike.BikeFrameId, Model.BikeFrames, new { @class = "form-control" })
             </div>
-
 
             <div class="form-group">
                 <label>Frame Color</label>
@@ -75,8 +74,6 @@
                 <label>Number of Gears</label>
                 @Html.DropDownListFor(m => m.Bike.BikeNumGears, Model.BikeGearItems, new { @class = "form-control" })
             </div>
-
-
 
             <div class="form-group">
                 <label>Serial Number</label>
@@ -96,3 +93,28 @@
     </div>
 </div>
 
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $('#frmAddBike').validate({
+                rules: {
+                    'Bike.BikeMsrp': {
+                        required: true,
+                        number: true,
+                        min: 1
+                    },
+                    'Bike.BikeListPrice': {
+                        required: true,
+                        number: true,
+                        min: 1
+                    },
+                    'Bike.BikeSerialNum': {
+                        required: true
+                    },
+                }
+            });
+        });
+    </script>
+}

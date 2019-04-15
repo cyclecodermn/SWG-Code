@@ -273,6 +273,7 @@
     <Content Include="Views\Home\UsedInv.cshtml" />
     <Content Include="Views\Home\Specials.cshtml" />
     <Content Include="Views\Bikes\Add.cshtml" />
+    <Content Include="Views\Bikes\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -199,7 +199,7 @@ namespace bikes.tests.IntegrationTests
         public void CanLoadBike()
         {
             var repo = new BikeRepoADO();
-            var bike = repo.GetById(1);
+            var bike = repo.GetBikeDetails(1);
 
             Assert.IsNotNull(bike);
             //            Assert.AreEqual(1, bike.BikeId);

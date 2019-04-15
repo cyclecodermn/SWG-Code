@@ -14,9 +14,9 @@ namespace bikes.data.ADO
     public class BikeRepoADO : IBikesRepo
 
     {
-        public InvDetailedItem GetById(int BikeId)
+        public BikeTable GetById(int BikeId)
         {
-            InvDetailedItem bike = null;
+            BikeTable bike = null;
 
             using (var cn = new SqlConnection(Settings.GetConnectionString()))
 
@@ -30,13 +30,9 @@ namespace bikes.data.ADO
                 {
                     if (dr.Read())
                     {
-                        bike = new InvDetailedItem();
+                        bike = new BikeTable();
                         //                        bike.BikeId = (int)dr["BikeId"];
-                        bike.BikeMake = (string)dr["BikeMake"];
-                        bike.BikeModel = (string)dr["BikeModel"];
-                        bike.FrameColor = (string)dr["FrameColor"];
-                        bike.TrimColor = (string)dr["TrimColor"];
-                        bike.BikeFrame = (string)dr["BikeFrame"];
+                        
                         bike.BikeMsrp = (decimal)dr["BikeMsrp"];
                         bike.BikeListPrice = (decimal)dr["BikeListPrice"];
                         bike.BikeYear = (int)dr["BikeYear"];

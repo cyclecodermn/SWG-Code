@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace bikes.models.Tables
 {
+    /// <summary>
+    /// Return only items for bike database. For example, framecolor and trimcolor are returned as int IDs. Another model, InvDetailedItem returns more.
+    /// </summary>
     public class BikeTable
     {
         public string UserId { get; set; }

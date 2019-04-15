@@ -9,6 +9,7 @@ using bikes.data.ADO;
 using bikes.data.Interfaces;
 using bikes.data.Interfaces.Factories;
 using bikes.data.Interfaces.FactoriesFactories;
+using bikes.models.Queries;
 using bikes.models.Tables;
 using bikes.models.VMs;
 using GuildBikes.Utilities;
@@ -34,6 +35,25 @@ namespace GuildBikes.Controllers
 
             return View(model);
         }
+
+        public ActionResult Edit(int id)
+        {
+            var BikeRepo = BikeRepoFactory.GetRepo();
+
+            BikeEditViewModel model = new BikeEditViewModel();
+
+            model = ModelUtilities.PopulateBikeModel(model);
+            model.Bike = BikeRepo.GetById(id);
+
+            ////TODO: When adding users, implement line below
+            //if (model.Bike.UserId != AuthorizeUtilities.GetUserId(this))
+            //{
+            //    throw new Exception("Attempt to edit a listing you do not own! Naughty!");
+            //}
+
+            return View(model);
+        }
+
 
 
         //[Authorize]

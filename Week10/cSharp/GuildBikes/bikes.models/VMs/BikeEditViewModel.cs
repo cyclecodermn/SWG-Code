@@ -11,7 +11,7 @@ using bikes.models.Tables;
 
 namespace bikes.models.VMs
 {
-    public class BikeAddViewModel: IValidatableObject
+    public class BikeEditViewModel : IValidatableObject
     {
         // The IEnumerables below are populated from the database
         // All of them can be edited by the user or will be in future versions

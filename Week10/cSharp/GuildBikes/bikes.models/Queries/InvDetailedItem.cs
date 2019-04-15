@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace bikes.models.Queries
 {
+    /// <summary>
+    /// Return all bike details not just IDs. For example, framecolor and trimcolor are returned as strings, not IDs.
+    /// Another model, BikeTable returns only IDs, for database updates.
+    /// </summary>
     public class InvDetailedItem
     {
         public int BikeId { get; set; }
@@ -14,6 +18,7 @@ namespace bikes.models.Queries
 
         public string FrameColor { get; set; }
         public string TrimColor { get; set; }
+
         public bool BikeIsNew { get; set; }
         public int BikeYear { get; set; }
         public string BikeMake { get; set; }

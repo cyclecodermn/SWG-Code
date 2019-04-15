@@ -10,12 +10,14 @@ namespace bikes.data.Interfaces
 {
     public interface IBikesRepo
     {
-        InvDetailedItem GetById(int BikeId);
+        //BikeTable GetById(int BikeId);
         void Insert(BikeTable bike);
         void Update(BikeTable bike);
         void Delete(int BikeId);
         IEnumerable<FeaturedItem> GetFeatured();
-        InvDetailedItem GetBikeDetails(int BikeId);
+
+        //TODO: Cleanup task - Revove model below 1) Comment out line, 2) If success, remove model
+        BikeTable GetById(int BikeId);
         List<InvDetailedItem> GetAll();
         IEnumerable<BikeShortItem> Search(BikeSearchParameters parameters);
     }
