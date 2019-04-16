@@ -31,7 +31,7 @@ namespace GuildBikes.Controllers
         {
             BikeAddViewModel model = new BikeAddViewModel();
 
-            model = ModelUtilities.PopulateBikeModel(model);
+            model = ModelUtilities.InitBikeModel(model);
 
             return View(model);
         }
@@ -42,7 +42,7 @@ namespace GuildBikes.Controllers
 
             BikeEditViewModel model = new BikeEditViewModel();
 
-            model = ModelUtilities.PopulateBikeModel(model);
+            model = ModelUtilities.InitBikeModel(model);
             model.Bike = BikeRepo.GetById(id);
 
             ////TODO: When adding users, implement line below
@@ -93,7 +93,7 @@ namespace GuildBikes.Controllers
 
                     //return RedirectToAction("Edit", new { id = model.Listing.ListingId });
 
-                    //model = ModelUtilities.PopulateBikeModel(model);
+                    //model = ModelUtilities.InitBikeModel(model);
                     //Inserted the line above to fix exception error after sucessfully adding
                     //a new bike.
                 }
@@ -105,7 +105,7 @@ namespace GuildBikes.Controllers
             else
             {
 
-                model = ModelUtilities.PopulateBikeModel(model);
+                model = ModelUtilities.InitBikeModel(model);
 
                 //var statesRepo = StatesRepositoryFactory.GetRepository();
                 //var bathroomRepo = BathroomTypesRepositoryFactory.GetRepository();
@@ -115,7 +115,7 @@ namespace GuildBikes.Controllers
 
                 return View(model);
             }
-            model = ModelUtilities.PopulateBikeModel(model);
+            model = ModelUtilities.InitBikeModel(model);
             // I added the line above as an intermedite step to fix an err:
             // Remove the line in future revisions
             return View(model);
@@ -124,6 +124,75 @@ namespace GuildBikes.Controllers
             /// >>>---> Remove the line above soon
         }
 
+//        [Authorize]
+        [HttpPost]
+        public ActionResult Edit(BikeEditViewModel model)
+        {
+            var errors = ModelState.Values.SelectMany(v => v.Errors);
+
+            if (ModelState.IsValid)
+            {
+                var repo = BikeRepoFactory.GetRepo();
+
+                try
+                {
+                    model.Bike.UserId = AuthorizeUtilities.GetUserId(this);
+                    var oldListing = repo.GetById(model.Bike.BikeId);
+
+                    if (model.ImageUpload != null && model.ImageUpload.ContentLength > 0)
+                    {
+                        var savepath = Server.MapPath("~/Images");
+
+                        string fileName = Path.GetFileNameWithoutExtension(model.ImageUpload.FileName);
+                        string extension = Path.GetExtension(model.ImageUpload.FileName);
+
+                        var filePath = Path.Combine(savepath, fileName + extension);
+
+                        //Add 1 to files with the same name, or 2, 3, and so on.
+                        int counter = 1;
+                        while (System.IO.File.Exists(filePath))
+                        {
+                            filePath = Path.Combine(savepath, fileName + counter.ToString() + extension);
+                            counter++;
+                        }
+
+                        model.ImageUpload.SaveAs(filePath);
+                        model.Bike.BikePictName= Path.GetFileName(filePath);
+
+                        // delete old file
+                        var oldPath = Path.Combine(savepath, oldListing.BikePictName);
+                        if (System.IO.File.Exists(oldPath))
+                        {
+                            System.IO.File.Delete(oldPath);
+                        }
+                    }
+                    else
+                    {
+                        // they did not replace the old file, so keep the old file name
+                        model.Bike.BikePictName = oldListing.BikePictName;
+                    }
+
+                    repo.Update(model.Bike);
+
+                    return RedirectToAction("Edit", new { id = model.Bike.BikeId});
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            else
+            {
+                BikeTable crntBike = new BikeTable();
+                crntBike = model.Bike;
+                //Set model back to its initial state
+
+                model = ModelUtilities.InitBikeModel(model);
+
+                model.Bike = crntBike;
+                return View(model);
+            }
+        }
 
     }
 }

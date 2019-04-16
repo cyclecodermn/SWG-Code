@@ -16,7 +16,7 @@ namespace GuildBikes.Utilities
     public class ModelUtilities
     {
 
-        public static BikeAddViewModel PopulateBikeModel(BikeAddViewModel model)
+        public static BikeAddViewModel InitBikeModel(BikeAddViewModel model)
         {
             var MakeRepo = MakeRepoFactory.GetRepo();
             model.BikeMakes = new SelectList(MakeRepo.GetAll(), "BikeMakeId", "BikeMake");
@@ -60,7 +60,7 @@ namespace GuildBikes.Utilities
         }
 
 
-        public static BikeEditViewModel PopulateBikeModel(BikeEditViewModel model)
+        public static BikeEditViewModel InitBikeModel(BikeEditViewModel model)
         {
             var MakeRepo = MakeRepoFactory.GetRepo();
             model.BikeMakes = new SelectList(MakeRepo.GetAll(), "BikeMakeId", "BikeMake");
