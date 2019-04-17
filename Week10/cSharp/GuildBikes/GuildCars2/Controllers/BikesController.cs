@@ -8,7 +8,6 @@ using System.Web.Mvc;
 using bikes.data.ADO;
 using bikes.data.Interfaces;
 using bikes.data.Interfaces.Factories;
-using bikes.data.Interfaces.FactoriesFactories;
 using bikes.models.Queries;
 using bikes.models.Tables;
 using bikes.models.VMs;
@@ -22,7 +21,7 @@ namespace GuildBikes.Controllers
         public ActionResult Details(int id)
         {
             var repo = BikeRepoFactory.GetRepo();
-            var model = repo.GetById(id);
+            var model = repo.GetBikeDetails(id);
 
             return View(model);
         }
@@ -44,6 +43,7 @@ namespace GuildBikes.Controllers
 
             model = ModelUtilities.InitBikeModel(model);
             model.Bike = BikeRepo.GetById(id);
+
 
             ////TODO: When adding users, implement line below
             //if (model.Bike.UserId != AuthorizeUtilities.GetUserId(this))

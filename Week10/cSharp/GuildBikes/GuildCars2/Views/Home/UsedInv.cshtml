@@ -1,13 +1,13 @@
-﻿
+﻿@using System.Web.UI.WebControls
 @{
-    ViewBag.Title = "UsedInv";
+    ViewBag.Title = "Used Inventory";
 }
 
 <div class="row">
     <div class="col-xs-12">
         <h2>Used Inventory</h2>
         <p>
-            Here you can search for a listing that meets your needs.
+            Here you can search for any bike you'd like.
         </p>
     </div>
 </div>
@@ -27,45 +27,51 @@
             </div>
         </div>
 
-
         <div class="col-xs-4">
             <div class="form-group">
                 <!--Ajax Friendly-->
                 <label for="MinPrice">Price</label>
                 <select class="form-control" id="minPrice">
-                    @for (decimal price = 500; price <= 2500; price += 200)
+                    @{
+                        string menuItem = "No Min";
+                    }
+                    @for (int price = 500; price <= 2500; price += 200)
                     {
-                        <option value="@(price)" selected="@(price  == 700)">@price</option>
+                        <option value="@(menuItem)" selected="@(menuItem == "No Min")">@menuItem</option>
+                        menuItem = price.ToString();
                     }
                 </select>
                 <!--Ajax Friendly-->
+                @{ menuItem = "No Max"; }
                 <select class="form-control" id="maxPrice">
-                    @for (decimal price = 500; price <= 2500; price += 200)
+                    @for (int price = 500; price <= 2500; price += 200)
                     {
-                        <option value="@(price)" selected="@(price  == 1700)">@price</option>
+                        <option value="@(menuItem)" selected="@(menuItem == "No Max")">@menuItem</option>
+                        menuItem = price.ToString();
                     }
                 </select>
-
-
             </div>
-
         </div>
 
         <div class="col-xs-4">
             <div class="form-group">
                 <!--Ajax Friendly-->
+                @{ menuItem = "No Min"; }
                 <label for="MinYearId">Year</label>
                 <select class="form-control" id="minYear">
-                    @for (decimal year = 2000; year <= DateTime.Now.Year + 1; year += 1)
+                    @for (int year = 1999; year <= DateTime.Now.Year + 1; year += 1)
                     {
-                        <option value="@(year)" selected="@(year  == 2007)">@year</option>
+                        <option value="@(menuItem)" selected="@(menuItem == "No Min")">@menuItem</option>
+                        menuItem = year.ToString();
                     }
                 </select>
                 <!--Ajax Friendly-->
+                @{ menuItem = "No Max"; }
                 <select class="form-control" id="maxYear">
                     @for (decimal year = 2000; year <= DateTime.Now.Year + 1; year += 1)
                     {
-                        <option value="@(year)" selected="@(year  == DateTime.Now.Year)">@year</option>
+                        <option value="@(menuItem)" selected="@(menuItem == "No Max")">@menuItem</option>
+                        menuItem = year.ToString();
                     }
                 </select>
             </div>
@@ -83,7 +89,6 @@
     </div>
 </form>
 
-
 <div class="row">
     <div id="searchResults" class="col-xs-12">
 
@@ -96,20 +101,24 @@
     <script>
         $(document).ready(function() {
 
-            $("#searchForm").submit(function (e) {
-                //alert("Reached top of search script");
+            //When page opens, show a list of used bikes.
+            var usedBikes = true;
+            search(usedBikes);
 
-                search();
+            $("#searchForm").submit(function (e) {
+                search(true);
                 return false;
             });
         });
 
-        function search() {
+        function search(isNew) {
             var params;
             var imagePath = '@Url.Content("~/Images/")';
             var detailsPath = '@Url.Action("Details", "Bikes")/';
 
-            params = 'minPrice=' + $('#minPrice').val() +
+            params =
+                'isNew='+isNew+
+                '&minPrice=' + $('#minPrice').val() +
                 '&maxPrice=' + $('#maxPrice').val() +
                 '&minYear=' + $('#minYear').val() +
                 '&maxYear=' + $('#maxYear').val() +
@@ -120,29 +129,58 @@
                 url: 'http://localhost:64332/api/bikes/search?' + params,
                 success: function(results) {
                     $('#searchResults').empty();
-                    //alert(params);
+                   // alert(params);
 
                     $.each(results,
                         function(index, bikeResults) {
-                            var html = '<div class="col-xs-12 col-sm-6 col-md-4">' +
-                                '<p class="bikeListing"><img src="' + imagePath + bikeResults.bikePictName +
-                                '"height="100" width="100"/></p>' +
-                                '<p class="bikeListing"><strong>' +
-                                bikeResults.bikeModel +
-                                ', ' +
-                                bikeResults.bikeMake +
-                                '</strong></p>' +
-                                '<p class="bikeListing">' +
-                                bikeResults.bikeYear +
-                                '<p class="bikeListing"><a href="' +
-                                detailsPath +
-                                bikeResults.bikeId +
-                                '">view details</a></p>' +
-                                '</div>';
+                            var html =
+
+                            '<hr>' + '<br \>' +
+                            '<table width="80%" border="0" align="center">'+
+                                '<tr>'+
+                                '<td colspan="2">' + '<b>' + bikeResults.bikeYear + ' ' +
+                                    bikeResults.bikeMake + ' ' + bikeResults.bikeModel + '</b>' + '</td>' +
+                                '<td>'+'</td>'+
+                                '<td>'+'</td>'+
+                                '<td>'+'</td>'+
+                                '<td>'+'</td>'+
+                                '<td>'+bikeResults.bikeIsNew +'</td>'+
+                                '</tr>'+
+
+                                '<tr>'+
+                                '<td width="15%" rowspan="3">'+'<img src="' + imagePath + bikeResults.bikePictName +
+                                '"height="100" width="100"/>'+'</td>'+
+                                '<td width="14%" align="right">'+'<strong>'+'Frame:'+'</strong>'+'</td>'+
+                                '<td width="14%">'+bikeResults.bikeFrame +'</td>'+
+                                '<td width="14%" align="right">'+'<strong>'+'Frame:'+'</strong>'+'</td>'+
+                                '<td width="14%">'+bikeResults.bikeFrameColor+'</td>'+
+                                '<td width="14%" align="right">'+'<strong>'+'Sale Price:'+'</strong>'+'</td>'+
+                                '<td width="14%">'+bikeResults.bikeListPrice+'</td>'+
+                                '</tr>'+
+
+                                '<tr>'+
+                                '<td align="right">'+'<strong>'+'Gears:'+'</strong>'+'</td>'+
+                                '<td>'+bikeResults.bikeNumGears+'</td>'+
+                                '<td align="right">'+'<strong>'+'Trim:'+'</strong>'+'</td>'+
+                                '<td>' + bikeResults.bikeTrimColor+'</td>'+
+                                '<td align="right">'+'<strong>'+'MSRP:'+'</strong>'+'</td>'+
+                                '<td>'+bikeResults.bikeMsrp+'</td>'+
+                                '</tr>'+
+
+                                '<tr>'+
+                                '<td align="right">'+'<strong>'+'Condition:'+'</strong>'+'</td>'+
+                                '<td>'+bikeResults.bikeCondition+'</td>'+
+                                '<td align="right">'+'<strong>'+'Serial #:'+'</strong>'+'</td>'+
+                                '<td>'+bikeResults.bikeSerialNum+'</td>'+
+                                '<td align="right">'+'</td>'+
+                                '<td>' + '<a href="http://localhost:64332/Bikes/Details/'+bikeResults.bikeId+'">' +
+                                    'detailsBtn</a>' + '</td>' +
+                                '</tr>'+
+
+                            '</table>';
 
                             $('#searchResults').append(html.toString());
                         });
-
 
                 },
                 error: function() {

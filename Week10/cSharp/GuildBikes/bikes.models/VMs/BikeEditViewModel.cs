@@ -59,9 +59,6 @@ namespace bikes.models.VMs
                 }
             }
             else
-            {
-                errors.Add(new ValidationResult("Image file is required"));
-            }
 
             if (Bike.BikeListPrice <= 0)
             {

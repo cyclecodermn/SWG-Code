@@ -16,8 +16,9 @@ namespace bikes.data.Interfaces
         void Delete(int BikeId);
         IEnumerable<FeaturedItem> GetFeatured();
 
-        //TODO: Cleanup task - Revove model below 1) Comment out line, 2) If success, remove model
         BikeTable GetById(int BikeId);
+        InvDetailedItem GetBikeDetails(int BikeId);
+
         List<InvDetailedItem> GetAll();
         IEnumerable<BikeShortItem> Search(BikeSearchParameters parameters);
     }

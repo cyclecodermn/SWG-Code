@@ -148,7 +148,12 @@ BEGIN
  DBCC CHECKIDENT('BikeModelTable', RESEED, 1)
  DBCC CHECKIDENT('BikeMakeTable', RESEED, 1)
 
+ DBCC CHECKIDENT('ContactTable', RESEED, 1)
+end
+go
+
 -- -  -   -    -     -      -       -        -
+delete from BikeFrameTable;
 	SET IDENTITY_INSERT BikeFrameTable ON;
 	
 	INSERT INTO BikeFrameTable (BikeFrameId, BikeFrame)
@@ -160,6 +165,7 @@ BEGIN
 	SET IDENTITY_INSERT BikeFrameTable OFF;
 
 -- -  -   -    -     -      -       -        -
+delete from SpecialTable
 	SET IDENTITY_INSERT SpecialTable ON;
 	
 	INSERT INTO SpecialTable (SpecialId, SpecialTitle, SpecialDescription)
@@ -170,6 +176,7 @@ BEGIN
 
 	SET IDENTITY_INSERT SpecialTable OFF;
 -- -  -   -    -     -      -       -        -
+delete from BikeColorTable ;
 	SET IDENTITY_INSERT BikeColorTable ON;
 	
 	INSERT INTO BikeColorTable (BikeColorId, BikeColor)
@@ -182,6 +189,7 @@ BEGIN
 
 	SET IDENTITY_INSERT BikeColorTable OFF;
 -- -  -   -    -     -      -       -        -
+delete from BikeMakeTable;
 	SET IDENTITY_INSERT BikeMakeTable ON;
 	
 	INSERT INTO BikeMakeTable (BikeMakeId, BikeMake)
@@ -192,7 +200,7 @@ BEGIN
 
 	SET IDENTITY_INSERT BikeMakeTable OFF;
 -- -  -   -    -     -      -       -        -
-	
+	delete from BikeModelTable;
 	SET IDENTITY_INSERT BikeModelTable ON;
 	
 	INSERT INTO BikeModelTable (BikeModelId, BikeMakelId, BikeModel)
@@ -203,6 +211,7 @@ BEGIN
 
 	SET IDENTITY_INSERT BikeModelTable OFF;
 -- -  -   -    -     -      -       -        -
+--delete from aspnetusers;
 	INSERT INTO AspNetUsers(Id, firstName, lastName, EmailConfirmed, PhoneNumberConfirmed, Email,TwoFactorEnabled, LockoutEnabled, AccessFailedCount, UserName)
 	VALUES
 	('00000000-0000-0000-0000-000000000000', 'James', 'Carter', 1, 1, 'test@test.com', 0, 0, 0, 'test'),
@@ -210,6 +219,7 @@ BEGIN
 
 
 -- -  -   -    -     -      -       -        -
+delete from biketable;
 	SET IDENTITY_INSERT BikeTable ON;
 
 	INSERT INTO 
@@ -231,6 +241,8 @@ BEGIN
 	SET IDENTITY_INSERT BikeTable OFF;
 
 -- -  -   -    -     -      -       -        -pro
+delete from FeatureTable;
+
 	SET IDENTITY_INSERT FeatureTable ON;
 	
 	INSERT INTO FeatureTable (FeatureId, BikeId, FeatureDescription)
@@ -244,7 +256,7 @@ BEGIN
 	SET IDENTITY_INSERT FeatureTable OFF;
 
 -- -  -   -    -     -      -       -        -
-
+delete from PurchasedTable;
 	SET IDENTITY_INSERT PurchasedTable ON;
 
 	INSERT INTO
@@ -257,11 +269,11 @@ BEGIN
 END
 GO
 -- -  -   -    -     -      -       -        -
-
+delete from ContactTable;
 	SET IDENTITY_INSERT ContactTable ON;
 
 	INSERT INTO 
-	ContactTable(ContactId, CntctLastName, CntctFirstName, CntctPhone, CntctEmail,CntctMessage)
+	ContactTable(ContactId,CntctLastName, CntctFirstName, CntctPhone, CntctEmail,CntctMessage)
 	VALUES
 	(1,'Werner','Wally','111-111-1111','wally@werner.org','Message for contact 1'),
 	(2,'Kent','Johnson','222-222-2222','kent@johnson.org','Message for contact 2')

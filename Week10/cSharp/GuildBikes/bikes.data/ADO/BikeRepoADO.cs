@@ -31,8 +31,9 @@ namespace bikes.data.ADO
                     if (dr.Read())
                     {
                         bike = new BikeTable();
-                        //                        bike.BikeId = (int)dr["BikeId"];
-                        
+                        //bike.BikeId = (int)dr["BikeId"];
+
+                        bike.BikeId = BikeId;
                         bike.BikeMsrp = (decimal)dr["BikeMsrp"];
                         bike.BikeListPrice = (decimal)dr["BikeListPrice"];
                         bike.BikeYear = (int)dr["BikeYear"];
@@ -68,7 +69,7 @@ namespace bikes.data.ADO
                 cmd.CommandType = CommandType.StoredProcedure;
                 SqlParameter param = new SqlParameter("@BikeId", SqlDbType.Int);
                 param.Direction = ParameterDirection.Output;
-                 
+
                 cmd.Parameters.Add(param);
 
                 //cmd.Parameters.AddWithValue("@BikeId", bike.BikeId);
@@ -287,7 +288,7 @@ namespace bikes.data.ADO
             List<BikeMakeTable> AllMakes = MakeRepo.GetAll();
 
             List<int> AllYears = new List<int>();
-            for (int i=2000; i<=DateTime.Now.Year; i++)
+            for (int i = 2000; i <= DateTime.Now.Year; i++)
                 AllYears.Add(i);
 
             using (var cn = new SqlConnection(Settings.GetConnectionString()))
@@ -360,7 +361,7 @@ namespace bikes.data.ADO
                     int searchNum;
                     bool isNum = Int32.TryParse(parameters.MakeModelOrYr, out searchNum);
 
-                    if (isNum && searchNum>1999 && searchNum<DateTime.Now.Year+1)
+                    if (isNum && searchNum > 1999 && searchNum < DateTime.Now.Year + 1)
                     {
                         query += "AND BikeYear LIKE @MakeModelOrYr ";
                         cmd.Parameters.AddWithValue("@MakeModelOrYr", parameters.MakeModelOrYr + '%');
