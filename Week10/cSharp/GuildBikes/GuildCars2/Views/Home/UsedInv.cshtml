@@ -102,11 +102,11 @@
         $(document).ready(function() {
 
             //When page opens, show a list of used bikes.
-            var usedBikes = true;
-            search(usedBikes);
+
+            var newBikes = false;
+            search(newBikes);
 
             $("#searchForm").submit(function (e) {
-                search(true);
                 return false;
             });
         });
@@ -174,7 +174,12 @@
                                 '<td>'+bikeResults.bikeSerialNum+'</td>'+
                                 '<td align="right">'+'</td>'+
                                 '<td>' + '<a href="http://localhost:64332/Bikes/Details/'+bikeResults.bikeId+'">' +
-                                    'detailsBtn</a>' + '</td>' +
+
+
+                            '<button class="btn btn-default">Details</button></a>' +
+
+
+                            '</td>' +
                                 '</tr>'+
 
                             '</table>';

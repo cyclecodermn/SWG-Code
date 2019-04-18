@@ -1,4 +1,5 @@
-﻿@model string
+﻿@using Microsoft.Ajax.Utilities
+@model string
 
 @{
     ViewBag.Title = "Contact";
@@ -26,10 +27,14 @@
                             <input type="tel" name="sphone" class="form-control" placeholder="Your Phone *" id="phone" required data-validation-required-message="Please enter your phone number.">
                             <p class="help-block text-danger"></p>
                         </div>
-                        
+                        @{
+                            string preMsg = "";
+                            if (!Model.IsEmpty())
+                            { preMsg = "Interested in bike with serial #";}
+                        }
                         
                         <div class="form-group">
-                            <textarea class="form-control" name="smessage" placeholder="Your Message *" id="message" required data-validation-required-message="Please enter a message.">@Model</textarea>
+                            <textarea class="form-control" name="smessage" placeholder="Your Message *" id="message" required data-validation-required-message="Please enter a message.">@preMsg @Model</textarea>
                             <p class="help-block text-danger"></p>
                         </div>
                         

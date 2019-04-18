@@ -149,8 +149,6 @@ BEGIN
  DBCC CHECKIDENT('BikeMakeTable', RESEED, 1)
 
  DBCC CHECKIDENT('ContactTable', RESEED, 1)
-end
-go
 
 -- -  -   -    -     -      -       -        -
 delete from BikeFrameTable;
@@ -160,7 +158,10 @@ delete from BikeFrameTable;
 	VALUES
 	(1,'Touring'),
 	(2,'Road'),
-	(3,'Hybrid');
+	(3,'Hybrid'),
+	(4,'Banana'),
+	(5,'City');
+
 
 	SET IDENTITY_INSERT BikeFrameTable OFF;
 
@@ -181,11 +182,15 @@ delete from BikeColorTable ;
 	
 	INSERT INTO BikeColorTable (BikeColorId, BikeColor)
 	VALUES
-	(1,'White'),
-	(2,'Light Grey'),
-	(3,'Grey'),
-	(4,'Dark Grey'),
-	(5,'Charchol');
+	(1,'Red'),
+	(2,'Yello'),
+	(3,'Blue'),
+	(4,'Green'),
+	(5,'Orange'),
+	(6,'Purple'),
+	(7,'White'),
+	(8,'Black'),
+	(9,'Grey');
 
 	SET IDENTITY_INSERT BikeColorTable OFF;
 -- -  -   -    -     -      -       -        -
@@ -196,7 +201,8 @@ delete from BikeMakeTable;
 	VALUES
 	(1,'Giant'),
 	(2,'Surley'),
-	(3,'Trek');
+	(3,'Trek'),
+	(4,'Schwinn');
 
 	SET IDENTITY_INSERT BikeMakeTable OFF;
 -- -  -   -    -     -      -       -        -
@@ -229,18 +235,18 @@ delete from biketable;
 	VALUES 
 	(1,2,1,2,1,1,1111.00,1100.00,2019,1,10,18,1111111,'Fresh out of the box',GETDATE(),'bike-pic (0).jpg'),
 	(2,3,2,3,2,3,2222.00,2200.00,2019,1,9,18,2222222,'Scratch from the factory',GETDATE(),'bike-pic (1).jpg'),
-	(3,2,3,2,3,2,333.00,300.00,2012,0,4,1,3333333,'Very ok',GETDATE(),'bike-pic (2).jpg'),
+	(3,2,3,2,3,2,333.00,300.00,2012,0,4,1,3333333,'Very ok',GETDATE(),'50s Hiawatha.jpg'),
 	(4,1,3,1,3,1,444.00,400.00,2004,1,4,1,4444444,'Description 4',GETDATE(),'bike-pic (3).jpg'),
-	(5,1,2,3,1,2,555.00,500.00,2005,0,5,1,5555555,'Description 5',GETDATE(),'bike-pic (4).jpg'),
+	(5,1,2,3,1,2,555.00,500.00,1975,0,5,1,5555555,'Description 5',GETDATE(),'Schwinn stingray.jpg'),
 	(6,2,3,1,2,3,666.00,600.00,2006,1,6,1,666666,'Description 6',GETDATE(),'bike-pic (5).jpg'),
-	(7,3,1,2,3,1,777.00,700.00,2007,0,7,1,777777,'Description 7',GETDATE(),'bike-pic (6).jpg'),
+	(7,3,1,2,3,1,777.00,700.00,1983,0,7,1,777777,'Description 7',GETDATE(),'Schwinn World Tourist.jpg'),
 	(8,1,2,3,1,2,888.00,800.00,2008,1,8,1,888888,'Description 8',GETDATE(),'bike-pic (7).jpg'),
-	(9,2,3,1,2,3,999.00,900.00,2009,0,9,1,999999,'Description 9',GETDATE(),'bike-pic (8).jpg'),
+	(9,2,3,1,2,3,200.00,185.00,1978,0,9,1,999999,'Description 9',GETDATE(),'Schwinn Le Tour.jpg'),
 	(10,3,2,1,3,3,100.00,10.00,2010,1,10,1,101010,'Description 10',GETDATE(),'bike-pic (9).jpg');
 
 	SET IDENTITY_INSERT BikeTable OFF;
 
--- -  -   -    -     -      -       -        -pro
+-- -  -   -    -     -      -       -        -
 delete from FeatureTable;
 
 	SET IDENTITY_INSERT FeatureTable ON;
@@ -266,8 +272,6 @@ delete from PurchasedTable;
 
 	SET IDENTITY_INSERT PurchasedTable OFF;
 
-END
-GO
 -- -  -   -    -     -      -       -        -
 delete from ContactTable;
 	SET IDENTITY_INSERT ContactTable ON;
@@ -280,6 +284,8 @@ delete from ContactTable;
 
 	SET IDENTITY_INSERT ContactTable OFF;
 
+	end 
+	go
 -- -  -   -    -     -      -       -        -
 -- -  -   -    -     -      - Stored Procedures Below
 -- -  -   -    -     -      -       -        -

@@ -100,13 +100,11 @@
 {
     <script>
         $(document).ready(function() {
-
-            //When page opens, show a list of new bikes.
             var newBikes = true;
             search(newBikes); 
             
             $("#searchForm").submit(function (e) {
-                search(true);
+                //When page opens, show a list of new bikes.
                 return false;
             });
         });
